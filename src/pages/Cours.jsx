@@ -53,10 +53,7 @@ export default function Cours() {
             <h2 className="font-serif font-light text-3xl">Les disciplines</h2>
           </div>
 
-          <div
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: '1.25rem' }}
-            className="md:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {DISCIPLINES.map(d => (
               <div key={d.type} className="card text-center">
                 <div className="mb-4">
@@ -89,24 +86,20 @@ export default function Cours() {
             </p>
           </div>
 
-          <div
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: '1.25rem', alignItems: 'stretch' }}
-            className="md:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 items-stretch">
             {PRICING.map(plan => (
               <div
                 key={plan.name}
                 style={{
-                  borderRadius: '1.25rem',
-                  padding: '2rem',
+                  borderRadius: '.25rem',
+                  padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '1.25rem',
-                  background: plan.highlighted ? 'var(--color-primary)' : '#fff',
-                  border: plan.highlighted ? 'none' : '1px solid var(--color-border)',
-                  boxShadow: plan.highlighted
-                    ? '0 16px 40px rgba(79,99,66,.22)'
-                    : '0 2px 8px rgba(44,44,44,.04)',
+                  gap: '1rem',
+                  minHeight: '100%',
+                  background: '#fff',
+                  border: '1px solid var(--color-border)',
+                  boxShadow: '0 2px 8px rgba(44,44,44,.04)',
                 }}
               >
                 {/* Badge */}
@@ -114,8 +107,8 @@ export default function Cours() {
                   <span
                     className="self-start text-xs font-semibold px-3 py-1 rounded-full"
                     style={{
-                      background: plan.highlighted ? 'rgba(255,255,255,.18)' : 'var(--color-primary-bg)',
-                      color:      plan.highlighted ? '#fff' : 'var(--color-primary)',
+                      background: 'var(--color-primary-bg)',
+                      color: 'var(--color-primary)',
                     }}
                   >
                     {plan.badge}
@@ -123,44 +116,44 @@ export default function Cours() {
                 )}
 
                 {/* Nom & prix */}
-                <div className="text-center">
-                  <p className="text-sm font-semibold mb-2"
-                     style={{ color: plan.highlighted ? 'rgba(255,255,255,.7)' : 'var(--color-secondary)' }}>
+                <div>
+                  <p className="font-serif text-3xl font-semibold mb-1" style={{ color: 'var(--color-ink)' }}>
                     {plan.name}
                   </p>
-                  <p className="font-serif font-light"
-                     style={{ fontSize: '3.25rem', lineHeight: 1, color: plan.highlighted ? '#fff' : 'var(--color-ink)' }}>
-                    {plan.price}€
-                  </p>
-                  <p className="text-xs font-medium mt-2"
-                     style={{ color: plan.highlighted ? 'rgba(255,255,255,.55)' : 'var(--color-secondary)' }}>
-                    {plan.period}
-                  </p>
+                  <div className="mt-5 flex items-end gap-1.5">
+                    <p className="font-serif font-semibold"
+                       style={{ fontSize: '2.5rem', lineHeight: 1, color: 'var(--color-primary)' }}>
+                      {plan.price}€
+                    </p>
+                    <p className="text-sm mb-1" style={{ color: 'var(--color-secondary)' }}>
+                      {plan.period}
+                    </p>
+                  </div>
                   <p className="text-sm mt-3 leading-relaxed"
-                     style={{ color: plan.highlighted ? 'rgba(255,255,255,.72)' : 'var(--color-secondary)' }}>
+                     style={{ color: 'var(--color-secondary)' }}>
                     {plan.desc}
                   </p>
                 </div>
 
                 {/* Features */}
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '.625rem', flex: 1 }}>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '.5rem', flex: 1 }}>
                   {plan.features.map(f => (
                     <li key={f} className="flex items-start gap-2.5 text-sm">
                       <span
                         className="flex-shrink-0 flex items-center justify-center rounded-full"
                         style={{
-                          width: '1.125rem',
-                          height: '1.125rem',
-                          marginTop: '.1rem',
-                          fontSize: '.6rem',
+                          width: '.95rem',
+                          height: '.95rem',
+                          marginTop: '.2rem',
+                          fontSize: '.5rem',
                           fontWeight: 700,
-                          background: plan.highlighted ? 'rgba(255,255,255,.22)' : 'var(--color-primary-bg)',
-                          color:      plan.highlighted ? '#fff' : 'var(--color-primary)',
+                          background: 'var(--color-primary-bg)',
+                          color: 'var(--color-primary)',
                         }}
                       >
                         ✓
                       </span>
-                      <span style={{ color: plan.highlighted ? 'rgba(255,255,255,.82)' : 'var(--color-ink)' }}>
+                      <span style={{ color: 'var(--color-ink)' }}>
                         {f}
                       </span>
                     </li>
@@ -172,15 +165,18 @@ export default function Cours() {
                   to="/contact"
                   className="btn"
                   style={{
-                    background: plan.highlighted ? '#fff'                    : 'var(--color-primary)',
-                    color:      plan.highlighted ? 'var(--color-primary)'    : '#fff',
+                    width: '100%',
+                    justifyContent: 'center',
+                    border: plan.highlighted ? 'none' : '1px solid var(--color-border)',
+                    background: plan.highlighted ? 'var(--color-primary)' : '#fff',
+                    color: plan.highlighted ? '#fff' : 'var(--color-ink)',
                     padding: '.75rem 1.5rem',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background = plan.highlighted ? 'var(--color-neutral)' : 'var(--color-primary-dk)'
+                    e.currentTarget.style.background = plan.highlighted ? 'var(--color-primary-dk)' : 'var(--color-neutral)'
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.background = plan.highlighted ? '#fff' : 'var(--color-primary)'
+                    e.currentTarget.style.background = plan.highlighted ? 'var(--color-primary)' : '#fff'
                   }}
                 >
                   {plan.cta}

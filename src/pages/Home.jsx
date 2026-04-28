@@ -118,12 +118,12 @@ export default function Home() {
             className="font-serif font-light text-white mb-6"
             style={{ fontSize: "clamp(2.5rem,6vw,4rem)", lineHeight: 1.1 }}
           >
-            Transformez-vous de{" "}
+            Retrouvez l’harmonie du corps et de l’esprit grâce au yoga avec{" "}
             <em
               className="not-italic font-semibold"
               style={{ color: "var(--color-tertiary)" }}
             >
-              l'intérieur
+              Kundalini Yoga
             </em>
           </h1>
 
@@ -136,8 +136,7 @@ export default function Home() {
               marginInline: "auto",
             }}
           >
-            Yoga, fitness et méditation dans un espace bienveillant au cœur de
-            Paris. Chaque séance est une invitation à aller plus loin.
+            Yoga, fitness et méditation dans un espace bienveillant. Chaque séance est une invitation à aller plus loin.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14">
@@ -225,14 +224,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(1,1fr)",
-              gap: "1.25rem",
-            }}
-            className="md:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {FEATURES.map((f) => (
               <div key={f.title} className="card text-center">
                 <div className="mb-4">

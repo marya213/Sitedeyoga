@@ -161,14 +161,7 @@ export default function APropos() {
             <h2 className="font-serif font-light text-3xl">Nos valeurs</h2>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(1,1fr)",
-              gap: "1.25rem",
-            }}
-            className="md:grid-cols-3"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {VALUES.map((v) => (
               <div key={v.title} className="card text-center">
                 <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>
