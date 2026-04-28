@@ -86,7 +86,7 @@ export default function Cours() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {PRICING.map(plan => (
               <div
                 key={plan.name}

@@ -4,6 +4,7 @@ const LINKS = [
   { label: "Cours", to: "/cours" },
   { label: "Contact", to: "/contact" },
 ];
+const INSTAGRAM_URL = "https://www.instagram.com/emmanuelledruneau_kundalini/";
 
 export default function Footer() {
   return (
@@ -44,34 +45,67 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
-          <div className="flex flex-col md:items-end md:text-right">
-            <h3
-              className="text-xs font-semibold uppercase tracking-widest mb-5"
-              style={{
-                color: "rgba(255,255,255,.35)",
-                fontFamily: "var(--font-sans)",
-              }}
+          {/* Navigation + social */}
+          <div className="flex items-start md:items-center gap-5 md:gap-6">
+            <div className="flex flex-col md:items-end md:text-right">
+              <h3
+                className="text-xs font-semibold uppercase tracking-widest mb-5"
+                style={{
+                  color: "rgba(255,255,255,.35)",
+                  fontFamily: "var(--font-sans)",
+                }}
+              >
+                Navigation
+              </h3>
+              <ul className="flex flex-col gap-2.5 md:items-end">
+                {LINKS.map(({ label, to }) => (
+                  <li key={to}>
+                    <Link
+                      to={to}
+                      className="text-sm transition-colors"
+                      style={{ color: "rgba(255,255,255,.55)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color = "rgba(255,255,255,.55)")
+                      }
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram Kundalini"
+              className="transition-transform"
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.06)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
             >
-              Navigation
-            </h3>
-            <ul className="flex flex-col gap-2.5 md:items-end">
-              {LINKS.map(({ label, to }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
-                    className="text-sm transition-colors"
-                    style={{ color: "rgba(255,255,255,.55)" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = "rgba(255,255,255,.55)")
-                    }
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <defs>
+                  <radialGradient id="igGradient" cx="30%" cy="107%" r="150%">
+                    <stop offset="0%" stopColor="#fdf497" />
+                    <stop offset="5%" stopColor="#fdf497" />
+                    <stop offset="45%" stopColor="#fd5949" />
+                    <stop offset="60%" stopColor="#d6249f" />
+                    <stop offset="90%" stopColor="#285AEB" />
+                  </radialGradient>
+                </defs>
+                <rect x="2.1" y="2.1" width="19.8" height="19.8" rx="5.6" fill="url(#igGradient)" />
+                <circle cx="12" cy="12" r="4.2" stroke="#fff" strokeWidth="1.9" fill="none" />
+                <circle cx="17.15" cy="6.9" r="1.3" fill="#fff" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

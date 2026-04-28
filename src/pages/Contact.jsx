@@ -9,12 +9,46 @@ const INFO_BLOCKS = [
   {
     icon: "📞",
     label: "Téléphone",
-    lines: ["+33 1 42 00 00 00"],
+    lines: ["+33 6 63 57 04 26"],
   },
   {
     icon: "✉️",
     label: "Email",
-    lines: ["bonjour@studiokundalini.fr"],
+    lines: ["emmanuelledruneau@gmail.com"],
+  },
+  {
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <radialGradient id="igGradientContact" cx="30%" cy="107%" r="150%">
+            <stop offset="0%" stopColor="#fdf497" />
+            <stop offset="5%" stopColor="#fdf497" />
+            <stop offset="45%" stopColor="#fd5949" />
+            <stop offset="60%" stopColor="#d6249f" />
+            <stop offset="90%" stopColor="#285AEB" />
+          </radialGradient>
+        </defs>
+        <rect
+          x="2.1"
+          y="2.1"
+          width="19.8"
+          height="19.8"
+          rx="5.6"
+          fill="url(#igGradientContact)"
+        />
+        <circle cx="12" cy="12" r="4.2" stroke="#fff" strokeWidth="1.9" fill="none" />
+        <circle cx="17.15" cy="6.9" r="1.3" fill="#fff" />
+      </svg>
+    ),
+    label: "Instagram",
+    lines: ["@Kundalini Yoga"],
+    href: "https://www.instagram.com/emmanuelledruneau_kundalini/",
   },
 ];
 
@@ -151,15 +185,34 @@ export default function Contact() {
                     >
                       {block.label}
                     </div>
-                    {block.lines.map((line) => (
-                      <div
-                        key={line}
-                        className="text-sm"
-                        style={{ color: "var(--color-ink)" }}
-                      >
-                        {line}
-                      </div>
-                    ))}
+                    {block.lines.map((line) =>
+                      block.href ? (
+                        <a
+                          key={line}
+                          href={block.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm transition-colors"
+                          style={{ color: "var(--color-ink)" }}
+                          onMouseEnter={(e) =>
+                            (e.currentTarget.style.color = "var(--color-primary)")
+                          }
+                          onMouseLeave={(e) =>
+                            (e.currentTarget.style.color = "var(--color-ink)")
+                          }
+                        >
+                          {line}
+                        </a>
+                      ) : (
+                        <div
+                          key={line}
+                          className="text-sm"
+                          style={{ color: "var(--color-ink)" }}
+                        >
+                          {line}
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               ))}
