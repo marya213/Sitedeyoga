@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NewsletterForm from "../components/NewsletterForm";
 
 const INFO_BLOCKS = [
   {
@@ -261,6 +262,12 @@ export default function Contact() {
                 </tbody>
               </table>
             </div>
+
+            <NewsletterForm
+              title="Newsletter bien-etre"
+              description="Inscrivez-vous pour recevoir nos inspirations, evenements et offres exclusives."
+              buttonLabel="Je m'inscris"
+            />
           </div>
 
           {/* ── Colonne droite : formulaire ── */}

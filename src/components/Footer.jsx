@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import NewsletterForm from "./NewsletterForm";
 
 const LINKS = [
   { label: "Cours", to: "/cours" },
@@ -43,6 +44,16 @@ export default function Footer() {
               Un espace de bien-être, de mouvement et de transformation au cœur
               de Paris.
             </p>
+          </div>
+
+          <div style={{ maxWidth: "22rem" }}>
+            <NewsletterForm
+              title="Newsletter"
+              description="Chaque mois, retrouvez nos conseils Kundalini, nouveaux cours et ateliers a venir."
+              buttonLabel="S'abonner"
+              compact
+              theme="dark"
+            />
           </div>
 
           {/* Navigation + social */}
