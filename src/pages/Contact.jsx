@@ -90,8 +90,8 @@ export default function Contact() {
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
         style={{
-          background: "#fff",
-          borderBottom: "1px solid var(--color-border)",
+          background: "#F5F0E8",
+          borderBottom: "1px solid rgba(201,168,76,.2)",
           padding: "4rem 0 3rem",
         }}
       >
@@ -124,7 +124,7 @@ export default function Contact() {
 
       {/* ══ Contenu principal ═════════════════════════════════ */}
       <section
-        style={{ background: "var(--color-neutral)", padding: "5rem 0" }}
+        style={{ background: "#2D1B4E", padding: "5rem 0" }}
       >
         <div
           className="section-inner md:grid-cols-2"
@@ -138,13 +138,13 @@ export default function Contact() {
           <div className="lg:col-span-1">
             <h2
               className="font-serif font-light text-2xl md:text-3xl mb-3"
-              style={{ color: "var(--color-ink)" }}
+              style={{ color: "#F0EAD6" }}
             >
               Informations pratiques
             </h2>
             <p
               className="text-sm leading-relaxed mb-8"
-              style={{ color: "var(--color-secondary)", maxWidth: "40ch" }}
+              style={{ color: "rgba(240,234,214,.72)", maxWidth: "40ch" }}
             >
               Notre équipe est disponible 7j/7 pour répondre à vos questions et
               vous aider à trouver le cours qui vous correspond.
@@ -181,7 +181,7 @@ export default function Contact() {
                   <div>
                     <div
                       className="text-xs font-semibold uppercase tracking-widest mb-1"
-                      style={{ color: "var(--color-secondary)" }}
+                      style={{ color: "rgba(240,234,214,.55)" }}
                     >
                       {block.label}
                     </div>
@@ -193,12 +193,12 @@ export default function Contact() {
                           target="_blank"
                           rel="noreferrer"
                           className="text-sm transition-colors"
-                          style={{ color: "var(--color-ink)" }}
+                          style={{ color: "#F0EAD6" }}
                           onMouseEnter={(e) =>
-                            (e.currentTarget.style.color = "var(--color-primary)")
+                            (e.currentTarget.style.color = "#C9A84C")
                           }
                           onMouseLeave={(e) =>
-                            (e.currentTarget.style.color = "var(--color-ink)")
+                            (e.currentTarget.style.color = "#F0EAD6")
                           }
                         >
                           {line}
@@ -207,7 +207,7 @@ export default function Contact() {
                         <div
                           key={line}
                           className="text-sm"
-                          style={{ color: "var(--color-ink)" }}
+                          style={{ color: "#F0EAD6" }}
                         >
                           {line}
                         </div>

@@ -15,10 +15,10 @@ export default function Navbar() {
     <header
       className="fixed top-0 inset-x-0 z-50"
       style={{
-        background: 'rgba(245,245,240,.92)',
+        background: 'rgba(45,27,78,.88)',
         backdropFilter: 'blur(14px)',
         WebkitBackdropFilter: 'blur(14px)',
-        borderBottom: '1px solid #E8E8E3',
+        borderBottom: '1px solid rgba(201,168,76,.2)',
       }}
     >
       <div className="section-inner h-16 flex items-center justify-between">
@@ -37,7 +37,7 @@ export default function Navbar() {
           </span>
           <span
             className="hidden sm:inline font-serif font-semibold text-lg"
-            style={{ color: 'var(--color-ink)', letterSpacing: '.01em' }}
+            style={{ color: '#C9A84C', letterSpacing: '.01em' }}
           >
             Studio Kundalini
           </span>
@@ -52,11 +52,11 @@ export default function Navbar() {
               end={end}
               style={({ isActive }) => ({
                 fontSize: '.875rem',
-                fontWeight: isActive ? 600 : 500,
+                fontWeight: isActive ? 600 : 400,
                 padding: '.45rem 1rem',
                 borderRadius: '9999px',
-                color: isActive ? 'var(--color-primary)' : 'var(--color-secondary)',
-                background: isActive ? 'var(--color-primary-bg)' : 'transparent',
+                color: isActive ? '#C9A84C' : 'rgba(240,234,214,.78)',
+                background: isActive ? 'rgba(201,168,76,.15)' : 'transparent',
                 transition: 'background .2s, color .2s',
               })}
             >
@@ -80,14 +80,14 @@ export default function Navbar() {
             onClick={() => setOpen(v => !v)}
             aria-label={open ? 'Fermer' : 'Menu'}
             className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl transition-colors"
-            style={{ background: open ? 'var(--color-primary-bg)' : 'transparent' }}
+            style={{ background: open ? 'rgba(201,168,76,.15)' : 'transparent' }}
           >
             <span className="block h-0.5 w-5 transition-all duration-200"
-              style={{ background: 'var(--color-ink)', transform: open ? 'translateY(8px) rotate(45deg)' : 'none' }} />
+              style={{ background: '#F0EAD6', transform: open ? 'translateY(8px) rotate(45deg)' : 'none' }} />
             <span className="block h-0.5 w-5 transition-all duration-200"
-              style={{ background: 'var(--color-ink)', opacity: open ? 0 : 1 }} />
+              style={{ background: '#F0EAD6', opacity: open ? 0 : 1 }} />
             <span className="block h-0.5 w-5 transition-all duration-200"
-              style={{ background: 'var(--color-ink)', transform: open ? 'translateY(-8px) rotate(-45deg)' : 'none' }} />
+              style={{ background: '#F0EAD6', transform: open ? 'translateY(-8px) rotate(-45deg)' : 'none' }} />
           </button>
         </div>
       </div>
@@ -97,8 +97,8 @@ export default function Navbar() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(245,245,240,.98)',
-            borderTop: '1px solid var(--color-border)',
+            background: 'rgba(45,27,78,.98)',
+            borderTop: '1px solid rgba(201,168,76,.2)',
             padding: '.75rem clamp(1.25rem, 5vw, 3rem) 1.25rem',
             display: 'flex',
             flexDirection: 'column',
@@ -117,8 +117,8 @@ export default function Navbar() {
                 borderRadius: '.875rem',
                 fontSize: '.9375rem',
                 fontWeight: isActive ? 600 : 400,
-                color: isActive ? 'var(--color-primary)' : 'var(--color-ink)',
-                background: isActive ? 'var(--color-primary-bg)' : 'transparent',
+                color: isActive ? '#C9A84C' : 'rgba(240,234,214,.8)',
+                background: isActive ? 'rgba(201,168,76,.15)' : 'transparent',
               })}
             >
               {label}

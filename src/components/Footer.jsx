@@ -8,7 +8,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/emmanuelledruneau_kundalini/";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#1c221a", color: "rgba(255,255,255,.65)" }}>
+    <footer style={{ background: "#2D1B4E", color: "rgba(240,234,214,.65)" }}>
       <div
         className="section-inner py-20 px-6 sm:px-8 lg:px-0"
         style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem" }}
@@ -31,7 +31,7 @@ export default function Footer() {
               </span>
               <span
                 className="font-serif font-semibold text-base"
-                style={{ color: "#fff" }}
+                style={{ color: "#C9A84C" }}
               >
                 Studio Kundalini
               </span>
@@ -111,7 +111,7 @@ export default function Footer() {
       </div>
 
       {/* Bas */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,.08)" }}>
+      <div style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
         <div
           className="section-inner py-5 px-6 sm:px-8 lg:px-0 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs"
           style={{ color: "rgba(255,255,255,.3)" }}

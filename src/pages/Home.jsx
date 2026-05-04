@@ -49,18 +49,18 @@ const TESTIMONIALS = [
 function Pill({ type }) {
   const styles = {
     yoga: {
-      bg: "var(--color-secondary-bg)",
-      color: "var(--color-secondary)",
+      bg: "rgba(139,74,107,.13)",
+      color: "#8B4A6B",
       label: "🧘 Yoga",
     },
     studio: {
-      bg: "var(--color-primary-bg)",
-      color: "var(--color-primary)",
+      bg: "rgba(201,168,76,.15)",
+      color: "#7a5520",
       label: "🏋️ Studio",
     },
     hybride: {
-      bg: "var(--color-tertiary-bg)",
-      color: "#a0622a",
+      bg: "rgba(45,27,78,.12)",
+      color: "#7B5EA7",
       label: "🎥 Hybride",
     },
   };
@@ -101,7 +101,7 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(170deg,#1a2514cc 0%,#1e2a1899 50%,#1a2514e0 100%)",
+              "linear-gradient(170deg, #3D2060cc 0%, #2D1B4E99 50%, #2D1B4Ee0 100%)",
           }}
         />
 
@@ -121,7 +121,7 @@ export default function Home() {
             Retrouvez l’harmonie du corps et de l’esprit grâce au yoga avec{" "}
             <em
               className="not-italic font-semibold"
-              style={{ color: "var(--color-tertiary)" }}
+              style={{ color: "#C9A84C" }}
             >
               Kundalini Yoga
             </em>
@@ -162,7 +162,7 @@ export default function Home() {
               <div key={s.label} className="text-center">
                 <div
                   className="font-serif font-semibold text-2xl"
-                  style={{ color: "var(--color-tertiary)" }}
+                  style={{ color: "#C9A84C" }}
                 >
                   {s.value}
                 </div>
@@ -246,7 +246,7 @@ export default function Home() {
       </section>
 
       {/* ══ Citation ══════════════════════════════════════════ */}
-      <section style={{ background: "#fff", padding: "5rem 0" }}>
+      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
         <div
           className="section-inner text-center"
           style={{ maxWidth: "38rem" }}
@@ -256,8 +256,8 @@ export default function Home() {
             style={{
               fontSize: "5rem",
               lineHeight: 1,
-              color: "var(--color-tertiary)",
-              opacity: 0.25,
+              color: "#C9A84C",
+              opacity: 0.35,
             }}
           >
             "
@@ -266,7 +266,7 @@ export default function Home() {
             className="font-serif italic font-light"
             style={{
               fontSize: "clamp(1.125rem,2.5vw,1.375rem)",
-              color: "var(--color-ink)",
+              color: "#F0EAD6",
               lineHeight: 1.65,
               marginTop: "-1.5rem",
               marginBottom: "1.5rem",
@@ -278,7 +278,7 @@ export default function Home() {
           </blockquote>
           <p
             className="text-sm font-medium"
-            style={{ color: "var(--color-secondary)" }}
+            style={{ color: "rgba(240,234,214,.6)" }}
           >
             — Claire B., membre depuis 2024
           </p>
@@ -289,20 +289,20 @@ export default function Home() {
       <section
         className="text-center text-white"
         style={{
-          background: "var(--color-primary)",
+          background: "#2D1B4E",
           padding: "5rem clamp(1.25rem,5vw,3rem)",
         }}
       >
         <div style={{ maxWidth: "36rem", marginInline: "auto" }}>
           <h2
-            className="font-serif font-light text-white mb-4"
-            style={{ fontSize: "clamp(1.75rem,4vw,2.5rem)" }}
+            className="font-serif font-light mb-4"
+            style={{ fontSize: "clamp(1.75rem,4vw,2.5rem)", color: "#F0EAD6" }}
           >
             Prêt·e à commencer ?
           </h2>
           <p
             className="mb-8 leading-relaxed"
-            style={{ color: "rgba(255,255,255,.72)", fontSize: ".9375rem" }}
+            style={{ color: "rgba(240,234,214,.72)", fontSize: ".9375rem" }}
           >
             Rejoignez notre communauté et découvrez votre premier cours avec
             notre Pass Découverte.
@@ -312,8 +312,8 @@ export default function Home() {
               to="/cours"
               className="btn"
               style={{
-                background: "#fff",
-                color: "var(--color-primary)",
+                background: "#C9A84C",
+                color: "#2C1810",
                 padding: ".875rem 2rem",
               }}
             >

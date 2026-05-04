@@ -1,36 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────── */
 @theme {
-  /* Couleurs principales */
-  --color-primary:      #4F6342;
-  --color-primary-dk:   #3a4a30;
-  --color-primary-lt:   #6a8257;
-  --color-primary-bg:   #eef3eb;
+  /* Couleurs principales — palette Kundalini */
+  --color-primary:      #C9A84C;   /* or doré */
+  --color-primary-dk:   #a8883a;
+  --color-primary-lt:   #e0bc6f;
+  --color-primary-bg:   #f6eacc;   /* doré très clair */
 
-  --color-secondary:    #8C7B6E;
-  --color-secondary-bg: #f3ede9;
+  --color-secondary:    #7B5EA7;   /* violet moyen */
+  --color-secondary-bg: #edeaf5;
 
-  --color-tertiary:     #D4A373;
-  --color-tertiary-bg:  #faf0e4;
+  --color-tertiary:     #8B4A6B;   /* mauve rosé */
+  --color-tertiary-bg:  #f4e8ef;
 
-  --color-neutral:      #F5F5F0;
-  --color-surface:      #ffffff;
-  --color-border:       #E8E8E3;
+  --color-neutral:      #F5F0E8;   /* crème chaud */
+  --color-surface:      #F5F0E8;
+  --color-border:       #ddc882;   /* ligne dorée subtile */
 
   /* Textes */
-  --color-ink:          #2C2C2C;
-  --color-ink-muted:    #8C7B6E;
-  --color-ink-faint:    #B8B0A8;
+  --color-ink:          #2C1810;   /* brun foncé sur fond clair */
+  --color-ink-muted:    #6b4035;
+  --color-ink-faint:    #b09075;
 
   /* Polices */
-  --font-serif: "Noto Serif", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans:  Manrope, system-ui, sans-serif;
 
   /* Espacements clés */
   --section-y: 5rem;
-  --container: 60rem;   /* max-w utilisé : ~960px */
+  --container: 60rem;
 }
 
 /* ── Reset & base ───────────────────────────────────────────── */
@@ -41,7 +41,8 @@ body {
   font-family: var(--font-sans);
   background: var(--color-neutral);
   color: var(--color-ink);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -51,6 +52,8 @@ h1, h2, h3, h4 {
   color: var(--color-ink);
 }
 
+h1 { font-style: italic; }
+
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button { cursor: pointer; }
@@ -58,7 +61,7 @@ button { cursor: pointer; }
 
 /* ── Composants réutilisables ───────────────────────────────── */
 
-/* Bouton primaire */
+/* Bouton — coins légèrement arrondis, fond doré */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -67,33 +70,34 @@ button { cursor: pointer; }
   font-family: var(--font-sans);
   font-size: .875rem;
   font-weight: 600;
-  border-radius: 9999px;
+  border-radius: .5rem;
   padding: .75rem 1.75rem;
   border: none;
   transition: background .2s, color .2s, box-shadow .2s;
   white-space: nowrap;
 }
-.btn-primary   { background: var(--color-primary); color: #fff; }
+.btn-primary   { background: var(--color-primary); color: #2C1810; }
 .btn-primary:hover { background: var(--color-primary-dk); }
 
-.btn-secondary { background: transparent; color: var(--color-secondary); box-shadow: inset 0 0 0 1.5px var(--color-border); }
-.btn-secondary:hover { background: var(--color-secondary-bg); }
+.btn-secondary { background: transparent; color: var(--color-secondary); box-shadow: inset 0 0 0 1.5px rgba(201,168,76,.5); }
+.btn-secondary:hover { background: var(--color-primary-bg); }
 
-.btn-inverted  { background: var(--color-ink); color: #fff; }
-.btn-inverted:hover { background: #3a3a3a; }
+.btn-inverted  { background: #2D1B4E; color: #F0EAD6; }
+.btn-inverted:hover { background: #3D2060; }
 
-.btn-outlined  { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35); }
-.btn-outlined:hover { background: rgba(255,255,255,.1); }
+.btn-outlined  { background: transparent; color: #F0EAD6; box-shadow: inset 0 0 0 1.5px rgba(240,234,214,.4); }
+.btn-outlined:hover { background: rgba(240,234,214,.08); }
 
-/* Carte */
+/* Carte — fond crème, bordure dorée douce */
 .card {
-  background: var(--color-surface);
+  background: #F5F0E8;
   border-radius: 1.25rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(201,168,76,.25);
   padding: 1.75rem;
   transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 12px rgba(45,27,78,.06);
 }
-.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,44,44,.08); }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,27,78,.13); }
 
 /* Pill / chip */
 .pill {
@@ -108,11 +112,11 @@ button { cursor: pointer; }
   padding: .3rem .75rem;
   border: 1px solid transparent;
 }
-.pill-primary   { background: var(--color-primary-bg);   color: var(--color-primary);   border-color: var(--color-primary-bg); }
-.pill-secondary { background: var(--color-secondary-bg); color: var(--color-secondary); border-color: var(--color-secondary-bg); }
-.pill-tertiary  { background: var(--color-tertiary-bg);  color: #a0622a;                border-color: var(--color-tertiary-bg); }
+.pill-primary   { background: rgba(139,74,107,.13); color: #8B4A6B; border-color: rgba(139,74,107,.2); }
+.pill-secondary { background: rgba(201,168,76,.16); color: #7a5520; border-color: rgba(201,168,76,.22); }
+.pill-tertiary  { background: rgba(45,27,78,.1);    color: #7B5EA7; border-color: rgba(45,27,78,.14); }
 
-/* Icône nav (cercle) */
+/* Icône nav (cercle) — dorée */
 .nav-icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -120,18 +124,18 @@ button { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary-bg);
-  color: var(--color-primary);
-  transition: background .2s;
+  background: rgba(201,168,76,.18);
+  color: #C9A84C;
+  transition: background .2s, color .2s;
 }
-.nav-icon:hover { background: var(--color-primary); color: #fff; }
-.nav-icon.active { background: var(--color-primary); color: #fff; }
+.nav-icon:hover { background: #C9A84C; color: #2C1810; }
+.nav-icon.active { background: #C9A84C; color: #2C1810; }
 
 /* Input */
 .input {
   width: 100%;
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
+  background: #fff;
+  border: 1.5px solid rgba(201,168,76,.3);
   border-radius: .75rem;
   padding: .75rem 1rem;
   font-family: var(--font-sans);
@@ -142,7 +146,7 @@ button { cursor: pointer; }
 }
 .input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-bg);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
 }
 
 /* Section layout helper */
@@ -154,6 +158,6 @@ button { cursor: pointer; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-neutral); }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-ink-faint); }
+::-webkit-scrollbar-track { background: #F5F0E8; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,.45); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A84C; }

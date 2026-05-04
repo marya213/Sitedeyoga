@@ -16,7 +16,7 @@ export default function Cours() {
     <main className="pt-16">
 
       {/* ══ Header ════════════════════════════════════════════ */}
-      <section style={{ background: '#fff', borderBottom: '1px solid var(--color-border)', padding: '4rem 0 3rem' }}>
+      <section style={{ background: '#F5F0E8', borderBottom: '1px solid rgba(201,168,76,.2)', padding: '4rem 0 3rem' }}>
         <div className="section-inner text-center">
           <p className="text-xs font-semibold uppercase tracking-widest mb-3"
              style={{ color: 'var(--color-secondary)' }}>
@@ -26,10 +26,13 @@ export default function Cours() {
               style={{ fontSize: 'clamp(2rem,5vw,3rem)' }}>
             Nos cours
           </h1>
+          <p className="leading-relaxed mb-3"
+             style={{ color: 'var(--color-secondary)', maxWidth: '48ch', marginInline: 'auto' }}>
+            Le Kundalini Yoga m'a permis de faire une véritable rencontre avec moi-même. De me réapproprier mon corps. De ressentir, en profondeur, ce qui se manifeste en moi.
+          </p>
           <p className="leading-relaxed mb-8"
-             style={{ color: 'var(--color-secondary)', maxWidth: '40ch', marginInline: 'auto' }}>
-            Trois disciplines, vingt-deux créneaux par semaine, trois instructeurs
-            passionnés.
+             style={{ color: 'var(--color-secondary)', maxWidth: '48ch', marginInline: 'auto' }}>
+            Chaque séance est unique, parce que vous êtes unique.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href="#tarifs" className="btn btn-primary" style={{ padding: '.75rem 1.75rem' }}>
@@ -43,14 +46,14 @@ export default function Cours() {
       </section>
 
       {/* ══ Disciplines ═══════════════════════════════════════ */}
-      <section style={{ background: 'var(--color-neutral)', padding: '5rem 0' }}>
+      <section style={{ background: '#2D1B4E', padding: '5rem 0' }}>
         <div className="section-inner">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest mb-3"
-               style={{ color: 'var(--color-secondary)' }}>
+               style={{ color: 'rgba(240,234,214,.6)' }}>
               Ce que nous proposons
             </p>
-            <h2 className="font-serif font-light text-3xl">Les disciplines</h2>
+            <h2 className="font-serif font-light text-3xl" style={{ color: '#F0EAD6' }}>Les disciplines</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -73,7 +76,7 @@ export default function Cours() {
       </section>
 
       {/* ══ Tarifs ════════════════════════════════════════════ */}
-      <section id="tarifs" style={{ background: '#fff', padding: '5rem 0' }}>
+      <section id="tarifs" style={{ background: '#F5F0E8', padding: '5rem 0' }}>
         <div className="section-inner">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest mb-3"
@@ -168,15 +171,15 @@ export default function Cours() {
                     width: '100%',
                     justifyContent: 'center',
                     border: plan.highlighted ? 'none' : '1px solid var(--color-border)',
-                    background: plan.highlighted ? 'var(--color-primary)' : '#fff',
-                    color: plan.highlighted ? '#fff' : 'var(--color-ink)',
+                    background: plan.highlighted ? '#C9A84C' : '#fff',
+                    color: plan.highlighted ? '#2C1810' : 'var(--color-ink)',
                     padding: '.75rem 1.5rem',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background = plan.highlighted ? 'var(--color-primary-dk)' : 'var(--color-neutral)'
+                    e.currentTarget.style.background = plan.highlighted ? '#a8883a' : 'rgba(201,168,76,.08)'
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.background = plan.highlighted ? 'var(--color-primary)' : '#fff'
+                    e.currentTarget.style.background = plan.highlighted ? '#C9A84C' : '#fff'
                   }}
                 >
                   {plan.cta}
