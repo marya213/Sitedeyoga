@@ -75,7 +75,9 @@ export default function Footer() {
                       to={to}
                       className="text-sm transition-colors"
                       style={{ color: "rgba(255,255,255,.55)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "#fff")
+                      }
                       onMouseLeave={(e) =>
                         (e.currentTarget.style.color = "rgba(255,255,255,.55)")
                       }
@@ -93,8 +95,12 @@ export default function Footer() {
               rel="noreferrer"
               aria-label="Instagram Kundalini"
               className="transition-transform"
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.06)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.06)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <svg
                 width="30"
@@ -112,22 +118,26 @@ export default function Footer() {
                     <stop offset="90%" stopColor="#285AEB" />
                   </radialGradient>
                 </defs>
-                <rect x="2.1" y="2.1" width="19.8" height="19.8" rx="5.6" fill="url(#igGradient)" />
-                <circle cx="12" cy="12" r="4.2" stroke="#fff" strokeWidth="1.9" fill="none" />
+                <rect
+                  x="2.1"
+                  y="2.1"
+                  width="19.8"
+                  height="19.8"
+                  rx="5.6"
+                  fill="url(#igGradient)"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4.2"
+                  stroke="#fff"
+                  strokeWidth="1.9"
+                  fill="none"
+                />
                 <circle cx="17.15" cy="6.9" r="1.3" fill="#fff" />
               </svg>
             </a>
           </div>
-        </div>
-      </div>
-
-      {/* Bas */}
-      <div style={{ borderTop: "1px solid rgba(201,168,76,.15)" }}>
-        <div
-          className="section-inner py-5 px-6 sm:px-8 lg:px-0 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs"
-          style={{ color: "rgba(255,255,255,.3)" }}
-        >
-          <span>© 2026 Studio Kundalini · Tous droits réservés</span>
         </div>
       </div>
     </footer>

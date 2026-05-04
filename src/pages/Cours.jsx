@@ -219,21 +219,19 @@ export default function Cours() {
                     width: "100%",
                     justifyContent: "center",
                     border: plan.highlighted
-                      ? "none"
+                      ? "1px solid rgba(45,27,78,.12)"
                       : "1px solid var(--color-border)",
-                    background: plan.highlighted ? "#C9A84C" : "#fff",
-                    color: plan.highlighted ? "#2C1810" : "var(--color-ink)",
+                    background: "var(--color-neutral)",
+                    color: "var(--color-ink)",
                     padding: ".75rem 1.5rem",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = plan.highlighted
-                      ? "#a8883a"
+                      ? "#f4f4f4"
                       : "rgba(201,168,76,.08)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = plan.highlighted
-                      ? "#C9A84C"
-                      : "#fff";
+                    e.currentTarget.style.background = "var(--color-neutral)";
                   }}
                 >
                   {plan.cta}

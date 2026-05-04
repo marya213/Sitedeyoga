@@ -18,12 +18,6 @@ const VALUES = [
   },
 ];
 
-const STORY_STATS = [
-  { value: "400+", label: "Membres actifs" },
-  { value: "3", label: "Instructeurs certifiés" },
-  { value: "6 ans", label: "d'ouverture" },
-];
-
 export default function APropos() {
   return (
     <main className="pt-16">
@@ -36,12 +30,6 @@ export default function APropos() {
         }}
       >
         <div className="section-inner text-center">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "var(--color-secondary)" }}
-          >
-            Notre histoire
-          </p>
           <h1
             className="font-serif font-light mb-4"
             style={{ fontSize: "clamp(2rem,5vw,3rem)" }}
@@ -56,72 +44,50 @@ export default function APropos() {
               marginInline: "auto",
             }}
           >
-            Un lieu né d'une conviction&nbsp;: le bien-être est accessible à
-            tous lorsqu'il est enseigné avec rigueur et bienveillance.
+            Le bien-être est accessible à tous lorsqu'il est enseigné avec
+            rigueur et bienveillance.
           </p>
         </div>
       </section>
 
       {/* ══ Histoire ══════════════════════════════════════════ */}
-      <section
-        style={{ background: "#2D1B4E", padding: "5rem 0" }}
-      >
+      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
         <div
           className="section-inner md:grid-cols-2"
           style={{ display: "grid", gap: "3rem", alignItems: "center" }}
         >
           {/* Texte */}
           <div>
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-4"
-              style={{ color: "rgba(240,234,214,.6)" }}
+            <h2
+              className="font-serif font-light text-3xl md:text-4xl mb-6"
+              style={{ color: "#F0EAD6" }}
             >
-              2018 – Aujourd'hui
-            </p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl mb-6"
-                style={{ color: "#F0EAD6" }}>
               Un studio fondé sur la passion et la transmission
             </h2>
             <div
               className="text-sm leading-relaxed mb-10"
-              style={{ color: "rgba(240,234,214,.82)", display: "flex", flexDirection: "column", gap: "1rem" }}
+              style={{
+                color: "rgba(240,234,214,.82)",
+                display: "flex",
+                flexDirection: "column",
+                fontSize: "1rem",
+                gap: "2rem",
+              }}
             >
-              <p>Le Kundalini Yoga m'a permis de faire une véritable rencontre avec moi-même. De me réapproprier mon corps. De ressentir, en profondeur, ce qui se manifeste en moi.</p>
-              <p>En 15 ans de pratique, il a été un véritable révélateur de mes émotions. Il m'a permis de comprendre ce qui se jouait à l'intérieur de moi&nbsp;: mes comportements répétés, mes scénarios inconscients… et de me confronter à ce qu'il y avait de moins agréable, de moins glorieux aussi.</p>
-              <p>Oui… choisir de pratiquer le Kundalini Yoga vient bousculer ce qui est bien rangé à l'intérieur de soi.</p>
-              <p>Je dis souvent dans mes cours que le Kundalini Yoga&nbsp;: <em style={{ color: "#F0EAD6" }}>"C'est comme une boule à neige que l'on vient secouer"</em>. Ça remue le corps, l'esprit, les émotions… Puis, peu à peu, tout vient se déposer.</p>
-              <p>C'est un espace de tempête intérieure&nbsp;: l'énergie se lève, circule, le mental s'agite, résiste… On traverse. Et puis le calme revient, dans la relaxation.</p>
-              <p>Comme dans la vie.</p>
-              <p>On passe par l'inconfort d'une posture, d'un mouvement exigeant, d'un souffle difficile à maintenir… Et il faut "tenir bon" — comme je le dis souvent en cours. Puis, à un moment, quelque chose lâche&nbsp;: les résistances physiques… et parfois des émotions retenues depuis trop longtemps.</p>
-              <p>C'est un véritable chemin initiatique. Chaque séance est unique, parce que vous êtes unique.</p>
-              <p>Choisir d'expérimenter le Kundalini Yoga, ce n'est pas simplement s'offrir une pause d'une heure, ni "faire du yoga parce que c'est bon pour la santé".</p>
-              <p>C'est une rencontre avec soi, séance après séance. Une reconnexion à sa propre grandeur, à sa sagesse intérieure. Une manière de cultiver ce qu'il y a de plus juste et de plus vivant en soi.</p>
-              <p>Je ne viens pas vous proposer un cours de yoga "classique". Je viens vous transmettre ce que j'ai vécu, ce que cette pratique m'a permis de traverser, et comment elle m'a transformée, année après année.</p>
-              <p>En cheminant avec moi, semaine après semaine, vous irez à votre propre rencontre…</p>
-              <p>mais aussi, parfois, à la rencontre de parts de vous que vous n'auriez pas forcément envie de voir.</p>
-              <p>Ces parts d'ombre font aussi partie du chemin.</p>
-              <p>Grandir, s'élever en conscience, avec honnêteté et discernement — c'est ce que je vous propose.</p>
-              <p style={{ color: "#C9A84C", fontFamily: "var(--font-serif)", fontStyle: "italic", fontSize: "1.1rem", marginTop: ".5rem" }}>Sat Nam</p>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 flex-wrap">
-              {STORY_STATS.map((s) => (
-                <div key={s.label}>
-                  <div
-                    className="font-serif font-semibold text-2xl"
-                    style={{ color: "#C9A84C" }}
-                  >
-                    {s.value}
-                  </div>
-                  <div
-                    className="text-xs mt-0.5"
-                    style={{ color: "rgba(240,234,214,.6)" }}
-                  >
-                    {s.label}
-                  </div>
-                </div>
-              ))}
+              <p>
+                Le Kundalini Yoga m’a permis de vivre une véritable rencontre
+                avec moi-même, de me réapproprier mon corps et de mieux
+                comprendre ce qui se joue à l’intérieur de moi. En 15 ans de
+                pratique, il est devenu un véritable révélateur de mes émotions
+                et de mes mécanismes inconscients. Chaque séance est un voyage
+                intérieur : elle bouscule, remue, puis apaise. On traverse
+                l’inconfort, les résistances, parfois même des émotions
+                enfouies, avant de retrouver peu à peu le calme dans la
+                relaxation. Je ne propose pas un cours de yoga classique, mais
+                le partage d’une pratique qui m’a profondément transformée et
+                qui invite, séance après séance, à une rencontre sincère avec
+                soi-même.
+              </p>
             </div>
           </div>
 
@@ -156,12 +122,6 @@ export default function APropos() {
       <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
         <div className="section-inner">
           <div className="text-center mb-12">
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "var(--color-secondary)" }}
-            >
-              Ce qui nous guide
-            </p>
             <h2 className="font-serif font-light text-3xl">Nos valeurs</h2>
           </div>
 

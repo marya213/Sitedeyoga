@@ -43,7 +43,14 @@ const INFO_BLOCKS = [
           rx="5.6"
           fill="url(#igGradientContact)"
         />
-        <circle cx="12" cy="12" r="4.2" stroke="#fff" strokeWidth="1.9" fill="none" />
+        <circle
+          cx="12"
+          cy="12"
+          r="4.2"
+          stroke="#fff"
+          strokeWidth="1.9"
+          fill="none"
+        />
         <circle cx="17.15" cy="6.9" r="1.3" fill="#fff" />
       </svg>
     ),
@@ -54,9 +61,9 @@ const INFO_BLOCKS = [
 ];
 
 const HOURS = [
-  { days: "Lun – Ven", hours: "07 h 00 – 21 h 00" },
-  { days: "Samedi", hours: "09 h 00 – 18 h 00" },
-  { days: "Dimanche", hours: "10 h 00 – 17 h 00" },
+  { days: "Lundi", hours: "09 h 30" },
+  { days: "Mardi", hours: "10 h 30" },
+  { days: "Mercredi", hours: "11 h 00" },
 ];
 
 const SUBJECTS = [
@@ -97,12 +104,6 @@ export default function Contact() {
         }}
       >
         <div className="section-inner text-center">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "var(--color-secondary)" }}
-          >
-            Nous écrire
-          </p>
           <h1
             className="font-serif font-light mb-4"
             style={{ fontSize: "clamp(2rem,5vw,3rem)" }}
@@ -117,16 +118,13 @@ export default function Contact() {
               marginInline: "auto",
             }}
           >
-            Une question, une réservation ou envie d'en savoir plus&nbsp;? Notre
-            équipe vous répond sous 24 heures.
+            Une question, une réservation ou envie d'en savoir plus&nbsp;?.
           </p>
         </div>
       </section>
 
       {/* ══ Contenu principal ═════════════════════════════════ */}
-      <section
-        style={{ background: "#2D1B4E", padding: "5rem 0" }}
-      >
+      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
         <div
           className="section-inner md:grid-cols-2"
           style={{
@@ -212,7 +210,7 @@ export default function Contact() {
                         >
                           {line}
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 </div>

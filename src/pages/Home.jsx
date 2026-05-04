@@ -21,30 +21,6 @@ const FEATURES = [
   },
 ];
 
-const STATS = [
-  { value: "400+", label: "Membres actifs" },
-  { value: "22", label: "Créneaux / semaine" },
-  { value: "6 ans", label: "d'expérience" },
-];
-
-const TESTIMONIALS = [
-  {
-    init: "C",
-    name: "Claire B.",
-    text: "Après 6 mois de pratique, ma relation au stress a complètement changé. Les techniques de respiration m'ont transformée.",
-  },
-  {
-    init: "M",
-    name: "Marc T.",
-    text: "Je pratique en distanciel et la qualité des cours en ligne est impressionnante. Sophie est une professeure exceptionnelle.",
-  },
-  {
-    init: "I",
-    name: "Isabelle M.",
-    text: "Le carnet 10 séances est vraiment bien pensé. La flexibilité présentiel / distanciel correspond parfaitement à mon mode de vie.",
-  },
-];
-
 /* ── Pill inline ── */
 function Pill({ type }) {
   const styles = {
@@ -91,9 +67,11 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+              "url('/img/photo2.jpg')",
+            backgroundSize: "110%",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "#2D1B4E",
           }}
         />
         {/* Overlay dégradé */}
@@ -107,16 +85,13 @@ export default function Home() {
 
         {/* Contenu */}
         <div className="relative z-10" style={{ maxWidth: "44rem" }}>
-          <span
-            className="pill pill-tertiary mb-6 inline-block"
-            style={{ fontSize: ".6875rem", letterSpacing: ".12em" }}
-          >
-            Paris · Bien-être &amp; Mouvement
-          </span>
-
           <h1
-            className="font-serif font-light text-white mb-6"
-            style={{ fontSize: "clamp(2.5rem,6vw,4rem)", lineHeight: 1.1 }}
+            className="font-serif font-light mb-6"
+            style={{
+              fontSize: "clamp(2.5rem,6vw,4rem)",
+              lineHeight: 1.1,
+              color: "var(--color-neutral)",
+            }}
           >
             Retrouvez l’harmonie du corps et de l’esprit grâce au yoga avec{" "}
             <em
@@ -136,10 +111,11 @@ export default function Home() {
               marginInline: "auto",
             }}
           >
-            Yoga, fitness et méditation dans un espace bienveillant. Chaque séance est une invitation à aller plus loin.
+            Yoga, fitness et méditation dans un espace bienveillant. Chaque
+            séance est une invitation à aller plus loin.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14 ">
             <Link
               to="/cours"
               className="btn btn-primary"
@@ -155,55 +131,6 @@ export default function Home() {
               Nous contacter
             </Link>
           </div>
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-10 sm:gap-16 flex-wrap">
-            {STATS.map((s) => (
-              <div key={s.label} className="text-center">
-                <div
-                  className="font-serif font-semibold text-2xl"
-                  style={{ color: "#C9A84C" }}
-                >
-                  {s.value}
-                </div>
-                <div
-                  className="text-xs mt-1"
-                  style={{ color: "rgba(255,255,255,.55)" }}
-                >
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll hint */}
-        <div
-          className="absolute flex flex-col items-center gap-2"
-          style={{
-            bottom: "2rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            opacity: 0.45,
-          }}
-        >
-          <span
-            style={{
-              fontSize: ".625rem",
-              letterSpacing: ".18em",
-              color: "rgba(255,255,255,.6)",
-              textTransform: "uppercase",
-            }}
-          >
-            Défiler
-          </span>
-          <div
-            style={{
-              width: 1,
-              height: "2rem",
-              background: "rgba(255,255,255,.3)",
-            }}
-          />
         </div>
       </section>
 
@@ -272,9 +199,9 @@ export default function Home() {
               marginBottom: "1.5rem",
             }}
           >
-            Le studio Kundalini a changé ma façon d'aborder le mouvement. Chaque
-            cours avec Sophie est une expérience profonde et ressourçante. Je
-            recommande à 100&nbsp;%.
+            Cela fait un an et demi que je suis les cours de Kundalini avec Emmanuelle, et ce rendez-vous est devenu essentiel à mon équilibre, autant sur le plan physique qu’émotionnel. Je ne connaissais pas le Kundalini, et au fil de ma pratique, j’en découvre chaque jour un peu plus la puissance.
+
+Ces cours sont d’autant plus réconfortants et revitalisants qu’ils sont dispensés avec beaucoup de bienveillance, d’optimisme et d’attention par Emmanuelle.
           </blockquote>
           <p
             className="text-sm font-medium"
@@ -312,7 +239,7 @@ export default function Home() {
               to="/cours"
               className="btn"
               style={{
-                background: "#C9A84C",
+                background: "var(--color-neutral)",
                 color: "#2C1810",
                 padding: ".875rem 2rem",
               }}
