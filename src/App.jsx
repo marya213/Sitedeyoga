@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Cours from './pages/Cours'
 import APropos from './pages/APropos'
 import Contact from './pages/Contact'
+import Evenements from './pages/Evenements'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cours" element={<Cours />} />
+          <Route path="/evenements" element={<Evenements />} />
           <Route path="/a-propos" element={<APropos />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
