@@ -6,6 +6,8 @@ import Cours from './pages/Cours'
 import APropos from './pages/APropos'
 import Contact from './pages/Contact'
 import Evenements from './pages/Evenements'
+import Planning from './pages/Planning'
+import FAQ from './pages/FAQ'
 
 export default function App() {
   return (
@@ -15,7 +17,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cours" element={<Cours />} />
+          <Route path="/planning" element={<Planning />} />
           <Route path="/evenements" element={<Evenements />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/a-propos" element={<APropos />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

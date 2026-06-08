@@ -3,6 +3,9 @@ import NewsletterForm from "./NewsletterForm";
 
 const LINKS = [
   { label: "Cours", to: "/cours" },
+  { label: "Planning", to: "/planning" },
+  { label: "Événements", to: "/evenements" },
+  { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
 const INSTAGRAM_URL = "https://www.instagram.com/emmanuelledruneau_kundalini/";
