@@ -5,7 +5,7 @@ const INFO_BLOCKS = [
   {
     icon: "📍",
     label: "Adresse",
-    lines: ["12 rue de la Paix", "75001 Paris, France"],
+    lines: ["Saint Brieuc centre "],
   },
   {
     icon: "📞",
@@ -215,50 +215,6 @@ export default function Contact() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Horaires */}
-            <div className="card" style={{ marginBottom: "1.5rem" }}>
-              <h3
-                className="text-xs font-semibold uppercase tracking-widest mb-4"
-                style={{ color: "var(--color-secondary)" }}
-              >
-                Horaires d'ouverture
-              </h3>
-              <table style={{ width: "100%" }}>
-                <tbody>
-                  {HOURS.map(({ days, hours }, i) => (
-                    <tr
-                      key={days}
-                      style={{
-                        borderBottom:
-                          i < HOURS.length - 1
-                            ? "1px solid var(--color-border)"
-                            : "none",
-                      }}
-                    >
-                      <td
-                        className="text-sm font-medium"
-                        style={{
-                          padding: ".625rem 0",
-                          color: "var(--color-ink)",
-                        }}
-                      >
-                        {days}
-                      </td>
-                      <td
-                        className="text-sm text-right"
-                        style={{
-                          padding: ".625rem 0",
-                          color: "var(--color-secondary)",
-                        }}
-                      >
-                        {hours}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
 
             <NewsletterForm
