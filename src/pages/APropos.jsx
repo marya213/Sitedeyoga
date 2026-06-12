@@ -1,4 +1,91 @@
+import { useState, useEffect } from "react";
 import { TEAM } from "../data/index";
+
+const CAROUSEL_IMAGES = [
+  { src: "/img/yoga.jpg", alt: "Cours de yoga" },
+  { src: "/img/photo1.jpg", alt: "Studio de yoga" },
+  { src: "/img/photo2.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph4.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph5.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph6.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph7.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph8.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph9.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph10.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph11.jpg", alt: "Séance de yoga" },
+];
+
+function ImageCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div
+      style={{
+        borderRadius: "1.25rem",
+        overflow: "hidden",
+        boxShadow: "0 12px 40px rgba(44,44,44,.1)",
+        minHeight: "20rem",
+        position: "relative",
+      }}
+    >
+      {CAROUSEL_IMAGES.map((img, i) => (
+        <img
+          key={img.src}
+          src={img.src}
+          alt={img.alt}
+          style={{
+            position: i === 0 ? "relative" : "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            opacity: i === current ? 1 : 0,
+            transition: "opacity 0.8s ease-in-out",
+            minHeight: "20rem",
+          }}
+        />
+      ))}
+      {/* Indicateurs */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "0.75rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: "0.4rem",
+        }}
+      >
+        {CAROUSEL_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            style={{
+              width: i === current ? "1.5rem" : "0.5rem",
+              height: "0.5rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              background: i === current ? "#fff" : "rgba(255,255,255,0.5)",
+              transition: "all 0.3s ease",
+              padding: 0,
+            }}
+            aria-label={`Image ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const VALUES = [
   {
@@ -59,10 +146,10 @@ export default function APropos() {
           {/* Texte */}
           <div>
             <h2
-              className="font-serif font-light text-3xl md:text-4xl mb-6"
+              className="font-serif font-light text-2xl md:text-4xl mb-6"
               style={{ color: "#F0EAD6" }}
             >
-              Un studio fondé sur la passion et la transmission
+              Comment je suis arrivée au Yoga?
             </h2>
             <div
               className="text-sm leading-relaxed mb-10"
@@ -75,46 +162,30 @@ export default function APropos() {
               }}
             >
               <p>
-                Le Kundalini Yoga m’a permis de vivre une véritable rencontre
-                avec moi-même, de me réapproprier mon corps et de mieux
-                comprendre ce qui se joue à l’intérieur de moi. En 15 ans de
-                pratique, il est devenu un véritable révélateur de mes émotions
-                et de mes mécanismes inconscients. Chaque séance est un voyage
-                intérieur : elle bouscule, remue, puis apaise. On traverse
-                l’inconfort, les résistances, parfois même des émotions
-                enfouies, avant de retrouver peu à peu le calme dans la
-                relaxation. Je ne propose pas un cours de yoga classique, mais
-                le partage d’une pratique qui m’a profondément transformée et
-                qui invite, séance après séance, à une rencontre sincère avec
-                soi-même.
+                Emmanuelle, 47 ans et mère de deux garçons, a longtemps vécu
+                avec une forte anxiété et un besoin constant d’anticiper les
+                situations. Bien qu’attirée par la recherche du bien-être et la
+                compréhension de soi, ses premières expériences avec le yoga
+                traditionnel ne l’ont pas convaincue. Après la naissance de son
+                deuxième enfant, elle découvre le Kundalini Yoga grâce à une
+                professeure qui devient un véritable guide dans son parcours.
+                Pendant dix ans, elle pratique régulièrement, ce qui lui permet
+                de mieux comprendre ses émotions, de se reconnecter à son corps
+                et de transformer progressivement son rapport à elle-même.
+                Désireuse d’approfondir cette pratique, elle suit ensuite trois
+                années de formation en Kundalini Yoga et en développement
+                personnel. Cette expérience marque une étape importante de sa
+                vie et renforce son désir de transmettre ce qu’elle a appris.
+                Depuis cinq ans, elle enseigne le Kundalini Yoga. À travers
+                l’accompagnement de ses élèves, elle continue d’apprendre et
+                partage avec eux son expérience ainsi que les bienfaits profonds
+                de cette pratique.
               </p>
             </div>
           </div>
 
-          {/* Image */}
-          <div
-            style={{
-              borderRadius: "1.25rem",
-              overflow: "hidden",
-              boxShadow: "0 12px 40px rgba(44,44,44,.1)",
-              minHeight: "20rem",
-            }}
-          >
-            <img
-              src="/img/yoga.jpg"
-              alt="Intérieur du studio"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-              onError={(e) => {
-                e.currentTarget.style.background = "var(--color-primary-bg)";
-                e.currentTarget.style.minHeight = "20rem";
-              }}
-            />
-          </div>
+          {/* Carrousel */}
+          <ImageCarousel />
         </div>
       </section>
 
