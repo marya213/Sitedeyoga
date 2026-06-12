@@ -1,6 +1,130 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PRICING } from "../data/index";
+import { PRICING, SCHEDULE, DAYS } from "../data/index";
 import Pill from "../components/ui/Pill";
+
+const SLOT_BORDER = {
+  studio: "#C9A84C",
+  yoga:   "#7E9B7A",
+  hybride:"#D97706",
+};
+
+// JS getDay() : 0=dim, 1=lun … → DAYS index
+const JS_TO_FR = [6, 0, 1, 2, 3, 4, 5];
+
+function WeekSchedule() {
+  const defaultDay = DAYS[JS_TO_FR[new Date().getDay()]] ?? DAYS[0];
+  const [activeDay, setActiveDay] = useState(defaultDay);
+
+  const dayClasses = SCHEDULE
+    .filter((c) => c.day === activeDay)
+    .sort((a, b) => a.time.localeCompare(b.time));
+
+  return (
+    <div>
+      {/* ── Onglets jours ── */}
+      <div
+        style={{
+          display: "flex",
+          gap: ".5rem",
+          overflowX: "auto",
+          paddingBottom: ".5rem",
+          marginBottom: "2rem",
+          scrollbarWidth: "none",
+        }}
+      >
+        {DAYS.map((day) => {
+          const active = day === activeDay;
+          return (
+            <button
+              key={day}
+              onClick={() => setActiveDay(day)}
+              style={{
+                padding: ".5rem 1.25rem",
+                borderRadius: "9999px",
+                border: `1px solid ${active ? "#C9A84C" : "rgba(201,168,76,.25)"}`,
+                background: active ? "#C9A84C" : "transparent",
+                color: active ? "#2D1B4E" : "rgba(240,234,214,.8)",
+                fontWeight: active ? 700 : 400,
+                fontSize: ".875rem",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+                transition: "all .2s",
+              }}
+            >
+              {day}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Cours du jour ── */}
+      {dayClasses.length === 0 ? (
+        <p style={{ color: "rgba(240,234,214,.5)", textAlign: "center", padding: "2rem 0" }}>
+          Pas de séance ce jour.
+        </p>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: ".875rem" }}>
+          {dayClasses.map((cls) => (
+            <div
+              key={cls.id}
+              className="card"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1.25rem",
+                padding: "1rem 1.5rem",
+                borderLeft: `3px solid ${SLOT_BORDER[cls.type] ?? "#C9A84C"}`,
+              }}
+            >
+              {/* Heure */}
+              <div style={{ minWidth: "3.5rem", textAlign: "center", flexShrink: 0 }}>
+                <span
+                  className="font-serif font-semibold"
+                  style={{ fontSize: "1.1rem", color: "var(--color-ink)" }}
+                >
+                  {cls.time}
+                </span>
+              </div>
+
+              {/* Séparateur vertical */}
+              <div
+                style={{
+                  width: "1px",
+                  alignSelf: "stretch",
+                  background: "var(--color-border)",
+                  flexShrink: 0,
+                }}
+              />
+
+              {/* Infos */}
+              <div style={{ flex: 1 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: ".75rem",
+                    flexWrap: "wrap",
+                    marginBottom: ".25rem",
+                  }}
+                >
+                  <span className="font-semibold text-sm" style={{ color: "var(--color-ink)" }}>
+                    {cls.name}
+                  </span>
+                  <Pill type={cls.type} />
+                </div>
+                <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
+                  {cls.inst}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const DISCIPLINES = [
   {
@@ -212,8 +336,10 @@ export default function Cours() {
                 </ul>
 
                 {/* CTA */}
-                <Link
-                  to="/contact"
+                <a
+                  href="https://espace-kundala.heymarvelous.com/buy/product/80596"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn"
                   style={{
                     width: "100%",
@@ -235,10 +361,27 @@ export default function Cours() {
                   }}
                 >
                   {plan.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+      {/* ══ Calendrier ════════════════════════════════════════ */}
+      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
+        <div className="section-inner">
+          <div className="text-center mb-12">
+            <h2
+              className="font-serif font-light text-3xl"
+              style={{ color: "#F0EAD6" }}
+            >
+              Planning de la semaine
+            </h2>
+            <p className="text-sm mt-3" style={{ color: "rgba(240,234,214,.6)" }}>
+              Retrouvez tous les cours et leurs horaires
+            </p>
+          </div>
+          <WeekSchedule />
         </div>
       </section>
     </main>
