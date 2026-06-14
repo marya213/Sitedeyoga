@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PRICING, SCHEDULE, DAYS } from "../data/index";
+import { PRICING, SCHEDULE, DAYS, COURS_DETAILS } from "../data/index";
 import Pill from "../components/ui/Pill";
 
 const SLOT_BORDER = {
@@ -149,21 +149,21 @@ function WeekSchedule() {
 const DISCIPLINES = [
   {
     type: "yoga",
-    title: "Presentiel",
-    variants: "Pratique en salle",
-    desc: "L'intensite et la connexion d'une pratique vecue ensemble.",
+    title: "Présentiel",
+    variants: "Cours en salle à Saint-Brieuc",
+    desc: "Lundi 11h ou 18h30 · Mardi 18h30 ou 20h · Mercredi 11h. L'intensité et la connexion d'une pratique vécue ensemble.",
   },
   {
     type: "studio",
-    title: "Studio Yoga",
+    title: "Studio de Yoga en ligne",
     variants: "Pratique en ligne",
-    desc: "La puissance du yoga, ou que vous soyez.",
+    desc: "Vidéothèque et cours en direct (lundi 7h, jeudi 19h, vendredi 12h30) pour pratiquer où que vous soyez.",
   },
   {
     type: "hybride",
     title: "Hybride",
-    variants: "Presentiel & studio",
-    desc: "Quand l'energie du presentiel rencontre la liberte du distanciel.",
+    variants: "Présentiel & Studio en ligne",
+    desc: "1 cours en présentiel par semaine + accès illimité au Studio en ligne et à ses cours en direct.",
   },
 ];
 
@@ -265,6 +265,59 @@ export default function Cours() {
         </div>
       </section>
 
+      {/* ══ Nos cours réguliers ═══════════════════════════════ */}
+      <section style={{ background: "var(--color-neutral)", padding: "5rem 0" }}>
+        <div className="section-inner">
+          <div className="text-center mb-12">
+            <h2 className="font-serif font-light text-3xl">Nos cours réguliers</h2>
+            <p
+              className="text-sm mt-3"
+              style={{ color: "var(--color-secondary)" }}
+            >
+              Trois ambiances, un même fil : ressentir, respirer, se recentrer.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {COURS_DETAILS.map((c) => (
+              <div
+                key={c.name}
+                className="card"
+                style={{ display: "flex", flexDirection: "column", gap: ".75rem" }}
+              >
+                <div>
+                  <h3 className="font-serif text-xl font-semibold mb-1" style={{ color: "var(--color-ink)" }}>
+                    {c.name}
+                  </h3>
+                  <p
+                    className="text-xs font-semibold uppercase tracking-widest"
+                    style={{ color: "var(--color-primary)" }}
+                  >
+                    {c.creneaux}
+                  </p>
+                </div>
+
+                <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
+                  {c.style.join(" • ")}
+                </p>
+
+                <p className="text-sm leading-relaxed" style={{ color: "var(--color-ink)" }}>
+                  {c.pourQui}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: ".4rem", marginTop: "auto" }}>
+                  {c.themes.map((t) => (
+                    <span key={t} className="pill pill-secondary" style={{ fontSize: ".625rem" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ══ Tarifs ════════════════════════════════════════════ */}
       <section id="tarifs" style={{ background: "#F5F0E8", padding: "5rem 0" }}>
         <div className="section-inner">
@@ -281,7 +334,7 @@ export default function Cours() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {PRICING.map((plan) => (
               <div
                 key={plan.name}
@@ -293,36 +346,78 @@ export default function Cours() {
                   gap: "1rem",
                   minHeight: "100%",
                   background: "#fff",
-                  border: "1px solid var(--color-border)",
+                  border: plan.highlighted
+                    ? "2px solid var(--color-primary)"
+                    : "1px solid var(--color-border)",
                   boxShadow: "0 2px 8px rgba(44,44,44,.04)",
                 }}
               >
                 {/* Nom & prix */}
                 <div>
+                  {plan.badge && (
+                    <p
+                      className="text-xs font-semibold uppercase tracking-widest mb-2"
+                      style={{ color: plan.highlighted ? "var(--color-primary)" : "var(--color-secondary)" }}
+                    >
+                      {plan.badge}
+                    </p>
+                  )}
                   <p
-                    className="font-serif text-3xl font-semibold mb-1"
+                    className="font-serif text-2xl font-semibold mb-1"
                     style={{ color: "var(--color-ink)" }}
                   >
                     {plan.name}
                   </p>
-                  <div className="mt-5 flex items-end gap-1.5">
-                    <p
-                      className="font-serif font-semibold"
-                      style={{
-                        fontSize: "2.5rem",
-                        lineHeight: 1,
-                        color: "var(--color-primary)",
-                      }}
-                    >
-                      {plan.price}€
+
+                  {plan.priceTiers ? (
+                    <div className="mt-4" style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+                      {plan.priceTiers.map((tier) => (
+                        <div key={tier.label} className="flex items-baseline justify-between gap-2 text-sm">
+                          <span style={{ color: "var(--color-secondary)" }}>{tier.label}</span>
+                          <span className="font-serif font-semibold" style={{ fontSize: "1.125rem", color: "var(--color-primary)" }}>
+                            {tier.price} €
+                            {tier.oldPrice && (
+                              <span
+                                style={{
+                                  marginLeft: ".4rem",
+                                  fontSize: ".8125rem",
+                                  fontWeight: 400,
+                                  color: "var(--color-ink-faint)",
+                                  textDecoration: "line-through",
+                                }}
+                              >
+                                {tier.oldPrice} €
+                              </span>
+                            )}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mt-4 flex items-end gap-2 flex-wrap">
+                      <p
+                        className="font-serif font-semibold"
+                        style={{
+                          fontSize: "2.5rem",
+                          lineHeight: 1,
+                          color: "var(--color-primary)",
+                        }}
+                      >
+                        {plan.price} €
+                      </p>
+                      {plan.oldPrice && (
+                        <p style={{ fontSize: "1rem", color: "var(--color-ink-faint)", textDecoration: "line-through" }}>
+                          {plan.oldPrice} €
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {plan.priceNote && (
+                    <p className="text-xs mt-2" style={{ color: "var(--color-ink-faint)" }}>
+                      {plan.priceNote}
                     </p>
-                  </div>
-                  <p
-                    className="text-sm mt-3 leading-relaxed"
-                    style={{ color: "var(--color-secondary)" }}
-                  >
-                    {plan.desc}
-                  </p>
+                  )}
                 </div>
 
                 {/* Features */}
