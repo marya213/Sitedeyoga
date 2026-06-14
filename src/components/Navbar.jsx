@@ -69,14 +69,6 @@ export default function Navbar() {
 
         {/* Droite */}
         <div className="flex items-center gap-2">
-          <Link
-            to="/inscription"
-            className="btn btn-primary hidden md:inline-flex"
-            style={{ padding: '.5rem 1.25rem', fontSize: '.8125rem' }}
-          >
-            S'inscrire
-          </Link>
-
           {/* Hamburger mobile */}
           <button
             onClick={() => setOpen(v => !v)}
@@ -126,13 +118,6 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link
-            to="/inscription"
-            className="btn btn-primary mt-3"
-            onClick={() => setOpen(false)}
-          >
-            S'inscrire
-          </Link>
         </div>
       )}
     </header>

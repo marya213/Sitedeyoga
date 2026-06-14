@@ -16,6 +16,7 @@ import Evenements from './pages/Evenements'
 import Planning from './pages/Planning'
 import FAQ from './pages/FAQ'
 import Inscription from './pages/Inscription'
+import EvenementsAdmin from './pages/admin/EvenementsAdmin'
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/a-propos" element={<APropos />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inscription" element={<Inscription />} />
+          <Route path="/admin/evenements" element={<EvenementsAdmin />} />
         </Routes>
       </div>
       <Footer />

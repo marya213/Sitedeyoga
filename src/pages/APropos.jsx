@@ -162,24 +162,27 @@ export default function APropos() {
               }}
             >
               <p>
-                Emmanuelle, 47 ans et mère de deux garçons, a longtemps vécu
-                avec une forte anxiété et un besoin constant d’anticiper les
-                situations. Bien qu’attirée par la recherche du bien-être et la
-                compréhension de soi, ses premières expériences avec le yoga
-                traditionnel ne l’ont pas convaincue. Après la naissance de son
-                deuxième enfant, elle découvre le Kundalini Yoga grâce à une
-                professeure qui devient un véritable guide dans son parcours.
-                Pendant dix ans, elle pratique régulièrement, ce qui lui permet
-                de mieux comprendre ses émotions, de se reconnecter à son corps
-                et de transformer progressivement son rapport à elle-même.
-                Désireuse d’approfondir cette pratique, elle suit ensuite trois
-                années de formation en Kundalini Yoga et en développement
-                personnel. Cette expérience marque une étape importante de sa
-                vie et renforce son désir de transmettre ce qu’elle a appris.
-                Depuis cinq ans, elle enseigne le Kundalini Yoga. À travers
-                l’accompagnement de ses élèves, elle continue d’apprendre et
-                partage avec eux son expérience ainsi que les bienfaits profonds
-                de cette pratique.
+                C'est en regardant mes enfants devenus adultes que je réalise
+                combien leur rapport à la vie est différent de celui que j’avais
+                à leur âge. J’étais alors souvent dans l’inquiétude,
+                l’anticipation et le stress. Cette sensibilité m’a naturellement
+                conduite vers une quête de compréhension de soi et de
+                mieux-être. J’ai découvert le Kundalini Yoga après la naissance
+                de mon deuxième enfant. Avant cela, les formes de yoga que
+                j’avais expérimentées ne m’avaient jamais réellement touchée.
+                Puis il y a eu la rencontre avec une enseignante qui a
+                profondément marqué mon parcours. Pendant près de 10 ans, j’ai
+                pratiqué régulièrement, apprenant peu à peu à me reconnecter à
+                mon corps, à mes sensations et à moi-même. Cette pratique a
+                transformé ma vie et m’a donné l’envie de transmettre à mon
+                tour. J’ai alors suivi trois années de formation à l’École du
+                Tantra, un parcours riche en expériences, en apprentissages et
+                en découvertes intérieures. Aujourd’hui, j’enseigne le Kundalini
+                Yoga et le Tantra Yoga. Chaque cours, chaque stage et chaque
+                accompagnement sont pour moi l’occasion de partager ces
+                pratiques qui ont profondément transformé ma vie, tout en
+                continuant à apprendre et à grandir au contact des personnes que
+                j’accompagne.
               </p>
             </div>
           </div>
