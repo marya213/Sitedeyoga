@@ -5,8 +5,8 @@ import Pill from "../components/ui/Pill";
 
 const SLOT_BORDER = {
   studio: "#C9A84C",
-  yoga:   "#7E9B7A",
-  hybride:"#D97706",
+  yoga: "#7E9B7A",
+  hybride: "#D97706",
 };
 
 // JS getDay() : 0=dim, 1=lun … → DAYS index
@@ -16,9 +16,9 @@ function WeekSchedule() {
   const defaultDay = DAYS[JS_TO_FR[new Date().getDay()]] ?? DAYS[0];
   const [activeDay, setActiveDay] = useState(defaultDay);
 
-  const dayClasses = SCHEDULE
-    .filter((c) => c.day === activeDay)
-    .sort((a, b) => a.time.localeCompare(b.time));
+  const dayClasses = SCHEDULE.filter((c) => c.day === activeDay).sort((a, b) =>
+    a.time.localeCompare(b.time),
+  );
 
   return (
     <div>
@@ -61,11 +61,19 @@ function WeekSchedule() {
 
       {/* ── Cours du jour ── */}
       {dayClasses.length === 0 ? (
-        <p style={{ color: "rgba(240,234,214,.5)", textAlign: "center", padding: "2rem 0" }}>
+        <p
+          style={{
+            color: "rgba(240,234,214,.5)",
+            textAlign: "center",
+            padding: "2rem 0",
+          }}
+        >
           Pas de séance ce jour.
         </p>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: ".875rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: ".875rem" }}
+        >
           {dayClasses.map((cls) => (
             <div
               key={cls.id}
@@ -79,7 +87,13 @@ function WeekSchedule() {
               }}
             >
               {/* Heure */}
-              <div style={{ minWidth: "3.5rem", textAlign: "center", flexShrink: 0 }}>
+              <div
+                style={{
+                  minWidth: "3.5rem",
+                  textAlign: "center",
+                  flexShrink: 0,
+                }}
+              >
                 <span
                   className="font-serif font-semibold"
                   style={{ fontSize: "1.1rem", color: "var(--color-ink)" }}
@@ -109,12 +123,18 @@ function WeekSchedule() {
                     marginBottom: ".25rem",
                   }}
                 >
-                  <span className="font-semibold text-sm" style={{ color: "var(--color-ink)" }}>
+                  <span
+                    className="font-semibold text-sm"
+                    style={{ color: "var(--color-ink)" }}
+                  >
                     {cls.name}
                   </span>
                   <Pill type={cls.type} />
                 </div>
-                <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
+                <p
+                  className="text-xs"
+                  style={{ color: "var(--color-secondary)" }}
+                >
                   {cls.inst}
                 </p>
               </div>
@@ -365,23 +385,6 @@ export default function Cours() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      {/* ══ Calendrier ════════════════════════════════════════ */}
-      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <h2
-              className="font-serif font-light text-3xl"
-              style={{ color: "#F0EAD6" }}
-            >
-              Planning de la semaine
-            </h2>
-            <p className="text-sm mt-3" style={{ color: "rgba(240,234,214,.6)" }}>
-              Retrouvez tous les cours et leurs horaires
-            </p>
-          </div>
-          <WeekSchedule />
         </div>
       </section>
     </main>

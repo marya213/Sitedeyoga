@@ -15,6 +15,7 @@ import Contact from './pages/Contact'
 import Evenements from './pages/Evenements'
 import Planning from './pages/Planning'
 import FAQ from './pages/FAQ'
+import Inscription from './pages/Inscription'
 
 export default function App() {
   return (
