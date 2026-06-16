@@ -7,9 +7,8 @@ async function subscribeToFlodesk(email) {
   const segmentId = import.meta.env.VITE_FLODESK_NEWSLETTER_SEGMENT_ID;
 
   const credentials = btoa(`${apiKey}:`);
-
   const body = { email, status: "active" };
-  if (segmentId) body.segments = [segmentId];
+  if (segmentId) body.segment_ids = [segmentId];
 
   const res = await fetch("https://api.flodesk.com/v1/subscribers", {
     method: "POST",
