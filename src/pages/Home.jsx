@@ -56,23 +56,17 @@ export default function Home() {
     <main className="pt-16">
       {/* ══ Hero ══════════════════════════════════════════════ */}
       <section
-        className="relative flex flex-col items-center justify-center text-center text-white"
+        className="relative flex flex-col items-center justify-center text-center text-white mt-12 min-h-[calc(100vh-4rem-3rem)]"
         style={{
-          minHeight: "calc(100vh - 4rem)",
-          padding: "5rem clamp(1.25rem,5vw,3rem)",
+          padding: "3rem clamp(1.25rem,5vw,3rem)",
+          backgroundColor: "#2D1B4E",
         }}
       >
         {/* Image de fond */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "url('/img/photo2.jpg')",
-            backgroundSize: "110%",
-            backgroundPosition: "center bottom",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: "#2D1B4E",
-          }}
+        <img
+          src="/img/photo2.jpg"
+          alt="Femme en posture de méditation, bras levés en mudra, dans une salle voûtée de style gothique"
+          className="absolute inset-0 h-full w-full object-cover object-[center_50%] md:object-[center_90%]"
         />
         {/* Overlay dégradé */}
         <div
@@ -102,19 +96,6 @@ export default function Home() {
             </em>
           </h1>
 
-          <p
-            className="mb-10 leading-relaxed"
-            style={{
-              color: "rgba(255,255,255,.78)",
-              fontSize: "1.0625rem",
-              maxWidth: "38ch",
-              marginInline: "auto",
-            }}
-          >
-            Yoga, fitness et méditation dans un espace bienveillant. Chaque
-            séance est une invitation à aller plus loin.
-          </p>
-
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14 ">
             <Link
               to="/cours"
@@ -134,7 +115,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Disciplines ═══════════════════════════════════════ */}
+      {/* ══ Propositions ══════════════════════════════════════ */}
       <section
         style={{ background: "var(--color-neutral)", padding: "5rem 0" }}
       >
@@ -147,7 +128,7 @@ export default function Home() {
               Ce que nous proposons
             </p>
             <h2 className="font-serif font-light text-3xl md:text-4xl">
-              Nos pratiques
+              Nos propositions
             </h2>
           </div>
 
@@ -199,9 +180,13 @@ export default function Home() {
               marginBottom: "1.5rem",
             }}
           >
-            Cela fait un an et demi que je suis les cours de Kundalini avec Emmanuelle, et ce rendez-vous est devenu essentiel à mon équilibre, autant sur le plan physique qu’émotionnel. Je ne connaissais pas le Kundalini, et au fil de ma pratique, j’en découvre chaque jour un peu plus la puissance.
-
-Ces cours sont d’autant plus réconfortants et revitalisants qu’ils sont dispensés avec beaucoup de bienveillance, d’optimisme et d’attention par Emmanuelle.
+            Cela fait un an et demi que je suis les cours de Kundalini avec
+            Emmanuelle, et ce rendez-vous est devenu essentiel à mon équilibre,
+            autant sur le plan physique qu’émotionnel. Je ne connaissais pas le
+            Kundalini, et au fil de ma pratique, j’en découvre chaque jour un
+            peu plus la puissance. Ces cours sont d’autant plus réconfortants et
+            revitalisants qu’ils sont dispensés avec beaucoup de bienveillance,
+            d’optimisme et d’attention par Emmanuelle.
           </blockquote>
           <p
             className="text-sm font-medium"
