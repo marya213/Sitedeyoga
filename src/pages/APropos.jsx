@@ -90,18 +90,24 @@ function ImageCarousel() {
 const VALUES = [
   {
     icon: "🌱",
+    color: "#3D8B74",
+    bg: "rgba(61,139,116,.13)",
     title: "Bienveillance",
     desc: "J'accueille chaque élève là où il en est, sans jugement, dans un climat de confiance et de respect de son propre rythme.",
   },
   {
-    icon: "🕉️",
-    title: "Authenticité",
-    desc: "J'enseigne à partir de mon propre chemin de transformation, avec sincérité, sans artifice ni discours tout fait.",
+    icon: "✨",
+    color: "#C9A84C",
+    bg: "rgba(201,168,76,.15)",
+    title: "Excellence",
+    desc: "Nos instructeurs sont certifiés au plus haut niveau et se forment en continu pour offrir une expérience de qualité.",
   },
   {
-    icon: "🤲",
-    title: "Transmission",
-    desc: "Chaque cours est l'occasion de partager ce qui m'a profondément transformée, tout en continuant à apprendre au contact de celles et ceux que j'accompagne.",
+    icon: "🤝",
+    color: "#7B5EA7",
+    bg: "rgba(123,94,167,.13)",
+    title: "Communauté",
+    desc: "Le studio est bien plus qu'un lieu de pratique — c'est une communauté vivante, chaleureuse et soudée.",
   },
 ];
 
@@ -110,25 +116,46 @@ export default function APropos() {
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
-        style={{
-          background: "#F5F0E8",
-          borderBottom: "1px solid rgba(201,168,76,.2)",
-          padding: "4rem 0 3rem",
-        }}
+        className="relative flex flex-col items-center justify-center text-center"
+        style={{ minHeight: "55vh", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
       >
-        <div className="section-inner text-center">
+        {/* Image de fond */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/img/photo1.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 20%",
+            backgroundColor: "#2D1B4E",
+          }}
+        />
+        {/* Overlay dégradé */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(170deg, #2D1B4E80 0%, #2D1B4E55 50%, #2D1B4Eb0 100%)",
+          }}
+        />
+
+        <div className="relative z-10" style={{ maxWidth: "38rem" }}>
           <h1
             className="font-serif font-light mb-4"
-            style={{ fontSize: "clamp(2rem,5vw,3rem)" }}
+            style={{
+              fontSize: "clamp(2rem,5vw,3rem)",
+              color: "#F0EAD6",
+              textShadow: "0 2px 20px rgba(0,0,0,.35)",
+            }}
           >
             À propos
           </h1>
           <p
             className="leading-relaxed"
             style={{
-              color: "var(--color-secondary)",
+              color: "rgba(240,234,214,.9)",
               maxWidth: "42ch",
               marginInline: "auto",
+              textShadow: "0 1px 12px rgba(0,0,0,.4)",
             }}
           >
             Le bien-être est accessible à tous lorsqu'il est enseigné avec
@@ -152,7 +179,7 @@ export default function APropos() {
               Comment je suis arrivée au Yoga?
             </h2>
             <div
-              className="text-sm leading-relaxed mb-10"
+              className="text-sm leading-relaxed mb-8"
               style={{
                 color: "rgba(240,234,214,.82)",
                 display: "flex",
@@ -162,33 +189,55 @@ export default function APropos() {
               }}
             >
               <p>
-                C'est en regardant mes enfants devenus adultes que je réalise
-                combien leur rapport à la vie est différent de celui que j’avais
-                à leur âge. J’étais alors souvent dans l’inquiétude,
-                l’anticipation et le stress. Cette sensibilité m’a naturellement
-                conduite vers une quête de compréhension de soi et de
-                mieux-être. J’ai découvert le Kundalini Yoga après la naissance
-                de mon deuxième enfant. Avant cela, les formes de yoga que
-                j’avais expérimentées ne m’avaient jamais réellement touchée.
-                Puis il y a eu la rencontre avec une enseignante qui a
-                profondément marqué mon parcours. Pendant près de 10 ans, j’ai
-                pratiqué régulièrement, apprenant peu à peu à me reconnecter à
-                mon corps, à mes sensations et à moi-même. Cette pratique a
-                transformé ma vie et m’a donné l’envie de transmettre à mon
-                tour. J’ai alors suivi trois années de formation à l’École du
-                Tantra, un parcours riche en expériences, en apprentissages et
-                en découvertes intérieures. Aujourd’hui, j’enseigne le Kundalini
-                Yoga et le Tantra Yoga. Chaque cours, chaque stage et chaque
-                accompagnement sont pour moi l’occasion de partager ces
-                pratiques qui ont profondément transformé ma vie, tout en
-                continuant à apprendre et à grandir au contact des personnes que
-                j’accompagne.
+                Le Kundalini Yoga m’a permis de me réapproprier mon corps et de
+                mieux comprendre ce qui se joue en moi. En 15 ans de pratique,
+                je ne propose pas un cours classique, mais le partage sincère
+                d’une expérience qui m’a profondément transformée.
               </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <span
+                className="font-serif font-semibold"
+                style={{ fontSize: "3rem", lineHeight: 1, color: "#C9A84C" }}
+              >
+                15
+              </span>
+              <span
+                className="text-xs font-semibold uppercase tracking-widest"
+                style={{ color: "rgba(240,234,214,.55)", lineHeight: 1.4 }}
+              >
+                ans
+                <br />
+                de pratique
+              </span>
             </div>
           </div>
 
-          {/* Carrousel */}
-          <ImageCarousel />
+          {/* Image */}
+          <div
+            style={{
+              borderRadius: "1.25rem",
+              overflow: "hidden",
+              boxShadow: "0 12px 40px rgba(44,44,44,.1)",
+              minHeight: "20rem",
+            }}
+          >
+            <img
+              src="/img/yoga.jpg"
+              alt="Emmanuelle en posture de méditation"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+              onError={(e) => {
+                e.currentTarget.style.background = "var(--color-primary-bg)";
+                e.currentTarget.style.minHeight = "20rem";
+              }}
+            />
+          </div>
         </div>
       </section>
 
@@ -202,10 +251,24 @@ export default function APropos() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {VALUES.map((v) => (
               <div key={v.title} className="card text-center">
-                <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    width: "3.5rem",
+                    height: "3.5rem",
+                    borderRadius: "9999px",
+                    background: v.bg,
+                    fontSize: "1.5rem",
+                    marginBottom: "1.25rem",
+                    marginInline: "auto",
+                  }}
+                >
                   {v.icon}
                 </div>
-                <h3 className="font-serif text-xl font-semibold mb-2">
+                <h3
+                  className="font-serif text-xl font-semibold mb-2"
+                  style={{ color: v.color }}
+                >
                   {v.title}
                 </h3>
                 <p
