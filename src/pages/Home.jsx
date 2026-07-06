@@ -5,19 +5,19 @@ const FEATURES = [
     icon: "🧘",
     title: "Yoga",
     pill: "yoga",
-    desc: "Kundalini, Vinyasa, Hatha et Yin — une gamme complète de pratiques pour cultiver souplesse, force intérieure et sérénité.",
+    desc: "Kundalini, Vinyasa, Hatha et Yin — souplesse, force et sérénité.",
   },
   {
     icon: "🏋️",
     title: "Studio",
     pill: "studio",
-    desc: "HIIT, Cardio et Force fonctionnelle — des séances dynamiques pour challenger votre corps dans un espace équipé.",
+    desc: "HIIT, Cardio et Force fonctionnelle — des séances dynamiques.",
   },
   {
     icon: "🎥",
     title: "Hybride",
     pill: "hybride",
-    desc: "Méditation, Pranayama et Mantra en présentiel ou en direct depuis chez vous — flexibilité sans compromis.",
+    desc: "Méditation, Pranayama et Mantra, en présentiel ou en direct.",
   },
 ];
 
@@ -62,24 +62,28 @@ export default function Home() {
           padding: "5rem clamp(1.25rem,5vw,3rem)",
         }}
       >
-        {/* Image de fond */}
-        <div
+        {/* Vidéo de fond */}
+        <video
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              "url('/img/photo2.jpg')",
-            backgroundSize: "110%",
-            backgroundPosition: "center bottom",
-            backgroundRepeat: "no-repeat",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
             backgroundColor: "#2D1B4E",
           }}
+          src="/video/martinique.mp4"
+          poster="/img/photo2.jpg"
+          autoPlay
+          loop
+          muted
+          playsInline
         />
         {/* Overlay dégradé */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(170deg, #3D2060cc 0%, #2D1B4E99 50%, #2D1B4Ee0 100%)",
+              "linear-gradient(170deg, #3D206040 0%, #2D1B4E30 50%, #2D1B4Ea8 100%)",
           }}
         />
 
@@ -91,9 +95,10 @@ export default function Home() {
               fontSize: "clamp(2.5rem,6vw,4rem)",
               lineHeight: 1.1,
               color: "var(--color-neutral)",
+              textShadow: "0 2px 20px rgba(0,0,0,.35)",
             }}
           >
-            Retrouvez l’harmonie du corps et de l’esprit grâce au yoga avec{" "}
+            L’harmonie du corps et de l’esprit avec{" "}
             <em
               className="not-italic font-semibold"
               style={{ color: "#C9A84C" }}
@@ -101,19 +106,6 @@ export default function Home() {
               Kundalini Yoga
             </em>
           </h1>
-
-          <p
-            className="mb-10 leading-relaxed"
-            style={{
-              color: "rgba(255,255,255,.78)",
-              fontSize: "1.0625rem",
-              maxWidth: "38ch",
-              marginInline: "auto",
-            }}
-          >
-            Yoga, fitness et méditation dans un espace bienveillant. Chaque
-            séance est une invitation à aller plus loin.
-          </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14 ">
             <Link
@@ -178,6 +170,12 @@ export default function Home() {
           className="section-inner text-center"
           style={{ maxWidth: "38rem" }}
         >
+          <p
+            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            style={{ color: "rgba(201,168,76,.7)" }}
+          >
+            Avis client
+          </p>
           <span
             className="font-serif select-none"
             style={{
@@ -199,9 +197,9 @@ export default function Home() {
               marginBottom: "1.5rem",
             }}
           >
-            Cela fait un an et demi que je suis les cours de Kundalini avec Emmanuelle, et ce rendez-vous est devenu essentiel à mon équilibre, autant sur le plan physique qu’émotionnel. Je ne connaissais pas le Kundalini, et au fil de ma pratique, j’en découvre chaque jour un peu plus la puissance.
-
-Ces cours sont d’autant plus réconfortants et revitalisants qu’ils sont dispensés avec beaucoup de bienveillance, d’optimisme et d’attention par Emmanuelle.
+            Ce rendez-vous hebdomadaire est devenu essentiel à mon équilibre,
+            physique comme émotionnel. Les cours d’Emmanuelle sont dispensés
+            avec une bienveillance rare.
           </blockquote>
           <p
             className="text-sm font-medium"
@@ -209,51 +207,6 @@ Ces cours sont d’autant plus réconfortants et revitalisants qu’ils sont dis
           >
             — Claire B., membre depuis 2024
           </p>
-        </div>
-      </section>
-
-      {/* ══ CTA final ═════════════════════════════════════════ */}
-      <section
-        className="text-center text-white"
-        style={{
-          background: "#2D1B4E",
-          padding: "5rem clamp(1.25rem,5vw,3rem)",
-        }}
-      >
-        <div style={{ maxWidth: "36rem", marginInline: "auto" }}>
-          <h2
-            className="font-serif font-light mb-4"
-            style={{ fontSize: "clamp(1.75rem,4vw,2.5rem)", color: "#F0EAD6" }}
-          >
-            Prêt·e à commencer ?
-          </h2>
-          <p
-            className="mb-8 leading-relaxed"
-            style={{ color: "rgba(240,234,214,.72)", fontSize: ".9375rem" }}
-          >
-            Rejoignez notre communauté et découvrez votre premier cours avec
-            notre Pass Découverte.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              to="/cours"
-              className="btn"
-              style={{
-                background: "var(--color-neutral)",
-                color: "#2C1810",
-                padding: ".875rem 2rem",
-              }}
-            >
-              Voir les cours
-            </Link>
-            <Link
-              to="/contact"
-              className="btn btn-outlined"
-              style={{ padding: ".875rem 2rem" }}
-            >
-              Nous contacter
-            </Link>
-          </div>
         </div>
       </section>
     </main>

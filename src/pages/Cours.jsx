@@ -150,20 +150,20 @@ const DISCIPLINES = [
   {
     type: "yoga",
     title: "Présentiel",
-    variants: "Cours en salle à Saint-Brieuc",
-    desc: "Lundi 11h ou 18h30 · Mardi 18h30 ou 20h · Mercredi 11h. L'intensité et la connexion d'une pratique vécue ensemble.",
+    variants: "Pratique en salle",
+    desc: "L'intensité et la connexion d'une pratique vécue ensemble.",
   },
   {
     type: "studio",
     title: "Studio de Yoga en ligne",
     variants: "Pratique en ligne",
-    desc: "Vidéothèque et cours en direct (lundi 7h, jeudi 19h, vendredi 12h30) pour pratiquer où que vous soyez.",
+    desc: "La puissance du yoga, où que vous soyez.",
   },
   {
     type: "hybride",
     title: "Hybride",
-    variants: "Présentiel & Studio en ligne",
-    desc: "1 cours en présentiel par semaine + accès illimité au Studio en ligne et à ses cours en direct.",
+    variants: "Présentiel & studio",
+    desc: "Quand l'énergie du présentiel rencontre la liberté du distanciel.",
   },
 ];
 
@@ -172,40 +172,50 @@ export default function Cours() {
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
-        style={{
-          background: "#F5F0E8",
-          borderBottom: "1px solid rgba(201,168,76,.2)",
-          padding: "4rem 0 3rem",
-        }}
+        className="relative flex flex-col items-center justify-center text-center"
+        style={{ minHeight: "65vh", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
       >
-        <div className="section-inner text-center">
+        {/* Image de fond */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/img/posture-meditation-1.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 25%",
+            backgroundColor: "#2D1B4E",
+          }}
+        />
+        {/* Overlay dégradé */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(170deg, #2D1B4E80 0%, #2D1B4E55 50%, #2D1B4Ea8 100%)",
+          }}
+        />
+
+        <div className="relative z-10" style={{ maxWidth: "44rem" }}>
           <h1
             className="font-serif font-light mb-4"
-            style={{ fontSize: "clamp(2rem,5vw,3rem)" }}
+            style={{
+              fontSize: "clamp(2rem,5vw,3rem)",
+              color: "#F0EAD6",
+              textShadow: "0 2px 20px rgba(0,0,0,.35)",
+            }}
           >
             Nos cours
           </h1>
           <p
-            className="leading-relaxed mb-3"
-            style={{
-              color: "var(--color-secondary)",
-              maxWidth: "48ch",
-              marginInline: "auto",
-            }}
-          >
-            Le Kundalini Yoga m'a permis de faire une véritable rencontre avec
-            moi-même. De me réapproprier mon corps. De ressentir, en profondeur,
-            ce qui se manifeste en moi.
-          </p>
-          <p
             className="leading-relaxed mb-8"
             style={{
-              color: "var(--color-secondary)",
+              color: "rgba(240,234,214,.9)",
               maxWidth: "48ch",
               marginInline: "auto",
+              textShadow: "0 1px 12px rgba(0,0,0,.4)",
             }}
           >
-            Chaque séance est unique, parce que vous êtes unique.
+            Une pratique qui vous reconnecte à vous-même — chaque séance est
+            unique, parce que vous êtes unique.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
@@ -217,7 +227,7 @@ export default function Cours() {
             </a>
             <Link
               to="/contact"
-              className="btn btn-secondary"
+              className="btn btn-outlined"
               style={{ padding: ".75rem 1.75rem" }}
             >
               Nous contacter
@@ -226,120 +236,91 @@ export default function Cours() {
         </div>
       </section>
 
-      {/* ══ Disciplines ═══════════════════════════════════════ */}
-      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <h2
-              className="font-serif font-light text-3xl"
-              style={{ color: "#F0EAD6" }}
-            >
-              Les disciplines
-            </h2>
-          </div>
+      {/* ══ Disciplines + Tarifs sur fond photo ═══════════════ */}
+      <div className="relative">
+        {/* Image de fond */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/img/posture-meditation-2.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundColor: "#2D1B4E",
+          }}
+        />
+        {/* Overlay dégradé */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, #2D1B4E75 0%, #2D1B4E55 100%)",
+          }}
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {DISCIPLINES.map((d) => (
-              <div key={d.type} className="card text-center">
-                <div className="mb-4">
-                  <Pill type={d.type} />
-                </div>
-                <h3 className="font-serif text-xl font-semibold mb-1">
-                  {d.title}
-                </h3>
-                <p
-                  className="text-xs font-medium mb-3"
-                  style={{ color: "var(--color-secondary)" }}
-                >
-                  {d.variants}
-                </p>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
-                >
-                  {d.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ Nos cours réguliers ═══════════════════════════════ */}
-      <section style={{ background: "var(--color-neutral)", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <h2 className="font-serif font-light text-3xl">Nos cours réguliers</h2>
-            <p
-              className="text-sm mt-3"
-              style={{ color: "var(--color-secondary)" }}
-            >
-              Trois ambiances, un même fil : ressentir, respirer, se recentrer.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {COURS_DETAILS.map((c) => (
-              <div
-                key={c.name}
-                className="card"
-                style={{ display: "flex", flexDirection: "column", gap: ".75rem" }}
+        {/* ══ Disciplines ═════════════════════════════════════ */}
+        <section className="relative" style={{ padding: "5rem 0" }}>
+          <div className="section-inner">
+            <div className="text-center mb-12">
+              <h2
+                className="font-serif font-light text-3xl"
+                style={{ color: "#F0EAD6", textShadow: "0 1px 12px rgba(0,0,0,.4)" }}
               >
-                <div>
-                  <h3 className="font-serif text-xl font-semibold mb-1" style={{ color: "var(--color-ink)" }}>
-                    {c.name}
+                Les disciplines
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {DISCIPLINES.map((d) => (
+                <div key={d.type} className="card text-center">
+                  <div className="mb-4">
+                    <Pill type={d.type} />
+                  </div>
+                  <h3 className="font-serif text-xl font-semibold mb-1">
+                    {d.title}
                   </h3>
                   <p
-                    className="text-xs font-semibold uppercase tracking-widest"
-                    style={{ color: "var(--color-primary)" }}
+                    className="text-xs font-medium mb-3"
+                    style={{ color: "var(--color-secondary)" }}
                   >
-                    {c.creneaux}
+                    {d.variants}
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "var(--color-secondary)" }}
+                  >
+                    {d.desc}
                   </p>
                 </div>
-
-                <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
-                  {c.style.join(" • ")}
-                </p>
-
-                <p className="text-sm leading-relaxed" style={{ color: "var(--color-ink)" }}>
-                  {c.pourQui}
-                </p>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: ".4rem", marginTop: "auto" }}>
-                  {c.themes.map((t) => (
-                    <span key={t} className="pill pill-secondary" style={{ fontSize: ".625rem" }}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ Tarifs ════════════════════════════════════════════ */}
-      <section id="tarifs" style={{ background: "#F5F0E8", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <h2 className="font-serif font-light text-3xl">
-              Choisissez votre formule
-            </h2>
-            <p
-              className="text-sm mt-3"
-              style={{ color: "var(--color-secondary)" }}
-            >
-              Toutes les formules donnent accès aux cours en présentiel et en
-              ligne.
-            </p>
-          </div>
+        {/* ══ Tarifs ══════════════════════════════════════════ */}
+        <section id="tarifs" className="relative" style={{ padding: "5rem 0" }}>
+          <div className="section-inner">
+            <div className="text-center mb-12">
+              <h2
+                className="font-serif font-light text-3xl"
+                style={{ color: "#F0EAD6", textShadow: "0 1px 12px rgba(0,0,0,.4)" }}
+              >
+                Choisissez votre formule
+              </h2>
+              <p
+                className="text-sm mt-3"
+                style={{ color: "rgba(240,234,214,.85)", textShadow: "0 1px 8px rgba(0,0,0,.35)" }}
+              >
+                Toutes les formules donnent accès aux cours en présentiel et en
+                ligne.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {PRICING.map((plan) => (
               <div
                 key={plan.name}
                 style={{
-                  borderRadius: ".25rem",
+                  borderRadius: "1.25rem",
                   padding: "1.5rem",
                   display: "flex",
                   flexDirection: "column",
@@ -481,7 +462,8 @@ export default function Cours() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }
