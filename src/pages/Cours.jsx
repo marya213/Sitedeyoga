@@ -349,7 +349,7 @@ export default function Cours() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {DISCIPLINES.map((d) => (
+              {PROPOSITIONS.map((d) => (
                 <div key={d.type} className="card text-center">
                   <div className="mb-4">
                     <Pill type={d.type} />
