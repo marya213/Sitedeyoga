@@ -1,6 +1,150 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PRICING } from "../data/index";
+import { PRICING, SCHEDULE, DAYS, COURS_DETAILS } from "../data/index";
 import Pill from "../components/ui/Pill";
+
+const SLOT_BORDER = {
+  studio: "#C9A84C",
+  yoga: "#7E9B7A",
+  hybride: "#D97706",
+};
+
+// JS getDay() : 0=dim, 1=lun … → DAYS index
+const JS_TO_FR = [6, 0, 1, 2, 3, 4, 5];
+
+function WeekSchedule() {
+  const defaultDay = DAYS[JS_TO_FR[new Date().getDay()]] ?? DAYS[0];
+  const [activeDay, setActiveDay] = useState(defaultDay);
+
+  const dayClasses = SCHEDULE.filter((c) => c.day === activeDay).sort((a, b) =>
+    a.time.localeCompare(b.time),
+  );
+
+  return (
+    <div>
+      {/* ── Onglets jours ── */}
+      <div
+        style={{
+          display: "flex",
+          gap: ".5rem",
+          overflowX: "auto",
+          paddingBottom: ".5rem",
+          marginBottom: "2rem",
+          scrollbarWidth: "none",
+        }}
+      >
+        {DAYS.map((day) => {
+          const active = day === activeDay;
+          return (
+            <button
+              key={day}
+              onClick={() => setActiveDay(day)}
+              style={{
+                padding: ".5rem 1.25rem",
+                borderRadius: "9999px",
+                border: `1px solid ${active ? "#C9A84C" : "rgba(201,168,76,.25)"}`,
+                background: active ? "#C9A84C" : "transparent",
+                color: active ? "#2D1B4E" : "rgba(240,234,214,.8)",
+                fontWeight: active ? 700 : 400,
+                fontSize: ".875rem",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+                transition: "all .2s",
+              }}
+            >
+              {day}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Cours du jour ── */}
+      {dayClasses.length === 0 ? (
+        <p
+          style={{
+            color: "rgba(240,234,214,.5)",
+            textAlign: "center",
+            padding: "2rem 0",
+          }}
+        >
+          Pas de séance ce jour.
+        </p>
+      ) : (
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: ".875rem" }}
+        >
+          {dayClasses.map((cls) => (
+            <div
+              key={cls.id}
+              className="card"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1.25rem",
+                padding: "1rem 1.5rem",
+                borderLeft: `3px solid ${SLOT_BORDER[cls.type] ?? "#C9A84C"}`,
+              }}
+            >
+              {/* Heure */}
+              <div
+                style={{
+                  minWidth: "3.5rem",
+                  textAlign: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <span
+                  className="font-serif font-semibold"
+                  style={{ fontSize: "1.1rem", color: "var(--color-ink)" }}
+                >
+                  {cls.time}
+                </span>
+              </div>
+
+              {/* Séparateur vertical */}
+              <div
+                style={{
+                  width: "1px",
+                  alignSelf: "stretch",
+                  background: "var(--color-border)",
+                  flexShrink: 0,
+                }}
+              />
+
+              {/* Infos */}
+              <div style={{ flex: 1 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: ".75rem",
+                    flexWrap: "wrap",
+                    marginBottom: ".25rem",
+                  }}
+                >
+                  <span
+                    className="font-semibold text-sm"
+                    style={{ color: "var(--color-ink)" }}
+                  >
+                    {cls.name}
+                  </span>
+                  <Pill type={cls.type} />
+                </div>
+                <p
+                  className="text-xs"
+                  style={{ color: "var(--color-secondary)" }}
+                >
+                  {cls.inst}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const DISCIPLINES = [
   {
@@ -11,7 +155,7 @@ const DISCIPLINES = [
   },
   {
     type: "studio",
-    title: "Studio Yoga",
+    title: "Studio de Yoga en ligne",
     variants: "Pratique en ligne",
     desc: "La puissance du yoga, où que vous soyez.",
   },
@@ -183,36 +327,78 @@ export default function Cours() {
                   gap: "1rem",
                   minHeight: "100%",
                   background: "#fff",
-                  border: "1px solid var(--color-border)",
+                  border: plan.highlighted
+                    ? "2px solid var(--color-primary)"
+                    : "1px solid var(--color-border)",
                   boxShadow: "0 2px 8px rgba(44,44,44,.04)",
                 }}
               >
                 {/* Nom & prix */}
                 <div>
+                  {plan.badge && (
+                    <p
+                      className="text-xs font-semibold uppercase tracking-widest mb-2"
+                      style={{ color: plan.highlighted ? "var(--color-primary)" : "var(--color-secondary)" }}
+                    >
+                      {plan.badge}
+                    </p>
+                  )}
                   <p
-                    className="font-serif text-3xl font-semibold mb-1"
+                    className="font-serif text-2xl font-semibold mb-1"
                     style={{ color: "var(--color-ink)" }}
                   >
                     {plan.name}
                   </p>
-                  <div className="mt-5 flex items-end gap-1.5">
-                    <p
-                      className="font-serif font-semibold"
-                      style={{
-                        fontSize: "2.5rem",
-                        lineHeight: 1,
-                        color: "var(--color-primary)",
-                      }}
-                    >
-                      {plan.price}€
+
+                  {plan.priceTiers ? (
+                    <div className="mt-4" style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+                      {plan.priceTiers.map((tier) => (
+                        <div key={tier.label} className="flex items-baseline justify-between gap-2 text-sm">
+                          <span style={{ color: "var(--color-secondary)" }}>{tier.label}</span>
+                          <span className="font-serif font-semibold" style={{ fontSize: "1.125rem", color: "var(--color-primary)" }}>
+                            {tier.price} €
+                            {tier.oldPrice && (
+                              <span
+                                style={{
+                                  marginLeft: ".4rem",
+                                  fontSize: ".8125rem",
+                                  fontWeight: 400,
+                                  color: "var(--color-ink-faint)",
+                                  textDecoration: "line-through",
+                                }}
+                              >
+                                {tier.oldPrice} €
+                              </span>
+                            )}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mt-4 flex items-end gap-2 flex-wrap">
+                      <p
+                        className="font-serif font-semibold"
+                        style={{
+                          fontSize: "2.5rem",
+                          lineHeight: 1,
+                          color: "var(--color-primary)",
+                        }}
+                      >
+                        {plan.price} €
+                      </p>
+                      {plan.oldPrice && (
+                        <p style={{ fontSize: "1rem", color: "var(--color-ink-faint)", textDecoration: "line-through" }}>
+                          {plan.oldPrice} €
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {plan.priceNote && (
+                    <p className="text-xs mt-2" style={{ color: "var(--color-ink-faint)" }}>
+                      {plan.priceNote}
                     </p>
-                  </div>
-                  <p
-                    className="text-sm mt-3 leading-relaxed"
-                    style={{ color: "var(--color-secondary)" }}
-                  >
-                    {plan.desc}
-                  </p>
+                  )}
                 </div>
 
                 {/* Features */}
@@ -246,8 +432,10 @@ export default function Cours() {
                 </ul>
 
                 {/* CTA */}
-                <Link
-                  to="/contact"
+                <a
+                  href="https://espace-kundala.heymarvelous.com/buy/product/80596"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn"
                   style={{
                     width: "100%",
@@ -269,7 +457,7 @@ export default function Cours() {
                   }}
                 >
                   {plan.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
