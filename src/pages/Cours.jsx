@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PRICING, SCHEDULE, DAYS, COURS_DETAILS } from "../data/index";
+import {
+  PRICING,
+  SCHEDULE,
+  DAYS,
+  COURS_DETAILS,
+  COURS_DISTANCIEL,
+} from "../data/index";
 import Pill from "../components/ui/Pill";
 
 const SLOT_BORDER = {
@@ -146,7 +152,77 @@ function WeekSchedule() {
   );
 }
 
-const DISCIPLINES = [
+function CourseCard({ course, ctaLabel, ctaTo }) {
+  return (
+    <div
+      className="card"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
+      <div>
+        <h3
+          className="font-serif text-2xl font-semibold mb-1.5"
+          style={{ color: "var(--color-ink)" }}
+        >
+          {course.name}
+        </h3>
+        <p
+          className="text-sm font-semibold uppercase tracking-widest"
+          style={{ color: "var(--color-primary)" }}
+        >
+          🕐 {course.creneaux}
+        </p>
+      </div>
+
+      <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
+        {course.style.join(" • ")}
+      </p>
+
+      <p
+        className="text-sm leading-relaxed"
+        style={{ color: "var(--color-ink)" }}
+      >
+        {course.pourQui}
+      </p>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: ".4rem" }}>
+        {course.themes.map((t) => (
+          <span
+            key={t}
+            className="pill pill-secondary"
+            style={{ fontSize: ".625rem" }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <Link
+        to={ctaTo}
+        className="btn btn-primary"
+        style={{
+          marginTop: "auto",
+          justifyContent: "center",
+          padding: ".875rem 1.5rem",
+        }}
+      >
+        {ctaLabel}
+      </Link>
+    </div>
+  );
+}
+
+const COURS_FILTERS = [
+  { key: "presentiel", label: "Présentiel" },
+  { key: "distanciel", label: "Distanciel" },
+];
+
+const ALL_COURS = [...COURS_DETAILS, ...COURS_DISTANCIEL];
+
+const PROPOSITIONS = [
   {
     type: "yoga",
     title: "Présentiel",
@@ -168,6 +244,9 @@ const DISCIPLINES = [
 ];
 
 export default function Cours() {
+  const [coursFilter, setCoursFilter] = useState("presentiel");
+  const filteredCours = ALL_COURS.filter((c) => c.mode === coursFilter);
+
   return (
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}
@@ -338,7 +417,11 @@ export default function Cours() {
                   {plan.badge && (
                     <p
                       className="text-xs font-semibold uppercase tracking-widest mb-2"
-                      style={{ color: plan.highlighted ? "var(--color-primary)" : "var(--color-secondary)" }}
+                      style={{
+                        color: plan.highlighted
+                          ? "var(--color-primary)"
+                          : "var(--color-secondary)",
+                      }}
                     >
                       {plan.badge}
                     </p>
@@ -351,11 +434,29 @@ export default function Cours() {
                   </p>
 
                   {plan.priceTiers ? (
-                    <div className="mt-4" style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+                    <div
+                      className="mt-4"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: ".5rem",
+                      }}
+                    >
                       {plan.priceTiers.map((tier) => (
-                        <div key={tier.label} className="flex items-baseline justify-between gap-2 text-sm">
-                          <span style={{ color: "var(--color-secondary)" }}>{tier.label}</span>
-                          <span className="font-serif font-semibold" style={{ fontSize: "1.125rem", color: "var(--color-primary)" }}>
+                        <div
+                          key={tier.label}
+                          className="flex items-baseline justify-between gap-2 text-sm"
+                        >
+                          <span style={{ color: "var(--color-secondary)" }}>
+                            {tier.label}
+                          </span>
+                          <span
+                            className="font-serif font-semibold"
+                            style={{
+                              fontSize: "1.125rem",
+                              color: "var(--color-primary)",
+                            }}
+                          >
                             {tier.price} €
                             {tier.oldPrice && (
                               <span
@@ -387,7 +488,13 @@ export default function Cours() {
                         {plan.price} €
                       </p>
                       {plan.oldPrice && (
-                        <p style={{ fontSize: "1rem", color: "var(--color-ink-faint)", textDecoration: "line-through" }}>
+                        <p
+                          style={{
+                            fontSize: "1rem",
+                            color: "var(--color-ink-faint)",
+                            textDecoration: "line-through",
+                          }}
+                        >
                           {plan.oldPrice} €
                         </p>
                       )}
@@ -395,7 +502,10 @@ export default function Cours() {
                   )}
 
                   {plan.priceNote && (
-                    <p className="text-xs mt-2" style={{ color: "var(--color-ink-faint)" }}>
+                    <p
+                      className="text-xs mt-2"
+                      style={{ color: "var(--color-ink-faint)" }}
+                    >
                       {plan.priceNote}
                     </p>
                   )}

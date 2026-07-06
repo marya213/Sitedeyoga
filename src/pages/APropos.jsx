@@ -93,7 +93,7 @@ const VALUES = [
     color: "#3D8B74",
     bg: "rgba(61,139,116,.13)",
     title: "Bienveillance",
-    desc: "Chaque élève est accueilli là où il en est, sans jugement. Notre espace est un lieu de confiance et de respect mutuel.",
+    desc: "J'accueille chaque élève là où il en est, sans jugement, dans un climat de confiance et de respect de son propre rythme.",
   },
   {
     icon: "✨",
@@ -245,7 +245,7 @@ export default function APropos() {
       <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
         <div className="section-inner">
           <div className="text-center mb-12">
-            <h2 className="font-serif font-light text-3xl">Nos valeurs</h2>
+            <h2 className="font-serif font-light text-3xl">Mes valeurs</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
