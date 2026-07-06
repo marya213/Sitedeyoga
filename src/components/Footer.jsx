@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
-import NewsletterForm from "./NewsletterForm";
 
-const LINKS = [
-  { label: "Cours", to: "/cours" },
-  { label: "Planning", to: "/planning" },
-  { label: "Événements", to: "/evenements" },
-  { label: "FAQ", to: "/faq" },
-  { label: "Contact", to: "/contact" },
-];
 const INSTAGRAM_URL = "https://www.instagram.com/emmanuelledruneau_kundalini/";
 
 export default function Footer() {
@@ -40,57 +32,21 @@ export default function Footer() {
                 Studio Kundalini
               </span>
             </div>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: "rgba(255,255,255,.5)", maxWidth: "22ch" }}
+          </div>
+
+          {/* FAQ + social */}
+          <div className="flex items-center gap-5 md:gap-6">
+            <Link
+              to="/faq"
+              className="text-sm transition-colors"
+              style={{ color: "rgba(255,255,255,.55)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "rgba(255,255,255,.55)")
+              }
             >
-              Un espace de bien-être, de mouvement et de transformation au cœur
-              de Paris.
-            </p>
-          </div>
-
-          <div style={{ maxWidth: "22rem" }}>
-            <NewsletterForm
-              title="Newsletter"
-              description="Chaque mois, retrouvez nos conseils Kundalini, nouveaux cours et ateliers a venir."
-              buttonLabel="S'abonner"
-              compact
-              theme="dark"
-            />
-          </div>
-
-          {/* Navigation + social */}
-          <div className="flex items-start md:items-center gap-5 md:gap-6">
-            <div className="flex flex-col md:items-end md:text-right">
-              <h3
-                className="text-xs font-semibold uppercase tracking-widest mb-5"
-                style={{
-                  color: "rgba(255,255,255,.35)",
-                  fontFamily: "var(--font-sans)",
-                }}
-              >
-                Navigation
-              </h3>
-              <ul className="flex flex-col gap-2.5 md:items-end">
-                {LINKS.map(({ label, to }) => (
-                  <li key={to}>
-                    <Link
-                      to={to}
-                      className="text-sm transition-colors"
-                      style={{ color: "rgba(255,255,255,.55)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.color = "#fff")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.color = "rgba(255,255,255,.55)")
-                      }
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              FAQ
+            </Link>
 
             <a
               href={INSTAGRAM_URL}

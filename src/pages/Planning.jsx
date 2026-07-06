@@ -219,26 +219,6 @@ export default function Planning() {
           )}
         </div>
       </section>
-
-      {/* ══ CTA ════════════════════════════════════════════════ */}
-      <section style={{ background: '#2D1B4E', padding: '4rem clamp(1.25rem,5vw,3rem)' }}>
-        <div style={{ maxWidth: '36rem', marginInline: 'auto', textAlign: 'center' }}>
-          <h2 className="font-serif font-light mb-3" style={{ fontSize: 'clamp(1.5rem,3.5vw,2rem)', color: '#F0EAD6' }}>
-            Prêt·e à réserver ?
-          </h2>
-          <p style={{ color: 'rgba(240,234,214,.68)', fontSize: '.9375rem', marginBottom: '1.75rem', lineHeight: 1.65 }}>
-            Choisissez votre formule et réservez votre premier cours en quelques clics.
-          </p>
-          <div style={{ display: 'flex', gap: '.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/cours" className="btn" style={{ background: 'var(--color-neutral)', color: '#2C1810', padding: '.875rem 2rem' }}>
-              Voir les tarifs
-            </Link>
-            <Link to="/contact" className="btn btn-outlined" style={{ padding: '.875rem 2rem' }}>
-              Nous contacter
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }

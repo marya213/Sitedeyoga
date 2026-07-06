@@ -3,16 +3,22 @@ import { TEAM } from "../data/index";
 const VALUES = [
   {
     icon: "🌱",
+    color: "#3D8B74",
+    bg: "rgba(61,139,116,.13)",
     title: "Bienveillance",
     desc: "Chaque élève est accueilli là où il en est, sans jugement. Notre espace est un lieu de confiance et de respect mutuel.",
   },
   {
     icon: "✨",
+    color: "#C9A84C",
+    bg: "rgba(201,168,76,.15)",
     title: "Excellence",
     desc: "Nos instructeurs sont certifiés au plus haut niveau et se forment en continu pour offrir une expérience de qualité.",
   },
   {
     icon: "🤝",
+    color: "#7B5EA7",
+    bg: "rgba(123,94,167,.13)",
     title: "Communauté",
     desc: "Le studio est bien plus qu'un lieu de pratique — c'est une communauté vivante, chaleureuse et soudée.",
   },
@@ -23,25 +29,46 @@ export default function APropos() {
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
-        style={{
-          background: "#F5F0E8",
-          borderBottom: "1px solid rgba(201,168,76,.2)",
-          padding: "4rem 0 3rem",
-        }}
+        className="relative flex flex-col items-center justify-center text-center"
+        style={{ minHeight: "55vh", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
       >
-        <div className="section-inner text-center">
+        {/* Image de fond */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/img/photo1.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 20%",
+            backgroundColor: "#2D1B4E",
+          }}
+        />
+        {/* Overlay dégradé */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(170deg, #2D1B4E80 0%, #2D1B4E55 50%, #2D1B4Eb0 100%)",
+          }}
+        />
+
+        <div className="relative z-10" style={{ maxWidth: "38rem" }}>
           <h1
             className="font-serif font-light mb-4"
-            style={{ fontSize: "clamp(2rem,5vw,3rem)" }}
+            style={{
+              fontSize: "clamp(2rem,5vw,3rem)",
+              color: "#F0EAD6",
+              textShadow: "0 2px 20px rgba(0,0,0,.35)",
+            }}
           >
             À propos
           </h1>
           <p
             className="leading-relaxed"
             style={{
-              color: "var(--color-secondary)",
+              color: "rgba(240,234,214,.9)",
               maxWidth: "42ch",
               marginInline: "auto",
+              textShadow: "0 1px 12px rgba(0,0,0,.4)",
             }}
           >
             Le bien-être est accessible à tous lorsqu'il est enseigné avec
@@ -65,7 +92,7 @@ export default function APropos() {
               Un studio fondé sur la passion et la transmission
             </h2>
             <div
-              className="text-sm leading-relaxed mb-10"
+              className="text-sm leading-relaxed mb-8"
               style={{
                 color: "rgba(240,234,214,.82)",
                 display: "flex",
@@ -75,19 +102,28 @@ export default function APropos() {
               }}
             >
               <p>
-                Le Kundalini Yoga m’a permis de vivre une véritable rencontre
-                avec moi-même, de me réapproprier mon corps et de mieux
-                comprendre ce qui se joue à l’intérieur de moi. En 15 ans de
-                pratique, il est devenu un véritable révélateur de mes émotions
-                et de mes mécanismes inconscients. Chaque séance est un voyage
-                intérieur : elle bouscule, remue, puis apaise. On traverse
-                l’inconfort, les résistances, parfois même des émotions
-                enfouies, avant de retrouver peu à peu le calme dans la
-                relaxation. Je ne propose pas un cours de yoga classique, mais
-                le partage d’une pratique qui m’a profondément transformée et
-                qui invite, séance après séance, à une rencontre sincère avec
-                soi-même.
+                Le Kundalini Yoga m’a permis de me réapproprier mon corps et de
+                mieux comprendre ce qui se joue en moi. En 15 ans de pratique,
+                je ne propose pas un cours classique, mais le partage sincère
+                d’une expérience qui m’a profondément transformée.
               </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <span
+                className="font-serif font-semibold"
+                style={{ fontSize: "3rem", lineHeight: 1, color: "#C9A84C" }}
+              >
+                15
+              </span>
+              <span
+                className="text-xs font-semibold uppercase tracking-widest"
+                style={{ color: "rgba(240,234,214,.55)", lineHeight: 1.4 }}
+              >
+                ans
+                <br />
+                de pratique
+              </span>
             </div>
           </div>
 
@@ -102,7 +138,7 @@ export default function APropos() {
           >
             <img
               src="/img/yoga.jpg"
-              alt="Intérieur du studio"
+              alt="Emmanuelle en posture de méditation"
               style={{
                 width: "100%",
                 height: "100%",
@@ -128,10 +164,24 @@ export default function APropos() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {VALUES.map((v) => (
               <div key={v.title} className="card text-center">
-                <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    width: "3.5rem",
+                    height: "3.5rem",
+                    borderRadius: "9999px",
+                    background: v.bg,
+                    fontSize: "1.5rem",
+                    marginBottom: "1.25rem",
+                    marginInline: "auto",
+                  }}
+                >
                   {v.icon}
                 </div>
-                <h3 className="font-serif text-xl font-semibold mb-2">
+                <h3
+                  className="font-serif text-xl font-semibold mb-2"
+                  style={{ color: v.color }}
+                >
                   {v.title}
                 </h3>
                 <p
