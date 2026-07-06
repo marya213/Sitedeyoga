@@ -23,6 +23,7 @@ export const SCHEDULE = [
 export const COURS_DETAILS = [
   {
     name: "Énergie & Équilibre",
+    mode: "presentiel",
     creneaux: "Lundi 11h ou 18h30 · Mardi 20h",
     style: ["Yoga long", "Méditation", "Respiration", "Mantra", "Relaxation"],
     pourQui:
@@ -39,6 +40,7 @@ export const COURS_DETAILS = [
   },
   {
     name: "Corps en Mouvement",
+    mode: "presentiel",
     creneaux: "Mardi 18h30",
     style: ["Yoga court", "Méditation", "Respiration", "Mouvement debout", "Mantra", "Relaxation"],
     pourQui:
@@ -54,6 +56,7 @@ export const COURS_DETAILS = [
   },
   {
     name: "Souffle & Sérénité",
+    mode: "presentiel",
     creneaux: "Mercredi 11h",
     style: ["Yoga court", "Méditation", "Respiration", "Mantra", "Relaxation"],
     pourQui:
@@ -66,6 +69,25 @@ export const COURS_DETAILS = [
       "Pranayamas",
       "Relation à soi",
       "Sommeil, récupération",
+    ],
+  },
+];
+
+// Cours régulier proposé en distanciel (Studio de Yoga en ligne)
+export const COURS_DISTANCIEL = [
+  {
+    name: "Énergie et équilibres",
+    mode: "distanciel",
+    creneaux: "Lundi 7h · Jeudi 19h · Vendredi 12h30 (en direct) + vidéothèque à volonté",
+    style: ["Yoga en ligne", "Méditation", "Respiration", "Mantra", "Relaxation"],
+    pourQui:
+      "Le même esprit qu'en salle, à distance : des lives réguliers et une vidéothèque pour pratiquer où et quand vous voulez.",
+    themes: [
+      "Stress, anxiété",
+      "Énergie",
+      "Recentrage",
+      "Clarté mentale",
+      "Flexibilité du planning",
     ],
   },
 ];

@@ -56,10 +56,10 @@ export default function Home() {
     <main className="pt-16">
       {/* ══ Hero ══════════════════════════════════════════════ */}
       <section
-        className="relative flex flex-col items-center justify-center text-center text-white"
+        className="relative flex flex-col items-center justify-center text-center text-white mt-12 min-h-[calc(100vh-4rem-3rem)]"
         style={{
-          minHeight: "calc(100vh - 4rem)",
-          padding: "5rem clamp(1.25rem,5vw,3rem)",
+          padding: "3rem clamp(1.25rem,5vw,3rem)",
+          backgroundColor: "#2D1B4E",
         }}
       >
         {/* Vidéo de fond */}
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Disciplines ═══════════════════════════════════════ */}
+      {/* ══ Propositions ══════════════════════════════════════ */}
       <section
         style={{ background: "var(--color-neutral)", padding: "5rem 0" }}
       >
@@ -139,7 +139,7 @@ export default function Home() {
               Ce que nous proposons
             </p>
             <h2 className="font-serif font-light text-3xl md:text-4xl">
-              Nos pratiques
+              Nos propositions
             </h2>
           </div>
 
