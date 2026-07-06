@@ -1,4 +1,91 @@
+import { useState, useEffect } from "react";
 import { TEAM } from "../data/index";
+
+const CAROUSEL_IMAGES = [
+  { src: "/img/yoga.jpg", alt: "Cours de yoga" },
+  { src: "/img/photo1.jpg", alt: "Studio de yoga" },
+  { src: "/img/photo2.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph4.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph5.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph6.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph7.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph8.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph9.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph10.jpg", alt: "Séance de yoga" },
+  { src: "/img/ph11.jpg", alt: "Séance de yoga" },
+];
+
+function ImageCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div
+      style={{
+        borderRadius: "1.25rem",
+        overflow: "hidden",
+        boxShadow: "0 12px 40px rgba(44,44,44,.1)",
+        minHeight: "20rem",
+        position: "relative",
+      }}
+    >
+      {CAROUSEL_IMAGES.map((img, i) => (
+        <img
+          key={img.src}
+          src={img.src}
+          alt={img.alt}
+          style={{
+            position: i === 0 ? "relative" : "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            opacity: i === current ? 1 : 0,
+            transition: "opacity 0.8s ease-in-out",
+            minHeight: "20rem",
+          }}
+        />
+      ))}
+      {/* Indicateurs */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "0.75rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: "0.4rem",
+        }}
+      >
+        {CAROUSEL_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            style={{
+              width: i === current ? "1.5rem" : "0.5rem",
+              height: "0.5rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              background: i === current ? "#fff" : "rgba(255,255,255,0.5)",
+              transition: "all 0.3s ease",
+              padding: 0,
+            }}
+            aria-label={`Image ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const VALUES = [
   {
@@ -86,10 +173,10 @@ export default function APropos() {
           {/* Texte */}
           <div>
             <h2
-              className="font-serif font-light text-3xl md:text-4xl mb-6"
+              className="font-serif font-light text-2xl md:text-4xl mb-6"
               style={{ color: "#F0EAD6" }}
             >
-              Un studio fondé sur la passion et la transmission
+              Comment je suis arrivée au Yoga?
             </h2>
             <div
               className="text-sm leading-relaxed mb-8"

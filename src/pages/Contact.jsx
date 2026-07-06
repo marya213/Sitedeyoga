@@ -5,7 +5,7 @@ const INFO_BLOCKS = [
   {
     icon: "📍",
     label: "Adresse",
-    lines: ["12 rue de la Paix", "75001 Paris, France"],
+    lines: ["Saint Brieuc centre "],
   },
   {
     icon: "📞",
@@ -57,6 +57,28 @@ const INFO_BLOCKS = [
     label: "Instagram",
     lines: ["@Kundalini Yoga"],
     href: "https://www.instagram.com/emmanuelledruneau_kundalini/",
+  },
+  {
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <rect x="2.1" y="2.1" width="19.8" height="19.8" rx="5.6" fill="#1877F2" />
+        <g transform="translate(5.81 2.1) scale(0.0387)">
+          <path
+            fill="#fff"
+            d="M279.14 288l14.22-92.66h-86.36v-59.7c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S259.5 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          />
+        </g>
+      </svg>
+    ),
+    label: "Facebook",
+    lines: ["Emmanuelle Druneau"],
+    href: "https://www.facebook.com/profile.php?id=100008138531485",
   },
 ];
 
@@ -215,50 +237,6 @@ export default function Contact() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Horaires */}
-            <div className="card" style={{ marginBottom: "1.5rem" }}>
-              <h3
-                className="text-xs font-semibold uppercase tracking-widest mb-4"
-                style={{ color: "var(--color-secondary)" }}
-              >
-                Horaires d'ouverture
-              </h3>
-              <table style={{ width: "100%" }}>
-                <tbody>
-                  {HOURS.map(({ days, hours }, i) => (
-                    <tr
-                      key={days}
-                      style={{
-                        borderBottom:
-                          i < HOURS.length - 1
-                            ? "1px solid var(--color-border)"
-                            : "none",
-                      }}
-                    >
-                      <td
-                        className="text-sm font-medium"
-                        style={{
-                          padding: ".625rem 0",
-                          color: "var(--color-ink)",
-                        }}
-                      >
-                        {days}
-                      </td>
-                      <td
-                        className="text-sm text-right"
-                        style={{
-                          padding: ".625rem 0",
-                          color: "var(--color-secondary)",
-                        }}
-                      >
-                        {hours}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
 
             <NewsletterForm

@@ -8,8 +8,7 @@ const TODAY_FR = JS_TO_FR[new Date().getDay()]
 const TYPE_FILTERS = [
   { key: 'tous', label: 'Tous' },
   { key: 'yoga', label: '🧘 Yoga' },
-  { key: 'studio', label: '🏋️ Studio' },
-  { key: 'hybride', label: '🎥 Hybride' },
+  { key: 'studio', label: '💻 Studio en ligne' },
 ]
 
 function ClassCard({ cls }) {
