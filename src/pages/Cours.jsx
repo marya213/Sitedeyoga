@@ -8,6 +8,10 @@ import {
   COURS_DISTANCIEL,
 } from "../data/index";
 import Pill from "../components/ui/Pill";
+import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
+
+const KUNDALINI_URL =
+  "https://espace-kundala.heymarvelous.com/buy/product/80596";
 
 const SLOT_BORDER = {
   studio: "#C9A84C",
@@ -220,6 +224,12 @@ const COURS_FILTERS = [
   { key: "distanciel", label: "Distanciel" },
 ];
 
+const FORMULE_FILTERS = [
+  { key: "presentiel", label: "Présentiel" },
+  { key: "distanciel", label: "Distanciel" },
+  { key: "both", label: "Offre Combinée" },
+];
+
 const ALL_COURS = [...COURS_DETAILS, ...COURS_DISTANCIEL];
 
 const PROPOSITIONS = [
@@ -247,12 +257,18 @@ export default function Cours() {
   const [coursFilter, setCoursFilter] = useState("presentiel");
   const filteredCours = ALL_COURS.filter((c) => c.mode === coursFilter);
 
+  const [formuleFilter, setFormuleFilter] = useState("presentiel");
+  const filteredPricing = PRICING.filter((plan) => plan.mode === formuleFilter);
+
   return (
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
         className="relative flex flex-col items-center justify-center text-center"
-        style={{ minHeight: "65vh", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
+        style={{
+          minHeight: "65vh",
+          padding: "6rem clamp(1.25rem,5vw,3rem) 4rem",
+        }}
       >
         {/* Image de fond */}
         <div
@@ -282,7 +298,7 @@ export default function Cours() {
               textShadow: "0 2px 20px rgba(0,0,0,.35)",
             }}
           >
-            Nos cours
+            Les cours
           </h1>
           <p
             className="leading-relaxed mb-8"
@@ -331,8 +347,7 @@ export default function Cours() {
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "linear-gradient(180deg, #2D1B4E75 0%, #2D1B4E55 100%)",
+            background: "linear-gradient(180deg, #2D1B4E75 0%, #2D1B4E55 100%)",
           }}
         />
 
@@ -342,7 +357,10 @@ export default function Cours() {
             <div className="text-center mb-12">
               <h2
                 className="font-serif font-light text-3xl"
-                style={{ color: "#F0EAD6", textShadow: "0 1px 12px rgba(0,0,0,.4)" }}
+                style={{
+                  color: "#F0EAD6",
+                  textShadow: "0 1px 12px rgba(0,0,0,.4)",
+                }}
               >
                 Les disciplines
               </h2>
@@ -381,197 +399,272 @@ export default function Cours() {
             <div className="text-center mb-12">
               <h2
                 className="font-serif font-light text-3xl"
-                style={{ color: "#F0EAD6", textShadow: "0 1px 12px rgba(0,0,0,.4)" }}
+                style={{
+                  color: "#F0EAD6",
+                  textShadow: "0 1px 12px rgba(0,0,0,.4)",
+                }}
               >
                 Choisissez votre formule
               </h2>
               <p
                 className="text-sm mt-3"
-                style={{ color: "rgba(240,234,214,.85)", textShadow: "0 1px 8px rgba(0,0,0,.35)" }}
+                style={{
+                  color: "rgba(240,234,214,.85)",
+                  textShadow: "0 1px 8px rgba(0,0,0,.35)",
+                }}
               >
                 Toutes les formules donnent accès aux cours en présentiel et en
                 ligne.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {PRICING.map((plan) => (
-              <div
-                key={plan.name}
-                style={{
-                  borderRadius: "1.25rem",
-                  padding: "1.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  minHeight: "100%",
-                  background: "#fff",
-                  border: plan.highlighted
-                    ? "2px solid var(--color-primary)"
-                    : "1px solid var(--color-border)",
-                  boxShadow: "0 2px 8px rgba(44,44,44,.04)",
-                }}
-              >
-                {/* Nom & prix */}
-                <div>
-                  {plan.badge && (
-                    <p
-                      className="text-xs font-semibold uppercase tracking-widest mb-2"
-                      style={{
-                        color: plan.highlighted
-                          ? "var(--color-primary)"
-                          : "var(--color-secondary)",
-                      }}
-                    >
-                      {plan.badge}
-                    </p>
-                  )}
-                  <p
-                    className="font-serif text-2xl font-semibold mb-1"
-                    style={{ color: "var(--color-ink)" }}
-                  >
-                    {plan.name}
-                  </p>
-
-                  {plan.priceTiers ? (
-                    <div
-                      className="mt-4"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: ".5rem",
-                      }}
-                    >
-                      {plan.priceTiers.map((tier) => (
-                        <div
-                          key={tier.label}
-                          className="flex items-baseline justify-between gap-2 text-sm"
-                        >
-                          <span style={{ color: "var(--color-secondary)" }}>
-                            {tier.label}
-                          </span>
-                          <span
-                            className="font-serif font-semibold"
-                            style={{
-                              fontSize: "1.125rem",
-                              color: "var(--color-primary)",
-                            }}
-                          >
-                            {tier.price} €
-                            {tier.oldPrice && (
-                              <span
-                                style={{
-                                  marginLeft: ".4rem",
-                                  fontSize: ".8125rem",
-                                  fontWeight: 400,
-                                  color: "var(--color-ink-faint)",
-                                  textDecoration: "line-through",
-                                }}
-                              >
-                                {tier.oldPrice} €
-                              </span>
-                            )}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="mt-4 flex items-end gap-2 flex-wrap">
-                      <p
-                        className="font-serif font-semibold"
-                        style={{
-                          fontSize: "2.5rem",
-                          lineHeight: 1,
-                          color: "var(--color-primary)",
-                        }}
-                      >
-                        {plan.price} €
-                      </p>
-                      {plan.oldPrice && (
-                        <p
-                          style={{
-                            fontSize: "1rem",
-                            color: "var(--color-ink-faint)",
-                            textDecoration: "line-through",
-                          }}
-                        >
-                          {plan.oldPrice} €
-                        </p>
-                      )}
-                    </div>
-                  )}
-
-                  {plan.priceNote && (
-                    <p
-                      className="text-xs mt-2"
-                      style={{ color: "var(--color-ink-faint)" }}
-                    >
-                      {plan.priceNote}
-                    </p>
-                  )}
-                </div>
-
-                {/* Features */}
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: ".5rem",
-                    flex: 1,
-                  }}
-                >
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm">
-                      <span
-                        className="flex-shrink-0 flex items-center justify-center rounded-full"
-                        style={{
-                          width: ".95rem",
-                          height: ".95rem",
-                          marginTop: ".2rem",
-                          fontSize: ".5rem",
-                          fontWeight: 700,
-                          background: "var(--color-primary-bg)",
-                          color: "var(--color-primary)",
-                        }}
-                      >
-                        ✓
-                      </span>
-                      <span style={{ color: "var(--color-ink)" }}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <a
-                  href="https://espace-kundala.heymarvelous.com/buy/product/80596"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            {/* Filtres présentiel / distanciel */}
+            <div
+              style={{
+                display: "flex",
+                gap: ".375rem",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginBottom: "2.5rem",
+              }}
+            >
+              {FORMULE_FILTERS.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setFormuleFilter(tab.key)}
                   className="btn"
                   style={{
-                    width: "100%",
-                    justifyContent: "center",
-                    border: plan.highlighted
-                      ? "1px solid rgba(45,27,78,.12)"
-                      : "1px solid var(--color-border)",
-                    background: "var(--color-neutral)",
-                    color: "var(--color-ink)",
-                    padding: ".75rem 1.5rem",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = plan.highlighted
-                      ? "#f4f4f4"
-                      : "rgba(201,168,76,.08)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "var(--color-neutral)";
+                    padding: ".4rem 1rem",
+                    fontSize: ".8125rem",
+                    fontWeight: formuleFilter === tab.key ? 600 : 400,
+                    background:
+                      formuleFilter === tab.key ? "#C9A84C" : "transparent",
+                    color:
+                      formuleFilter === tab.key
+                        ? "#2D1B4E"
+                        : "rgba(240,234,214,.8)",
+                    border:
+                      formuleFilter === tab.key
+                        ? "1px solid transparent"
+                        : "1px solid rgba(201,168,76,.35)",
+                    borderRadius: "9999px",
                   }}
                 >
-                  {plan.cta}
-                </a>
-              </div>
-            ))}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {filteredPricing.map((plan) => (
+                <div
+                  key={plan.name}
+                  style={{
+                    borderRadius: "1.25rem",
+                    padding: "1.5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    minHeight: "100%",
+                    background: "#fff",
+                    border: plan.highlighted
+                      ? "2px solid var(--color-primary)"
+                      : "1px solid var(--color-border)",
+                    boxShadow: "0 2px 8px rgba(44,44,44,.04)",
+                  }}
+                >
+                  {/* Nom & prix */}
+                  <div>
+                    {plan.badge && (
+                      <p
+                        className="text-xs font-semibold uppercase tracking-widest mb-2"
+                        style={{
+                          color: plan.highlighted
+                            ? "var(--color-primary)"
+                            : "var(--color-secondary)",
+                        }}
+                      >
+                        {plan.badge}
+                      </p>
+                    )}
+                    <p
+                      className="font-serif text-2xl font-semibold mb-1"
+                      style={{ color: "var(--color-ink)" }}
+                    >
+                      {plan.name}
+                    </p>
+
+                    {plan.priceTiers ? (
+                      <div
+                        className="mt-4"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: ".5rem",
+                        }}
+                      >
+                        {plan.priceTiers.map((tier) => (
+                          <div
+                            key={tier.label}
+                            className="flex items-baseline justify-between gap-2 text-sm"
+                          >
+                            <span style={{ color: "var(--color-secondary)" }}>
+                              {tier.label}
+                            </span>
+                            <span
+                              className="font-serif font-semibold"
+                              style={{
+                                fontSize: "1.125rem",
+                                color: "var(--color-primary)",
+                              }}
+                            >
+                              {tier.price} €
+                              {tier.oldPrice && (
+                                <span
+                                  style={{
+                                    marginLeft: ".4rem",
+                                    fontSize: ".8125rem",
+                                    fontWeight: 400,
+                                    color: "var(--color-ink-faint)",
+                                    textDecoration: "line-through",
+                                  }}
+                                >
+                                  {tier.oldPrice} €
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="mt-4 flex items-end gap-2 flex-wrap">
+                        <p
+                          className="font-serif font-semibold"
+                          style={{
+                            fontSize: "2.5rem",
+                            lineHeight: 1,
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          {plan.price} €
+                        </p>
+                        {plan.oldPrice && (
+                          <p
+                            style={{
+                              fontSize: "1rem",
+                              color: "var(--color-ink-faint)",
+                              textDecoration: "line-through",
+                            }}
+                          >
+                            {plan.oldPrice} €
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {plan.priceNote && (
+                      <p
+                        className="text-xs mt-2"
+                        style={{ color: "var(--color-ink-faint)" }}
+                      >
+                        {plan.priceNote}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Features */}
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: ".5rem",
+                      flex: 1,
+                    }}
+                  >
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-sm">
+                        <span
+                          className="flex-shrink-0 flex items-center justify-center rounded-full"
+                          style={{
+                            width: ".95rem",
+                            height: ".95rem",
+                            marginTop: ".2rem",
+                            fontSize: ".5rem",
+                            fontWeight: 700,
+                            background: "var(--color-primary-bg)",
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          ✓
+                        </span>
+                        <span style={{ color: "var(--color-ink)" }}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  {plan.ctaUrl || plan.mode === "distanciel" ? (
+                    <a
+                      href={plan.ctaUrl ?? KUNDALINI_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                      style={{
+                        width: "100%",
+                        justifyContent: "center",
+                        border: plan.highlighted
+                          ? "1px solid rgba(45,27,78,.12)"
+                          : "1px solid var(--color-border)",
+                        background: "var(--color-neutral)",
+                        color: "var(--color-ink)",
+                        padding: ".75rem 1.5rem",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = plan.highlighted
+                          ? "#f4f4f4"
+                          : "rgba(201,168,76,.08)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background =
+                          "var(--color-neutral)";
+                      }}
+                    >
+                      {plan.cta}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        downloadInscriptionPdf({ titre: plan.name })
+                      }
+                      className="btn"
+                      style={{
+                        width: "100%",
+                        justifyContent: "center",
+                        border: plan.highlighted
+                          ? "1px solid rgba(45,27,78,.12)"
+                          : "1px solid var(--color-border)",
+                        background: "var(--color-neutral)",
+                        color: "var(--color-ink)",
+                        padding: ".75rem 1.5rem",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = plan.highlighted
+                          ? "#f4f4f4"
+                          : "rgba(201,168,76,.08)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background =
+                          "var(--color-neutral)";
+                      }}
+                    >
+                      {plan.cta}
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
         </section>
       </div>
     </main>

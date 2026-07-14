@@ -95,6 +95,7 @@ export const COURS_DISTANCIEL = [
 export const PRICING = [
   {
     name: "Abonnement Présentiel",
+    mode: "presentiel",
     badge: "Année scolaire",
     priceTiers: [
       { label: "1 cours / semaine", price: "315", oldPrice: null },
@@ -112,6 +113,7 @@ export const PRICING = [
   },
   {
     name: "Carnet de 10 cours",
+    mode: "presentiel",
     badge: "Valable 6 mois",
     price: "143",
     priceNote: "puis 128 € pour les carnets suivants",
@@ -127,13 +129,16 @@ export const PRICING = [
   },
   {
     name: "Cours à l'unité",
+    mode: "presentiel",
     price: "18",
     features: ["Pour essayer ou compléter votre formule, sans engagement"],
     cta: "Réserver",
+    ctaUrl: "https://buy.stripe.com/bJecN68Z7d4N4cB6Cs53O0e",
     highlighted: false,
   },
   {
     name: "Studio de Yoga en Ligne",
+    mode: "distanciel",
     badge: "12 mois",
     price: "250",
     features: [
@@ -145,6 +150,7 @@ export const PRICING = [
   },
   {
     name: "Offre Combinée",
+    mode: "both",
     badge: "✨ La plus avantageuse",
     price: "430",
     oldPrice: "665",
