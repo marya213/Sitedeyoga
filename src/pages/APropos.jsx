@@ -92,22 +92,22 @@ const VALUES = [
     icon: "🌱",
     color: "#3D8B74",
     bg: "rgba(61,139,116,.13)",
-    title: "Bienveillance",
-    desc: "J'accueille chaque élève là où il en est, sans jugement, dans un climat de confiance et de respect de son propre rythme.",
-  },
-  {
-    icon: "✨",
-    color: "#C9A84C",
-    bg: "rgba(201,168,76,.15)",
-    title: "Excellence",
-    desc: "Nos instructeurs sont certifiés au plus haut niveau et se forment en continu pour offrir une expérience de qualité.",
+    title: "Présence",
+    desc: "J'accueille chacun là où il en est, dans sa pratique comme dans sa vie, en créant un espace chaleureux, joyeux et bienveillant où chaque séance est une expérience unique.",
   },
   {
     icon: "🤝",
     color: "#7B5EA7",
     bg: "rgba(123,94,167,.13)",
     title: "Communauté",
-    desc: "Le studio est bien plus qu'un lieu de pratique — c'est une communauté vivante, chaleureuse et soudée.",
+    desc: "J'aime créer des espaces où les personnes peuvent se retrouver, échanger et tisser des liens sincères. Car le chemin est souvent plus riche lorsqu'il se vit en communauté.",
+  },
+  {
+    icon: "🧭",
+    color: "#C9A84C",
+    bg: "rgba(201,168,76,.15)",
+    title: "Parcours",
+    desc: "Trois années de formation à l'École du Tantra au Château Laroque proche de Bordeaux, ont nourri ma pratique et façonné ma manière d'enseigner. Aujourd'hui, je transmets le Kundalini Yoga avec un vrai espace de transformation, de présence et de cheminement intérieur.",
   },
 ];
 
@@ -117,7 +117,10 @@ export default function APropos() {
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
         className="relative flex flex-col items-center justify-center text-center"
-        style={{ minHeight: "55vh", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
+        style={{
+          minHeight: "55vh",
+          padding: "6rem clamp(1.25rem,5vw,3rem) 4rem",
+        }}
       >
         {/* Image de fond */}
         <div
@@ -189,10 +192,10 @@ export default function APropos() {
               }}
             >
               <p>
-                Le Kundalini Yoga m’a permis de me réapproprier mon corps et de
-                mieux comprendre ce qui se joue en moi. En 15 ans de pratique,
-                je ne propose pas un cours classique, mais le partage sincère
-                d’une expérience qui m’a profondément transformée.
+                Le Kundalini Yoga est pour moi un chemin de reconnexion et de
+                transformation intérieure. À travers le souffle, le mouvement et
+                la méditation, j’accompagne chacun à se déposer, retrouver son
+                énergie et avancer à son rythme.  
               </p>
             </div>
 

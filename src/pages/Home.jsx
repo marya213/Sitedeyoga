@@ -1,5 +1,20 @@
 import { Link } from "react-router-dom";
 
+const COURS_BRIEF = [
+  {
+    title: "Énergie & Équilibre",
+    desc: "Un yoga dynamique et accessible à tous, pour libérer le stress, stimuler l'énergie et retrouver clarté intérieure.",
+  },
+  {
+    title: "Corps en Mouvement",
+    desc: "Le yoga des femmes : douceur, confiance en soi et énergie féminine, en accord avec les cycles du corps.",
+  },
+  {
+    title: "Souffle & Sérénité",
+    desc: "Un cours tout en douceur dédié au calme, à la détente et à la récupération intérieure.",
+  },
+];
+
 const FEATURES = [
   {
     icon: "🧘",
@@ -160,6 +175,49 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ Les cours ═════════════════════════════════════════ */}
+      <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
+        <div className="section-inner">
+          <div className="text-center mb-12">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "var(--color-secondary)" }}
+            >
+              Les cours
+            </p>
+            <h2 className="font-serif font-light text-3xl md:text-4xl mb-3">
+              Trois cours pour trois besoins
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {COURS_BRIEF.map((c) => (
+              <div key={c.title} className="card text-center">
+                <h3 className="font-serif text-xl font-semibold mb-3">
+                  {c.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--color-secondary)" }}
+                >
+                  {c.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              to="/cours"
+              className="text-sm font-semibold"
+              style={{ color: "var(--color-primary)" }}
+            >
+              → Découvrir les cours en détail
+            </Link>
           </div>
         </div>
       </section>
