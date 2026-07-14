@@ -13,14 +13,14 @@ async function sendToFlodesk({ prenom, nom, email, sexe, age }) {
     first_name: prenom,
     last_name: nom,
     status: "active",
-    custom_fields: [
-      { slug: "sexe", value: sexe },
-      { slug: "age", value: String(age) },
-    ],
+    custom_fields: {
+      sexe: sexe,
+      age: String(age),
+    },
   };
 
   if (segmentId) {
-    body.segments = [segmentId];
+    body.segment_ids = [segmentId];
   }
 
   const res = await fetch("https://api.flodesk.com/v1/subscribers", {
