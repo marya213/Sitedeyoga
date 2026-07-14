@@ -1,6 +1,44 @@
 import { useState } from "react";
 import NewsletterForm from "../components/NewsletterForm";
 
+async function sendContactToFlodesk({ name, email, phone, subject, message }) {
+  const apiKey = import.meta.env.VITE_FLODESK_API_KEY;
+  const segmentId = import.meta.env.VITE_FLODESK_CONTACT_SEGMENT_ID;
+
+  const credentials = btoa(`${apiKey}:`);
+
+  const body = {
+    email,
+    first_name: name,
+    status: "active",
+    custom_fields: {
+      numeroDeTel: phone,
+      sujet: subject,
+      message: message,
+    },
+  };
+
+  if (segmentId) {
+    body.segment_ids = [segmentId];
+  }
+
+  const res = await fetch("https://api.flodesk.com/v1/subscribers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Basic ${credentials}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `Erreur ${res.status}`);
+  }
+
+  return res.json();
+}
+
 const INFO_BLOCKS = [
   {
     icon: "📍",
@@ -104,16 +142,26 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | loading | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      await sendContactToFlodesk(form);
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err.message);
+    }
   };
 
   return (
@@ -249,7 +297,7 @@ export default function Contact() {
 
           {/* ── Colonne droite : formulaire ── */}
           <div className="card" style={{ padding: "2rem" }}>
-            {sent ? (
+            {status === "success" ? (
               /* État de succès */
               <div
                 style={{
@@ -280,7 +328,7 @@ export default function Contact() {
                   className="btn btn-primary"
                   style={{ padding: ".75rem 1.75rem" }}
                   onClick={() => {
-                    setSent(false);
+                    setStatus("idle");
                     setForm({
                       name: "",
                       email: "",
@@ -429,12 +477,24 @@ export default function Contact() {
                   />
                 </div>
 
+                {status === "error" && (
+                  <p className="text-sm" style={{ color: "#c0392b" }}>
+                    {errorMsg || "Une erreur est survenue. Veuillez réessayer."}
+                  </p>
+                )}
+
                 <button
                   type="submit"
+                  disabled={status === "loading"}
                   className="btn btn-primary"
-                  style={{ padding: ".75rem 1.75rem", marginTop: ".25rem" }}
+                  style={{
+                    padding: ".75rem 1.75rem",
+                    marginTop: ".25rem",
+                    opacity: status === "loading" ? 0.7 : 1,
+                    cursor: status === "loading" ? "not-allowed" : "pointer",
+                  }}
                 >
-                  Envoyer le message
+                  {status === "loading" ? "Envoi en cours…" : "Envoyer le message"}
                 </button>
               </form>
             )}
