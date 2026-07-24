@@ -6,12 +6,10 @@ import {
   DAYS,
   COURS_DETAILS,
   COURS_DISTANCIEL,
+  KUNDALINI_URL,
 } from "../data/index";
 import Pill from "../components/ui/Pill";
 import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
-
-const KUNDALINI_URL =
-  "https://espace-kundala.heymarvelous.com/buy/product/80596";
 
 const SLOT_BORDER = {
   studio: "#C9A84C",
