@@ -1,3 +1,6 @@
+export const KUNDALINI_URL =
+  "https://espace-kundala.heymarvelous.com/buy/product/80596";
+
 export const DAYS = [
   "Lundi",
   "Mardi",
