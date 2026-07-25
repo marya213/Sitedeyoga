@@ -11,6 +11,7 @@ import {
 import Pill from "../components/ui/Pill";
 import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
 
+
 const SLOT_BORDER = {
   studio: "#C9A84C",
   yoga: "#7E9B7A",
@@ -154,103 +155,6 @@ function WeekSchedule() {
   );
 }
 
-function CourseCard({ course, ctaLabel, ctaTo }) {
-  return (
-    <div
-      className="card"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
-    >
-      <div>
-        <h3
-          className="font-serif text-2xl font-semibold mb-1.5"
-          style={{ color: "var(--color-ink)" }}
-        >
-          {course.name}
-        </h3>
-        <p
-          className="text-sm font-semibold uppercase tracking-widest"
-          style={{ color: "var(--color-primary)" }}
-        >
-          🕐 {course.creneaux}
-        </p>
-      </div>
-
-      <p className="text-xs" style={{ color: "var(--color-secondary)" }}>
-        {course.style.join(" • ")}
-      </p>
-
-      <p
-        className="text-sm leading-relaxed"
-        style={{ color: "var(--color-ink)" }}
-      >
-        {course.pourQui}
-      </p>
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: ".4rem" }}>
-        {course.themes.map((t) => (
-          <span
-            key={t}
-            className="pill pill-secondary"
-            style={{ fontSize: ".625rem" }}
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-
-      <Link
-        to={ctaTo}
-        className="btn btn-primary"
-        style={{
-          marginTop: "auto",
-          justifyContent: "center",
-          padding: ".875rem 1.5rem",
-        }}
-      >
-        {ctaLabel}
-      </Link>
-    </div>
-  );
-}
-
-const COURS_FILTERS = [
-  { key: "presentiel", label: "Présentiel" },
-  { key: "distanciel", label: "Distanciel" },
-];
-
-const FORMULE_FILTERS = [
-  { key: "presentiel", label: "Présentiel" },
-  { key: "distanciel", label: "Distanciel" },
-  { key: "both", label: "Offre Combinée" },
-];
-
-const ALL_COURS = [...COURS_DETAILS, ...COURS_DISTANCIEL];
-
-const PROPOSITIONS = [
-  {
-    type: "yoga",
-    title: "Présentiel",
-    variants: "Pratique en salle",
-    desc: "L'intensité et la connexion d'une pratique vécue ensemble.",
-  },
-  {
-    type: "studio",
-    title: "Studio de Yoga en ligne",
-    variants: "Pratique en ligne",
-    desc: "La puissance du yoga, où que vous soyez.",
-  },
-  {
-    type: "hybride",
-    title: "Hybride",
-    variants: "Présentiel & studio",
-    desc: "Quand l'énergie du présentiel rencontre la liberté du distanciel.",
-  },
-];
-
 export default function Cours() {
   const [coursFilter, setCoursFilter] = useState("presentiel");
   const filteredCours = ALL_COURS.filter((c) => c.mode === coursFilter);
@@ -260,21 +164,14 @@ export default function Cours() {
 
   return (
     <main className="pt-16">
-      {/* ══ Header ════════════════════════════════════════════ */}
-      <section
-        className="relative flex flex-col items-center justify-center text-center"
-        style={{
-          minHeight: "65vh",
-          padding: "6rem clamp(1.25rem,5vw,3rem) 4rem",
-        }}
-      >
-        {/* Image de fond */}
+      {/* ══ Image de fond unique sur toute la page ═══════════ */}
+      <div className="relative">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/img/posture-meditation-1.jpg')",
+            backgroundImage: "url('/img/posture-meditation-2.jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center 25%",
+            backgroundPosition: "center 20%",
             backgroundColor: "#2D1B4E",
           }}
         />
@@ -283,74 +180,59 @@ export default function Cours() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(170deg, #2D1B4E80 0%, #2D1B4E55 50%, #2D1B4Ea8 100%)",
+              "linear-gradient(180deg, #2D1B4E85 0%, #2D1B4E60 22%, #2D1B4E70 100%)",
           }}
         />
 
-        <div className="relative z-10" style={{ maxWidth: "44rem" }}>
-          <h1
-            className="font-serif font-light mb-4"
-            style={{
-              fontSize: "clamp(2rem,5vw,3rem)",
-              color: "#F0EAD6",
-              textShadow: "0 2px 20px rgba(0,0,0,.35)",
-            }}
-          >
-            Les cours
-          </h1>
-          <p
-            className="leading-relaxed mb-8"
-            style={{
-              color: "rgba(240,234,214,.9)",
-              maxWidth: "48ch",
-              marginInline: "auto",
-              textShadow: "0 1px 12px rgba(0,0,0,.4)",
-            }}
-          >
-            Une pratique qui vous reconnecte à vous-même — chaque séance est
-            unique, parce que vous êtes unique.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="#tarifs"
-              className="btn btn-primary"
-              style={{ padding: ".75rem 1.75rem" }}
+        {/* ══ Header ════════════════════════════════════════════ */}
+        <section
+          className="relative flex flex-col items-center justify-center text-center"
+          style={{ padding: "6rem clamp(1.25rem,5vw,3rem) 3rem" }}
+        >
+          <div className="relative z-10" style={{ maxWidth: "44rem" }}>
+            <h1
+              className="font-serif font-light mb-4"
+              style={{
+                fontSize: "clamp(2rem,5vw,3rem)",
+                color: "#F0EAD6",
+                textShadow: "0 2px 20px rgba(0,0,0,.35)",
+              }}
             >
-              Voir les tarifs
-            </a>
-            <Link
-              to="/contact"
-              className="btn btn-outlined"
-              style={{ padding: ".75rem 1.75rem" }}
+              Nos cours
+            </h1>
+            <p
+              className="leading-relaxed mb-8"
+              style={{
+                color: "rgba(240,234,214,.9)",
+                maxWidth: "48ch",
+                marginInline: "auto",
+                textShadow: "0 1px 12px rgba(0,0,0,.4)",
+              }}
             >
-              Nous contacter
-            </Link>
+              Une pratique qui vous reconnecte à vous-même — chaque séance est
+              unique, parce que vous êtes unique.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="#tarifs"
+                className="btn btn-primary"
+                style={{ padding: ".75rem 1.75rem" }}
+              >
+                Voir les tarifs
+              </a>
+              <Link
+                to="/contact"
+                className="btn btn-outlined"
+                style={{ padding: ".75rem 1.75rem" }}
+              >
+                Nous contacter
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══ Disciplines + Tarifs sur fond photo ═══════════════ */}
-      <div className="relative">
-        {/* Image de fond */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/img/posture-meditation-2.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundColor: "#2D1B4E",
-          }}
-        />
-        {/* Overlay dégradé */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(180deg, #2D1B4E75 0%, #2D1B4E55 100%)",
-          }}
-        />
-
-        {/* ══ Disciplines ═════════════════════════════════════ */}
-        <section className="relative" style={{ padding: "5rem 0" }}>
+        {/* ══ Nos cours en détail ═════════════════════════════ */}
+        <section className="relative" style={{ padding: "2rem 0 5rem" }}>
           <div className="section-inner">
             <div className="text-center mb-12">
               <h2
@@ -360,31 +242,106 @@ export default function Cours() {
                   textShadow: "0 1px 12px rgba(0,0,0,.4)",
                 }}
               >
-                Les disciplines
+                Nos cours en détail
               </h2>
+              <p
+                className="text-sm mt-3"
+                style={{ color: "rgba(240,234,214,.85)", textShadow: "0 1px 8px rgba(0,0,0,.35)" }}
+              >
+                Trois propositions, pour trois besoins différents — trouvez
+                celle qui vous correspond.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {PROPOSITIONS.map((d) => (
-                <div key={d.type} className="card text-center">
-                  <div className="mb-4">
-                    <Pill type={d.type} />
+            <div className="flex flex-col gap-6">
+              {COURS_DETAILS.map((c) => (
+                <div
+                  key={c.slug}
+                  id={c.slug}
+                  className="card"
+                  style={{
+                    background: "rgba(245,240,232,.97)",
+                    scrollMarginTop: "6rem",
+                    borderTop: `3px solid ${c.color}`,
+                  }}
+                >
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="flex items-center justify-center flex-shrink-0"
+                        style={{
+                          width: "3rem",
+                          height: "3rem",
+                          borderRadius: "9999px",
+                          background: c.bg,
+                          fontSize: "1.375rem",
+                        }}
+                      >
+                        {c.icon}
+                      </div>
+                      <h3
+                        className="font-serif text-2xl font-semibold"
+                        style={{ color: "var(--color-ink)" }}
+                      >
+                        Cours "{c.name}"
+                      </h3>
+                    </div>
+                    <span
+                      className="pill flex-shrink-0"
+                      style={{ background: c.bg, color: c.color, borderColor: c.bg }}
+                    >
+                      {c.creneaux}
+                    </span>
                   </div>
-                  <h3 className="font-serif text-xl font-semibold mb-1">
-                    {d.title}
-                  </h3>
+
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {c.style.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs font-semibold uppercase tracking-wide"
+                        style={{
+                          padding: ".25rem .625rem",
+                          borderRadius: "9999px",
+                          background: "rgba(45,27,78,.05)",
+                          color: "var(--color-secondary)",
+                          border: "1px solid rgba(45,27,78,.1)",
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
                   <p
-                    className="text-xs font-medium mb-3"
-                    style={{ color: "var(--color-secondary)" }}
+                    className="text-sm leading-relaxed mb-5"
+                    style={{
+                      color: "var(--color-ink)",
+                      background: c.bg,
+                      borderRadius: ".75rem",
+                      padding: "1rem 1.25rem",
+                    }}
                   >
-                    {d.variants}
+                    <strong>Pour qui : </strong>
+                    {c.pourQui}
                   </p>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "var(--color-secondary)" }}
-                  >
-                    {d.desc}
-                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {c.themes.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs font-medium"
+                        style={{
+                          padding: ".3rem .75rem",
+                          borderRadius: "9999px",
+                          background: "transparent",
+                          color: "var(--color-ink-muted)",
+                          border: "1px solid rgba(201,168,76,.35)",
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -404,16 +361,6 @@ export default function Cours() {
               >
                 Choisissez votre formule
               </h2>
-              <p
-                className="text-sm mt-3"
-                style={{
-                  color: "rgba(240,234,214,.85)",
-                  textShadow: "0 1px 8px rgba(0,0,0,.35)",
-                }}
-              >
-                Toutes les formules donnent accès aux cours en présentiel et en
-                ligne.
-              </p>
             </div>
 
             {/* Filtres présentiel / distanciel */}

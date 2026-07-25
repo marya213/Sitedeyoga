@@ -1,70 +1,5 @@
 import { Link } from "react-router-dom";
-
-const COURS_BRIEF = [
-  {
-    title: "Énergie & Équilibre",
-    desc: "Un yoga dynamique et accessible à tous, pour libérer le stress, stimuler l'énergie et retrouver clarté intérieure.",
-  },
-  {
-    title: "Corps en Mouvement",
-    desc: "Le yoga des femmes : douceur, confiance en soi et énergie féminine, en accord avec les cycles du corps.",
-  },
-  {
-    title: "Souffle & Sérénité",
-    desc: "Un cours tout en douceur dédié au calme, à la détente et à la récupération intérieure.",
-  },
-];
-
-const FEATURES = [
-  {
-    icon: "🧘",
-    title: "Yoga",
-    pill: "yoga",
-    desc: "Kundalini, Vinyasa, Hatha et Yin — souplesse, force et sérénité.",
-  },
-  {
-    icon: "🏋️",
-    title: "Studio",
-    pill: "studio",
-    desc: "HIIT, Cardio et Force fonctionnelle — des séances dynamiques.",
-  },
-  {
-    icon: "🎥",
-    title: "Hybride",
-    pill: "hybride",
-    desc: "Méditation, Pranayama et Mantra, en présentiel ou en direct.",
-  },
-];
-
-/* ── Pill inline ── */
-function Pill({ type }) {
-  const styles = {
-    yoga: {
-      bg: "rgba(139,74,107,.13)",
-      color: "#8B4A6B",
-      label: "🧘 Yoga",
-    },
-    studio: {
-      bg: "rgba(201,168,76,.15)",
-      color: "#7a5520",
-      label: "🏋️ Studio",
-    },
-    hybride: {
-      bg: "rgba(45,27,78,.12)",
-      color: "#7B5EA7",
-      label: "🎥 Hybride",
-    },
-  };
-  const s = styles[type];
-  return (
-    <span
-      className="pill"
-      style={{ background: s.bg, color: s.color, borderColor: s.bg }}
-    >
-      {s.label}
-    </span>
-  );
-}
+import { COURS_DETAILS, REVIEWS } from "../data/index";
 
 export default function Home() {
   return (
@@ -141,9 +76,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Propositions ══════════════════════════════════════ */}
+      {/* ══ Pratique & propositions ═══════════════════════════ */}
       <section
-        style={{ background: "var(--color-neutral)", padding: "5rem 0" }}
+        style={{ background: "var(--color-neutral)", padding: "5.5rem 0 5rem" }}
       >
         <div className="section-inner">
           <div className="text-center mb-12">
@@ -153,118 +88,173 @@ export default function Home() {
             >
               Ce que nous proposons
             </p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl">
-              Nos propositions
+            <h2 className="font-serif font-light text-3xl md:text-4xl mb-5">
+              La pratique du Kundalini Yoga
             </h2>
+            <p
+              className="text-sm leading-relaxed"
+              style={{
+                color: "var(--color-secondary)",
+                maxWidth: "42ch",
+                marginInline: "auto",
+              }}
+            >
+              Le Kundalini Yoga est pour moi un chemin de reconnexion et de
+              transformation intérieure. À travers le souffle, le mouvement et
+              la méditation, j’accompagne chacun à se déposer, retrouver son
+              énergie et avancer à son rythme.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="card text-center">
-                <div className="mb-4">
-                  <Pill type={f.pill} />
+            {COURS_DETAILS.map((c) => (
+              <div key={c.slug} className="card text-center flex flex-col">
+                <div
+                  className="flex items-center justify-center mb-3"
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    borderRadius: "9999px",
+                    background: c.bg,
+                    fontSize: "1.375rem",
+                    marginInline: "auto",
+                  }}
+                >
+                  {c.icon}
                 </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">
-                  {f.title}
+                <h3 className="font-serif text-xl font-semibold mb-1">
+                  {c.name}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
+                  className="text-xs font-semibold uppercase tracking-widest mb-3"
+                  style={{ color: c.color }}
                 >
-                  {f.desc}
+                  {c.scheduleShort}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ Les cours ═════════════════════════════════════════ */}
-      <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "var(--color-secondary)" }}
-            >
-              Les cours
-            </p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl mb-3">
-              Trois cours pour trois besoins
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-            {COURS_BRIEF.map((c) => (
-              <div key={c.title} className="card text-center">
-                <h3 className="font-serif text-xl font-semibold mb-3">
-                  {c.title}
-                </h3>
                 <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
+                  className="text-sm leading-relaxed mb-5"
+                  style={{ color: "var(--color-secondary)", flex: 1 }}
                 >
-                  {c.desc}
+                  {c.tagline}
                 </p>
+                <Link
+                  to={`/cours#${c.slug}`}
+                  className="text-sm font-semibold"
+                  style={{ color: "var(--color-tertiary)" }}
+                >
+                  En savoir plus →
+                </Link>
               </div>
             ))}
           </div>
 
-          <div className="text-center">
-            <Link
-              to="/cours"
-              className="text-sm font-semibold"
-              style={{ color: "var(--color-primary)" }}
-            >
-              → Découvrir les cours en détail
+          <div className="text-center mt-10">
+            <Link to="/cours" className="btn btn-secondary">
+              Voir tous les cours en détail
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ══ Citation ══════════════════════════════════════════ */}
-      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
-        <div
-          className="section-inner text-center"
-          style={{ maxWidth: "38rem" }}
-        >
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "rgba(201,168,76,.7)" }}
-          >
-            Avis client
-          </p>
-          <span
-            className="font-serif select-none"
+      {/* ══ Vidéo — Découvrir le Kundalini Yoga ═══════════════ */}
+      <section style={{ background: "#F5F0E8", padding: "5rem 0 6rem" }}>
+        <div className="section-inner">
+          <div className="text-center mb-10">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "var(--color-secondary)" }}
+            >
+              Comprendre la pratique
+            </p>
+            <h2 className="font-serif font-light text-3xl md:text-4xl">
+              Qu’est-ce que le Kundalini Yoga ?
+            </h2>
+          </div>
+
+          <div
+            className="aspect-video"
             style={{
-              fontSize: "5rem",
-              lineHeight: 1,
-              color: "#C9A84C",
-              opacity: 0.35,
+              maxWidth: "48rem",
+              marginInline: "auto",
+              borderRadius: "1.25rem",
+              overflow: "hidden",
+              boxShadow: "0 12px 40px rgba(44,44,44,.12)",
             }}
           >
-            "
-          </span>
-          <blockquote
-            className="font-serif italic font-light"
-            style={{
-              fontSize: "clamp(1.125rem,2.5vw,1.375rem)",
-              color: "#F0EAD6",
-              lineHeight: 1.65,
-              marginTop: "-1.5rem",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Ce rendez-vous hebdomadaire est devenu essentiel à mon équilibre,
-            physique comme émotionnel. Les cours d’Emmanuelle sont dispensés
-            avec une bienveillance rare.
-          </blockquote>
-          <p
-            className="text-sm font-medium"
-            style={{ color: "rgba(240,234,214,.6)" }}
-          >
-            — Claire B., membre depuis 2024
-          </p>
+            <iframe
+              src="https://www.youtube.com/embed/2BVBQgZvkWM"
+              title="Qu’est-ce que le Yoga Kundalini ?"
+              style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══ Avis clients ══════════════════════════════════════ */}
+      <section style={{ background: "#2D1B4E", padding: "5.5rem 0" }}>
+        <div className="section-inner">
+          <div className="text-center mb-12">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "rgba(201,168,76,.7)" }}
+            >
+              Avis Google
+            </p>
+            <h2
+              className="font-serif font-light text-3xl md:text-4xl"
+              style={{ color: "#F0EAD6" }}
+            >
+              Ce qu’en disent mes élèves
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {REVIEWS.map((r) => (
+              <div
+                key={r.name}
+                style={{
+                  background: "rgba(240,234,214,.06)",
+                  border: "1px solid rgba(201,168,76,.25)",
+                  borderRadius: "1.25rem",
+                  padding: "1.75rem",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <span
+                  className="font-serif select-none"
+                  style={{
+                    fontSize: "2.5rem",
+                    lineHeight: 1,
+                    color: "#C9A84C",
+                    opacity: 0.5,
+                    marginBottom: ".5rem",
+                  }}
+                >
+                  "
+                </span>
+                <p
+                  className="text-sm leading-relaxed mb-5"
+                  style={{ color: "rgba(240,234,214,.85)", flex: 1 }}
+                >
+                  {r.text}
+                </p>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "#F0EAD6" }}>
+                    {r.name}
+                  </p>
+                  <p
+                    className="text-xs mt-0.5"
+                    style={{ color: "rgba(240,234,214,.5)" }}
+                  >
+                    {r.meta}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </main>
