@@ -100,7 +100,7 @@ export function downloadInscriptionPdf(event) {
   doc.text("Mode de paiement :", MARGIN_X, y);
   y += 7;
   ensureSpace(8);
-  doc.text("[ ] Espèce     [ ] Chèque     [ ] Virement bancaire", MARGIN_X, y);
+  doc.text("[ ] Espèce     [ ] Virement bancaire", MARGIN_X, y);
   y += 12;
 
   // Conditions générales

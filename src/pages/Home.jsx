@@ -6,10 +6,10 @@ export default function Home() {
     <main className="pt-16">
       {/* ══ Hero ══════════════════════════════════════════════ */}
       <section
-        className="relative flex flex-col items-center justify-center text-center text-white"
+        className="relative flex flex-col items-center justify-center text-center text-white mt-12 min-h-[calc(100vh-4rem-3rem)]"
         style={{
-          minHeight: "calc(100vh - 4rem)",
-          padding: "5rem clamp(1.25rem,5vw,3rem)",
+          padding: "3rem clamp(1.25rem,5vw,3rem)",
+          backgroundColor: "#2D1B4E",
         }}
       >
         {/* Vidéo de fond */}

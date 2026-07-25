@@ -16,6 +16,108 @@ Claude agit en tant qu'**assistant technique senior** sur ce projet. Son rôle e
 
 ---
 
+## 🤖 Sub-agents
+
+### Principe général
+
+Claude peut déléguer certaines tâches à des sub-agents spécialisés pour :
+
+- **Préserver le contexte principal** — les explorations, logs et contenus de fichiers volumineux restent dans le contexte du sub-agent et ne polluent pas la conversation principale
+- **Spécialiser les comportements** — chaque agent a un périmètre d'outils et d'instructions précis
+- **Travailler en parallèle** — plusieurs agents peuvent opérer simultanément sur des tâches indépendantes
+- **Maîtriser les coûts** — les tâches légères sont routées vers des modèles plus rapides (Haiku)
+
+### Quand utiliser un sub-agent
+
+Claude **doit** déléguer à un sub-agent dans les situations suivantes :
+
+| Situation | Agent recommandé |
+|-----------|-----------------|
+| Explorer la codebase pour comprendre des fichiers ou patterns | `explore` (built-in) |
+| Planifier une série de changements avant de les exécuter | `plan` (built-in) |
+| Refactorisation touchant > 3 fichiers | Pipeline `explore` → `plan` → exécution |
+| Revue de code après modifications significatives | `code-reviewer` |
+| Analyse de sécurité avant merge | `security-auditor` |
+| Écriture ou mise à jour de tests | `test-writer` |
+| Tâche complexe multi-étapes avec exploration + modification | `general-purpose` (built-in) |
+
+Claude peut aussi utiliser un sub-agent **à la demande explicite du développeur**, quelle que soit la taille de la tâche.
+
+### Sub-agents de projet
+
+Les sub-agents de ce projet sont définis dans `.claude/agents/`. Ils sont versionnés avec le code pour que toute l'équipe en bénéficie.
+
+Structure attendue :
+
+```
+.claude/
+└── agents/
+    ├── code-reviewer.md      # Revue qualité, lisibilité, best practices
+    ├── security-auditor.md   # Analyse de sécurité et vulnérabilités
+    ├── test-writer.md        # Génération et mise à jour de tests
+    └── doc-writer.md         # Rédaction de documentation technique
+```
+
+### Format d'un fichier de sub-agent
+
+Chaque agent est un fichier Markdown avec un frontmatter YAML :
+
+```markdown
+---
+name: code-reviewer
+description: >
+  Revue de code après modifications. Analyse la qualité, la lisibilité,
+  les performances et le respect des conventions du projet.
+  Invoquer automatiquement après tout changement significatif de code.
+tools: Read, Glob, Grep
+model: sonnet
+---
+
+Tu es un reviewer senior. Quand tu es invoqué, analyse le code modifié
+et fournis des retours précis et actionnables sur la qualité, la sécurité
+et le respect des conventions définies dans CLAUDE.md.
+```
+
+Champs frontmatter utilisés dans ce projet :
+
+| Champ | Obligatoire | Description |
+|-------|-------------|-------------|
+| `name` | ✅ | Identifiant unique de l'agent (kebab-case) |
+| `description` | ✅ | Quand et pourquoi Claude doit l'invoquer |
+| `tools` | — | Outils autorisés (ex: `Read, Glob, Grep, Bash`) |
+| `model` | — | `haiku` (rapide/léger), `sonnet` (défaut), `opus` (complexe) |
+| `disallowedTools` | — | Outils explicitement interdits |
+
+### Pipeline Explore → Plan → Execute
+
+Pour toute tâche touchant **plus de 3 fichiers** ou impliquant un **refactoring** :
+
+1. Invoquer `explore` pour cartographier les fichiers concernés
+2. Utiliser son output pour invoquer `plan` avec un périmètre précis
+3. Présenter le plan au développeur pour validation
+4. Exécuter uniquement après approbation explicite
+
+Ce pipeline est **obligatoire** avant toute modification structurante. Claude ne doit pas sauter ces étapes pour aller plus vite.
+
+### Règles de comportement des sub-agents
+
+- Un sub-agent **ne peut pas** en spawner un autre (pas de nesting)
+- Les sub-agents chargent le `CLAUDE.md` du projet (sauf `explore` et `plan` built-in, pour des raisons de performance)
+- Un sub-agent démarre dans le répertoire courant de la conversation principale
+- Les résultats d'un sub-agent sont résumés dans la conversation principale — pas dumpés bruts
+
+### Invocation explicite
+
+Le développeur peut invoquer un sub-agent directement :
+
+```
+Utilise l'agent code-reviewer sur les fichiers modifiés depuis main
+Utilise l'agent security-auditor sur src/services/paymentService.ts
+Lance le pipeline explore → plan sur le module auth avant de toucher quoi que ce soit
+```
+
+---
+
 ## 🚫 Règles Git absolues
 
 ### Identité dans les commits
@@ -124,6 +226,8 @@ Template de PR à respecter :
 
 ```
 project-root/
+├── .claude/                    # Configuration Claude Code
+│   └── agents/                 # Sub-agents du projet (versionnés)
 ├── .github/                    # CI/CD, templates PR/issues
 │   ├── workflows/
 │   ├── PULL_REQUEST_TEMPLATE.md
@@ -379,6 +483,7 @@ main (production-ready)
 - Indiquer clairement ce qu'il ne sait pas ou ce qui dépasse son périmètre
 - Écrire des tests pour tout code qu'il produit
 - Suivre le style et les patterns déjà présents dans la codebase
+- Utiliser les sub-agents définis dans `.claude/agents/` quand la tâche le justifie
 
 ### Ce que Claude NE DOIT PAS faire
 
@@ -389,6 +494,7 @@ main (production-ready)
 - Contourner les règles de sécurité ou de lint "pour aller plus vite"
 - Se présenter ou se créditer dans les artefacts git (commits, PRs, tags, releases)
 - Ajouter des commentaires identifiant le code comme généré par IA
+- Sauter le pipeline `explore` → `plan` sur les tâches structurantes
 
 ### Format des réponses de l'IA
 
@@ -397,6 +503,7 @@ main (production-ready)
 - Utiliser des blocs de code avec le langage spécifié
 - Pour les refactorisations, expliquer la logique avant le code
 - Mentionner explicitement les effets de bord potentiels
+- Indiquer quel sub-agent a été utilisé et pourquoi si pertinent
 
 ---
 

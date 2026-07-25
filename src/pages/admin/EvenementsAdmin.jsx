@@ -31,8 +31,8 @@ function AdminLogin() {
     setLoading(true);
     try {
       await login(email, password);
-    } catch {
-      setError("Email ou mot de passe incorrect.");
+    } catch (err) {
+      setError(`${err.code ?? "erreur"} — ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -239,11 +239,26 @@ export default function EvenementsAdmin() {
   const [editingEvent, setEditingEvent] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   useEffect(() => {
     if (!user) return undefined;
     return subscribeToEvents(setEvents, (err) => setError(err.message));
   }, [user]);
+
+  useEffect(() => {
+    if (!successMsg) return undefined;
+    const timer = setTimeout(() => setSuccessMsg(""), 4000);
+    return () => clearTimeout(timer);
+  }, [successMsg]);
+
+  useEffect(() => {
+    const pending = sessionStorage.getItem("admin-evenements-toast");
+    if (pending) {
+      sessionStorage.removeItem("admin-evenements-toast");
+      setSuccessMsg(pending);
+    }
+  }, []);
 
   if (loading) {
     return (
@@ -262,6 +277,7 @@ export default function EvenementsAdmin() {
   const handleSubmit = async (formData, imageFile) => {
     setSubmitting(true);
     setError("");
+    setSuccessMsg("");
     try {
       const image = imageFile ? await fileToCompressedDataUrl(imageFile) : formData.image || "";
       const payload = {
@@ -275,13 +291,14 @@ export default function EvenementsAdmin() {
       };
       if (editingEvent) {
         await updateEvent(editingEvent.id, payload);
+        sessionStorage.setItem("admin-evenements-toast", "Événement modifié avec succès.");
       } else {
         await addEvent(payload);
+        sessionStorage.setItem("admin-evenements-toast", "Événement ajouté avec succès.");
       }
-      setEditingEvent(null);
+      window.location.reload();
     } catch (err) {
       setError(err.message);
-    } finally {
       setSubmitting(false);
     }
   };
@@ -298,6 +315,13 @@ export default function EvenementsAdmin() {
 
   return (
     <main className="pt-16">
+      {successMsg && (
+        <div role="status" className="toast-success">
+          <span style={{ fontSize: "1.05rem" }}>✓</span>
+          {successMsg}
+        </div>
+      )}
+
       <section style={{ background: "#2D1B4E", padding: "3rem 0" }}>
         <div className="section-inner" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
