@@ -222,7 +222,7 @@ export default function APropos() {
       <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
         <div className="section-inner">
           <div className="text-center mb-12">
-            <h2 className="font-serif font-light text-3xl">Nos valeurs</h2>
+            <h2 className="font-serif font-light text-3xl">Mes valeurs</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

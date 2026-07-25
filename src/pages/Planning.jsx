@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { DAYS, SCHEDULE, TYPE_STYLES } from '../data/index'
+import { DAYS, SCHEDULE, TYPE_STYLES, KUNDALINI_URL } from '../data/index'
+import { downloadInscriptionPdf } from '../services/inscriptionPdfService'
 
 const JS_TO_FR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 const TODAY_FR = JS_TO_FR[new Date().getDay()]
@@ -58,20 +58,40 @@ function ClassCard({ cls }) {
 
       {/* CTA réserver */}
       <div style={{ display: 'flex', alignItems: 'center', paddingRight: '1rem' }}>
-        <Link
-          to="/contact"
-          className="btn"
-          style={{
-            padding: '.375rem .875rem',
-            fontSize: '.75rem',
-            background: 'var(--color-neutral)',
-            color: 'var(--color-ink)',
-            border: '1px solid var(--color-border)',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Réserver
-        </Link>
+        {cls.type === 'studio' ? (
+          <a
+            href={KUNDALINI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            style={{
+              padding: '.375rem .875rem',
+              fontSize: '.75rem',
+              background: 'var(--color-neutral)',
+              color: 'var(--color-ink)',
+              border: '1px solid var(--color-border)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Réserver
+          </a>
+        ) : (
+          <button
+            type="button"
+            onClick={() => downloadInscriptionPdf({ titre: cls.name, heure: cls.time })}
+            className="btn"
+            style={{
+              padding: '.375rem .875rem',
+              fontSize: '.75rem',
+              background: 'var(--color-neutral)',
+              color: 'var(--color-ink)',
+              border: '1px solid var(--color-border)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Réserver
+          </button>
+        )}
       </div>
     </div>
   )

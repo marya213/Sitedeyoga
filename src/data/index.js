@@ -1,3 +1,6 @@
+export const KUNDALINI_URL =
+  "https://espace-kundala.heymarvelous.com/buy/product/80596";
+
 export const DAYS = [
   "Lundi",
   "Mardi",
@@ -24,6 +27,7 @@ export const COURS_DETAILS = [
   {
     slug: "energie-equilibre",
     name: "Énergie & Équilibre",
+    mode: "presentiel",
     creneaux: "Lundi 11h ou 18h30 · Mardi 20h",
     scheduleShort: "Lundi & Mardi",
     tagline: "Libérer le stress, stimuler l'énergie, retrouver clarté et équilibre.",
@@ -46,6 +50,7 @@ export const COURS_DETAILS = [
   {
     slug: "corps-en-mouvement",
     name: "Corps en Mouvement",
+    mode: "presentiel",
     creneaux: "Mardi 18h30",
     scheduleShort: "Mardi",
     tagline: "Douceur, stabilité et énergie féminine — le yoga des femmes.",
@@ -67,6 +72,7 @@ export const COURS_DETAILS = [
   {
     slug: "souffle-serenite",
     name: "Souffle & Sérénité",
+    mode: "presentiel",
     creneaux: "Mercredi 11h",
     scheduleShort: "Mercredi",
     tagline: "Calme, détente et récupération intérieure.",
@@ -88,9 +94,29 @@ export const COURS_DETAILS = [
   },
 ];
 
+// Cours régulier proposé en distanciel (Studio de Yoga en ligne)
+export const COURS_DISTANCIEL = [
+  {
+    name: "Énergie et équilibres",
+    mode: "distanciel",
+    creneaux: "Lundi 7h · Jeudi 19h · Vendredi 12h30 (en direct) + vidéothèque à volonté",
+    style: ["Yoga en ligne", "Méditation", "Respiration", "Mantra", "Relaxation"],
+    pourQui:
+      "Le même esprit qu'en salle, à distance : des lives réguliers et une vidéothèque pour pratiquer où et quand vous voulez.",
+    themes: [
+      "Stress, anxiété",
+      "Énergie",
+      "Recentrage",
+      "Clarté mentale",
+      "Flexibilité du planning",
+    ],
+  },
+];
+
 export const PRICING = [
   {
     name: "Abonnement Présentiel",
+    mode: "presentiel",
     badge: "Année scolaire",
     priceTiers: [
       { label: "1 cours / semaine", price: "315", oldPrice: null },
@@ -108,6 +134,7 @@ export const PRICING = [
   },
   {
     name: "Carnet de 10 cours",
+    mode: "presentiel",
     badge: "Valable 6 mois",
     price: "143",
     priceNote: "puis 128 € pour les carnets suivants",
@@ -123,13 +150,16 @@ export const PRICING = [
   },
   {
     name: "Cours à l'unité",
+    mode: "presentiel",
     price: "18",
     features: ["Pour essayer ou compléter votre formule, sans engagement"],
     cta: "Réserver",
+    ctaUrl: "https://buy.stripe.com/bJecN68Z7d4N4cB6Cs53O0e",
     highlighted: false,
   },
   {
     name: "Studio de Yoga en Ligne",
+    mode: "distanciel",
     badge: "12 mois",
     price: "250",
     features: [
@@ -141,6 +171,7 @@ export const PRICING = [
   },
   {
     name: "Offre Combinée",
+    mode: "both",
     badge: "✨ La plus avantageuse",
     price: "430",
     oldPrice: "665",
