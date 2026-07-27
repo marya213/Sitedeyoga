@@ -213,7 +213,7 @@ function EventRow({ event, onEdit, onDelete }) {
         </p>
         <p style={{ fontSize: ".8125rem", color: "var(--color-ink-muted)" }}>
           {event.date} · {event.heure} · {event.localisation}
-          {event.cout != null && event.cout !== "" ? ` · ${event.cout} €` : " · Gratuit"}
+          {typeof event.cout === "number" && event.cout > 0 ? ` · ${event.cout} €` : " · Gratuit"}
         </p>
       </div>
       <div style={{ display: "flex", gap: ".5rem" }}>
@@ -287,7 +287,7 @@ export default function EvenementsAdmin() {
         date: formData.date,
         heure: formData.heure,
         localisation: formData.localisation.trim(),
-        cout: formData.cout === "" ? null : Number(formData.cout),
+        cout: formData.cout === "" || Number(formData.cout) <= 0 ? null : Number(formData.cout),
       };
       if (editingEvent) {
         await updateEvent(editingEvent.id, payload);

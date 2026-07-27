@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const COURS_BRIEF = [
@@ -35,6 +36,169 @@ const FEATURES = [
     desc: "Méditation, Pranayama et Mantra, en présentiel ou en direct.",
   },
 ];
+
+const TESTIMONIALS = [
+  {
+    name: "Emmanuelle M",
+    text: "A la recherche d'un cours de yoga en visio, j'ai découvert le kundalini avec Emmanuelle et je recommande à 100%. Emmanuelle est dynamique, toujours souriante, bienveillante et à l'écoute de ses élèves. Quel plaisir de faire une activité qui tonifie le corps, apaise le mental et nous fait nous reconnecter à nous-même.",
+  },
+  {
+    name: "Anne M",
+    text: "Je pratique avec Emmanuelle depuis un an, les matinées de yoga et les stages ponctuels me conviennent bien, ils m'apportent un coup de boost et une sensation d'allègement, comme un nettoyage du corps, du cœur et de l'esprit. Tantra + kundalini + huiles essentielles + simplicité et bienveillance = je ne peux plus m'en passer pour mon équilibre.",
+  },
+  {
+    name: "Carole",
+    text: "Je recommande à 100 % les cours d'Emmanuelle. J'ai découvert le Kundalini Yoga, le Tantra Yoga et les méditations actives grâce à une matinée yoga il y a bientôt un an. Véritable coup de foudre pour moi ! Emmanuelle est une professeure douce, bienveillante et à l'écoute. Ses cours sont bien structurés et diversifiés. On travaille le corps et l'esprit, on se pose et on est attentif à nos ressentis. On pratique de notre mieux avec ce qu'on a, sans performance !",
+  },
+  {
+    name: "Yannick Billon",
+    text: "Attentive, à l'écoute, joyeuse, Emmanuelle transmet sa passion pour le Yoga avec cœur et enthousiasme.",
+  },
+  {
+    name: "Jean-Louis Bergonzoli",
+    text: "Si vous voulez découvrir le Kundalini yoga, Emmanuelle saura vous embarquer avec des postures, une relaxation et une méditation chantée. Elle illumine la séance par sa gentillesse, son plaisir de faire plaisir. Et n'hésitez pas à visiter sa plateforme qui offre tant de moyens de se détendre et retrouver la sérénité. Merci Emmanuelle pour ce que tu nous apportes.",
+  },
+  {
+    name: "Valérie Marie",
+    text: "Excellente professionnelle et professeure de Yoga Kundalini ! C'est un bonheur de suivre ses cours ! Je n'en ai pas manqué un depuis plus de deux ans que je pratique le yoga Kundalini avec elle. Emmanuelle est toujours très disponible, elle s'adapte et propose des séances en zoom aussi qui sont aussi très intéressantes. Je vous conseille tellement ! Le yoga change la perception de la vie.",
+  },
+  {
+    name: "Isabelle Onfray",
+    text: "J'ai découvert le kundalini yoga avec Emmanuelle. J'apprécie sa douceur, sa bienveillance et son attention envers chacun. Elle sait prendre soin et partager sa pratique avec professionnalisme. Je la remercie pour ses cours qui sont de véritables voyages intérieurs.",
+  },
+];
+
+function TestimonialsCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goTo = (i) => setCurrent((i + TESTIMONIALS.length) % TESTIMONIALS.length);
+
+  return (
+    <div style={{ maxWidth: "42rem", marginInline: "auto" }}>
+      <div
+        style={{
+          position: "relative",
+          minHeight: "17rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => goTo(current - 1)}
+          aria-label="Avis précédent"
+          className="hidden sm:flex"
+          style={{
+            position: "absolute",
+            left: "-3rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "2.5rem",
+            height: "2.5rem",
+            borderRadius: "9999px",
+            border: "1px solid rgba(201,168,76,.4)",
+            background: "transparent",
+            color: "#C9A84C",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >
+          ←
+        </button>
+
+        {TESTIMONIALS.map((t, i) => (
+          <div
+            key={t.name}
+            aria-hidden={i !== current}
+            className="text-center"
+            style={{
+              position: i === current ? "relative" : "absolute",
+              inset: 0,
+              opacity: i === current ? 1 : 0,
+              transition: "opacity 0.6s ease-in-out",
+              pointerEvents: i === current ? "auto" : "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: ".9rem",
+              padding: "0 1rem",
+            }}
+          >
+            <blockquote
+              className="font-serif italic font-light"
+              style={{
+                fontSize: "clamp(1.0625rem,2.2vw,1.25rem)",
+                color: "#F0EAD6",
+                lineHeight: 1.65,
+              }}
+            >
+              « {t.text} »
+            </blockquote>
+            <p className="text-sm font-medium" style={{ color: "rgba(240,234,214,.6)" }}>
+              — {t.name}
+            </p>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={() => goTo(current + 1)}
+          aria-label="Avis suivant"
+          className="hidden sm:flex"
+          style={{
+            position: "absolute",
+            right: "-3rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "2.5rem",
+            height: "2.5rem",
+            borderRadius: "9999px",
+            border: "1px solid rgba(201,168,76,.4)",
+            background: "transparent",
+            color: "#C9A84C",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >
+          →
+        </button>
+      </div>
+
+      {/* Indicateurs */}
+      <div style={{ display: "flex", justifyContent: "center", gap: ".4rem", marginTop: "1.5rem" }}>
+        {TESTIMONIALS.map((t, i) => (
+          <button
+            key={t.name}
+            onClick={() => goTo(i)}
+            aria-label={`Avis de ${t.name}`}
+            aria-current={i === current}
+            style={{
+              width: i === current ? "1.5rem" : ".5rem",
+              height: ".5rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              background: i === current ? "#C9A84C" : "rgba(201,168,76,.3)",
+              transition: "all 0.3s ease",
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /* ── Pill inline ── */
 function Pill({ type }) {
@@ -222,49 +386,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Citation ══════════════════════════════════════════ */}
+      {/* ══ Avis ══════════════════════════════════════════════ */}
       <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
-        <div
-          className="section-inner text-center"
-          style={{ maxWidth: "38rem" }}
-        >
+        <div className="section-inner text-center">
           <p
             className="text-xs font-semibold uppercase tracking-widest mb-4"
             style={{ color: "rgba(201,168,76,.7)" }}
           >
             Avis client
           </p>
-          <span
-            className="font-serif select-none"
-            style={{
-              fontSize: "5rem",
-              lineHeight: 1,
-              color: "#C9A84C",
-              opacity: 0.35,
-            }}
-          >
-            "
-          </span>
-          <blockquote
-            className="font-serif italic font-light"
-            style={{
-              fontSize: "clamp(1.125rem,2.5vw,1.375rem)",
-              color: "#F0EAD6",
-              lineHeight: 1.65,
-              marginTop: "-1.5rem",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Ce rendez-vous hebdomadaire est devenu essentiel à mon équilibre,
-            physique comme émotionnel. Les cours d’Emmanuelle sont dispensés
-            avec une bienveillance rare.
-          </blockquote>
-          <p
-            className="text-sm font-medium"
-            style={{ color: "rgba(240,234,214,.6)" }}
-          >
-            — Claire B., membre depuis 2024
-          </p>
+          
+          <TestimonialsCarousel />
         </div>
       </section>
     </main>
