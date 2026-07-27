@@ -202,6 +202,26 @@ export const REVIEWS = [
     meta: "Avis Google",
     text: "J'ai découvert le kundalini yoga avec Emmanuelle. J'apprécie sa douceur, sa bienveillance et son attention envers chacun. Elle sait prendre soin et partager sa pratique avec professionnalisme. Je la remercie pour ses cours qui sont de véritables voyages intérieurs.",
   },
+  {
+    name: "Emmanuelle M",
+    meta: "Avis Google",
+    text: "A la recherche d'un cours de yoga en visio, j'ai découvert le kundalini avec Emmanuelle et je recommande à 100%. Emmanuelle est dynamique, toujours souriante, bienveillante et à l'écoute de ses élèves. Quel plaisir de faire une activité qui tonifie le corps, apaise le mental et nous fait nous reconnecter à nous-même.",
+  },
+  {
+    name: "Anne M",
+    meta: "Avis Google · pratique depuis 1 an",
+    text: "Je pratique avec Emmanuelle depuis un an, les matinées de yoga et les stages ponctuels me conviennent bien, ils m'apportent un coup de boost et une sensation d'allègement, comme un nettoyage du corps, du cœur et de l'esprit. Tantra + kundalini + huiles essentielles + simplicité et bienveillance = je ne peux plus m'en passer pour mon équilibre.",
+  },
+  {
+    name: "Carole",
+    meta: "Avis Google",
+    text: "Je recommande à 100 % les cours d'Emmanuelle. J'ai découvert le Kundalini Yoga, le Tantra Yoga et les méditations actives grâce à une matinée yoga il y a bientôt un an. Véritable coup de foudre pour moi ! Emmanuelle est une professeure douce, bienveillante et à l'écoute. Ses cours sont bien structurés et diversifiés. On travaille le corps et l'esprit, on se pose et on est attentif à nos ressentis. On pratique de notre mieux avec ce qu'on a, sans performance !",
+  },
+  {
+    name: "Yannick Billon",
+    meta: "Avis Google",
+    text: "Attentive, à l'écoute, joyeuse, Emmanuelle transmet sa passion pour le Yoga avec cœur et enthousiasme.",
+  },
 ];
 
 export const TEAM = [
