@@ -25,9 +25,15 @@ export const SCHEDULE = [
 // Détail des 3 cours réguliers proposés en présentiel
 export const COURS_DETAILS = [
   {
+    slug: "energie-equilibre",
     name: "Énergie & Équilibre",
     mode: "presentiel",
     creneaux: "Lundi 11h ou 18h30 · Mardi 20h",
+    scheduleShort: "Lundi & Mardi",
+    tagline: "Libérer le stress, stimuler l'énergie, retrouver clarté et équilibre.",
+    icon: "🔥",
+    color: "#9A6E1A",
+    bg: "rgba(201,168,76,.16)",
     style: ["Yoga long", "Méditation", "Respiration", "Mantra", "Relaxation"],
     pourQui:
       "Un yoga accessible à tous, dynamique et énergisant, pour relâcher le stress, stimuler son énergie et retrouver clarté et équilibre intérieur.",
@@ -42,9 +48,15 @@ export const COURS_DETAILS = [
     ],
   },
   {
+    slug: "corps-en-mouvement",
     name: "Corps en Mouvement",
     mode: "presentiel",
     creneaux: "Mardi 18h30",
+    scheduleShort: "Mardi",
+    tagline: "Douceur, stabilité et énergie féminine — le yoga des femmes.",
+    icon: "🌸",
+    color: "#8B4A6B",
+    bg: "rgba(139,74,107,.13)",
     style: ["Yoga court", "Méditation", "Respiration", "Mouvement debout", "Mantra", "Relaxation"],
     pourQui:
       "Le « yoga des femmes » pour retrouver énergie, douceur et stabilité dans son corps.",
@@ -58,9 +70,15 @@ export const COURS_DETAILS = [
     ],
   },
   {
+    slug: "souffle-serenite",
     name: "Souffle & Sérénité",
     mode: "presentiel",
     creneaux: "Mercredi 11h",
+    scheduleShort: "Mercredi",
+    tagline: "Calme, détente et récupération intérieure.",
+    icon: "🌙",
+    color: "#7B5EA7",
+    bg: "rgba(123,94,167,.13)",
     style: ["Yoga court", "Méditation", "Respiration", "Mantra", "Relaxation"],
     pourQui:
       "Pour les personnes en quête de calme, de détente et de récupération intérieure.",
@@ -165,6 +183,44 @@ export const PRICING = [
     ],
     cta: "S'abonner",
     highlighted: true,
+  },
+];
+
+export const REVIEWS = [
+  {
+    name: "Valérie Marie",
+    meta: "Avis Google · pratique depuis plus de 2 ans",
+    text: "Excellente professionnelle et professeure de Yoga Kundalini ! C'est un bonheur de suivre ses cours ! Je n'en ai pas manqué un depuis plus de deux ans que je pratique le yoga Kundalini avec elle. Emmanuelle est toujours très disponible, elle s'adapte et propose des séances en zoom aussi qui sont aussi très intéressantes. Je vous conseille tellement ! Le yoga change la perception de la vie.",
+  },
+  {
+    name: "Jean-Louis Bergonzoli",
+    meta: "Avis Google",
+    text: "Si vous voulez découvrir le Kundalini yoga, Emmanuelle saura vous embarquer avec des postures, une relaxation et une méditation chantée. Elle illumine la séance par sa gentillesse, son plaisir de faire plaisir. Et n'hésitez pas à visiter sa plateforme qui offre tant de moyens de se détendre et retrouver la sérénité. Merci Emmanuelle pour ce que tu nous apportes.",
+  },
+  {
+    name: "Isabelle Onfray",
+    meta: "Avis Google",
+    text: "J'ai découvert le kundalini yoga avec Emmanuelle. J'apprécie sa douceur, sa bienveillance et son attention envers chacun. Elle sait prendre soin et partager sa pratique avec professionnalisme. Je la remercie pour ses cours qui sont de véritables voyages intérieurs.",
+  },
+  {
+    name: "Emmanuelle M",
+    meta: "Avis Google",
+    text: "A la recherche d'un cours de yoga en visio, j'ai découvert le kundalini avec Emmanuelle et je recommande à 100%. Emmanuelle est dynamique, toujours souriante, bienveillante et à l'écoute de ses élèves. Quel plaisir de faire une activité qui tonifie le corps, apaise le mental et nous fait nous reconnecter à nous-même.",
+  },
+  {
+    name: "Anne M",
+    meta: "Avis Google · pratique depuis 1 an",
+    text: "Je pratique avec Emmanuelle depuis un an, les matinées de yoga et les stages ponctuels me conviennent bien, ils m'apportent un coup de boost et une sensation d'allègement, comme un nettoyage du corps, du cœur et de l'esprit. Tantra + kundalini + huiles essentielles + simplicité et bienveillance = je ne peux plus m'en passer pour mon équilibre.",
+  },
+  {
+    name: "Carole",
+    meta: "Avis Google",
+    text: "Je recommande à 100 % les cours d'Emmanuelle. J'ai découvert le Kundalini Yoga, le Tantra Yoga et les méditations actives grâce à une matinée yoga il y a bientôt un an. Véritable coup de foudre pour moi ! Emmanuelle est une professeure douce, bienveillante et à l'écoute. Ses cours sont bien structurés et diversifiés. On travaille le corps et l'esprit, on se pose et on est attentif à nos ressentis. On pratique de notre mieux avec ce qu'on a, sans performance !",
+  },
+  {
+    name: "Yannick Billon",
+    meta: "Avis Google",
+    text: "Attentive, à l'écoute, joyeuse, Emmanuelle transmet sa passion pour le Yoga avec cœur et enthousiasme.",
   },
 ];
 

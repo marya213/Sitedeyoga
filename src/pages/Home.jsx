@@ -1,84 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const COURS_BRIEF = [
-  {
-    title: "Énergie & Équilibre",
-    desc: "Un yoga dynamique et accessible à tous, pour libérer le stress, stimuler l'énergie et retrouver clarté intérieure.",
-  },
-  {
-    title: "Corps en Mouvement",
-    desc: "Le yoga des femmes : douceur, confiance en soi et énergie féminine, en accord avec les cycles du corps.",
-  },
-  {
-    title: "Souffle & Sérénité",
-    desc: "Un cours tout en douceur dédié au calme, à la détente et à la récupération intérieure.",
-  },
-];
-
-const FEATURES = [
-  {
-    icon: "🧘",
-    title: "Yoga",
-    pill: "yoga",
-    desc: "Kundalini, Vinyasa, Hatha et Yin — souplesse, force et sérénité.",
-  },
-  {
-    icon: "🏋️",
-    title: "Studio",
-    pill: "studio",
-    desc: "HIIT, Cardio et Force fonctionnelle — des séances dynamiques.",
-  },
-  {
-    icon: "🎥",
-    title: "Hybride",
-    pill: "hybride",
-    desc: "Méditation, Pranayama et Mantra, en présentiel ou en direct.",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Emmanuelle M",
-    text: "A la recherche d'un cours de yoga en visio, j'ai découvert le kundalini avec Emmanuelle et je recommande à 100%. Emmanuelle est dynamique, toujours souriante, bienveillante et à l'écoute de ses élèves. Quel plaisir de faire une activité qui tonifie le corps, apaise le mental et nous fait nous reconnecter à nous-même.",
-  },
-  {
-    name: "Anne M",
-    text: "Je pratique avec Emmanuelle depuis un an, les matinées de yoga et les stages ponctuels me conviennent bien, ils m'apportent un coup de boost et une sensation d'allègement, comme un nettoyage du corps, du cœur et de l'esprit. Tantra + kundalini + huiles essentielles + simplicité et bienveillance = je ne peux plus m'en passer pour mon équilibre.",
-  },
-  {
-    name: "Carole",
-    text: "Je recommande à 100 % les cours d'Emmanuelle. J'ai découvert le Kundalini Yoga, le Tantra Yoga et les méditations actives grâce à une matinée yoga il y a bientôt un an. Véritable coup de foudre pour moi ! Emmanuelle est une professeure douce, bienveillante et à l'écoute. Ses cours sont bien structurés et diversifiés. On travaille le corps et l'esprit, on se pose et on est attentif à nos ressentis. On pratique de notre mieux avec ce qu'on a, sans performance !",
-  },
-  {
-    name: "Yannick Billon",
-    text: "Attentive, à l'écoute, joyeuse, Emmanuelle transmet sa passion pour le Yoga avec cœur et enthousiasme.",
-  },
-  {
-    name: "Jean-Louis Bergonzoli",
-    text: "Si vous voulez découvrir le Kundalini yoga, Emmanuelle saura vous embarquer avec des postures, une relaxation et une méditation chantée. Elle illumine la séance par sa gentillesse, son plaisir de faire plaisir. Et n'hésitez pas à visiter sa plateforme qui offre tant de moyens de se détendre et retrouver la sérénité. Merci Emmanuelle pour ce que tu nous apportes.",
-  },
-  {
-    name: "Valérie Marie",
-    text: "Excellente professionnelle et professeure de Yoga Kundalini ! C'est un bonheur de suivre ses cours ! Je n'en ai pas manqué un depuis plus de deux ans que je pratique le yoga Kundalini avec elle. Emmanuelle est toujours très disponible, elle s'adapte et propose des séances en zoom aussi qui sont aussi très intéressantes. Je vous conseille tellement ! Le yoga change la perception de la vie.",
-  },
-  {
-    name: "Isabelle Onfray",
-    text: "J'ai découvert le kundalini yoga avec Emmanuelle. J'apprécie sa douceur, sa bienveillance et son attention envers chacun. Elle sait prendre soin et partager sa pratique avec professionnalisme. Je la remercie pour ses cours qui sont de véritables voyages intérieurs.",
-  },
-];
+import { COURS_DETAILS, REVIEWS } from "../data/index";
 
 function TestimonialsCarousel() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
+      setCurrent((prev) => (prev + 1) % REVIEWS.length);
     }, 6000);
     return () => clearInterval(timer);
   }, []);
 
-  const goTo = (i) => setCurrent((i + TESTIMONIALS.length) % TESTIMONIALS.length);
+  const goTo = (i) => setCurrent((i + REVIEWS.length) % REVIEWS.length);
 
   return (
     <div style={{ maxWidth: "42rem", marginInline: "auto" }}>
@@ -115,9 +49,9 @@ function TestimonialsCarousel() {
           ←
         </button>
 
-        {TESTIMONIALS.map((t, i) => (
+        {REVIEWS.map((r, i) => (
           <div
-            key={t.name}
+            key={r.name}
             aria-hidden={i !== current}
             className="text-center"
             style={{
@@ -142,11 +76,18 @@ function TestimonialsCarousel() {
                 lineHeight: 1.65,
               }}
             >
-              « {t.text} »
+              « {r.text} »
             </blockquote>
-            <p className="text-sm font-medium" style={{ color: "rgba(240,234,214,.6)" }}>
-              — {t.name}
-            </p>
+            <div>
+              <p className="text-sm font-medium" style={{ color: "rgba(240,234,214,.6)" }}>
+                — {r.name}
+              </p>
+              {r.meta && (
+                <p className="text-xs mt-0.5" style={{ color: "rgba(240,234,214,.4)" }}>
+                  {r.meta}
+                </p>
+              )}
+            </div>
           </div>
         ))}
 
@@ -176,12 +117,12 @@ function TestimonialsCarousel() {
       </div>
 
       {/* Indicateurs */}
-      <div style={{ display: "flex", justifyContent: "center", gap: ".4rem", marginTop: "1.5rem" }}>
-        {TESTIMONIALS.map((t, i) => (
+      <div style={{ display: "flex", justifyContent: "center", gap: ".4rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
+        {REVIEWS.map((r, i) => (
           <button
-            key={t.name}
+            key={r.name}
             onClick={() => goTo(i)}
-            aria-label={`Avis de ${t.name}`}
+            aria-label={`Avis de ${r.name}`}
             aria-current={i === current}
             style={{
               width: i === current ? "1.5rem" : ".5rem",
@@ -197,36 +138,6 @@ function TestimonialsCarousel() {
         ))}
       </div>
     </div>
-  );
-}
-
-/* ── Pill inline ── */
-function Pill({ type }) {
-  const styles = {
-    yoga: {
-      bg: "rgba(139,74,107,.13)",
-      color: "#8B4A6B",
-      label: "🧘 Yoga",
-    },
-    studio: {
-      bg: "rgba(201,168,76,.15)",
-      color: "#7a5520",
-      label: "🏋️ Studio",
-    },
-    hybride: {
-      bg: "rgba(45,27,78,.12)",
-      color: "#7B5EA7",
-      label: "🎥 Hybride",
-    },
-  };
-  const s = styles[type];
-  return (
-    <span
-      className="pill"
-      style={{ background: s.bg, color: s.color, borderColor: s.bg }}
-    >
-      {s.label}
-    </span>
   );
 }
 
@@ -305,9 +216,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ Propositions ══════════════════════════════════════ */}
+      {/* ══ Pratique & propositions ═══════════════════════════ */}
       <section
-        style={{ background: "var(--color-neutral)", padding: "5rem 0" }}
+        style={{ background: "var(--color-neutral)", padding: "5.5rem 0 5rem" }}
       >
         <div className="section-inner">
           <div className="text-center mb-12">
@@ -317,85 +228,125 @@ export default function Home() {
             >
               Ce que nous proposons
             </p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl">
-              Nos propositions
+            <h2 className="font-serif font-light text-3xl md:text-4xl mb-5">
+              La pratique du Kundalini Yoga
             </h2>
+            <p
+              className="text-sm leading-relaxed"
+              style={{
+                color: "var(--color-secondary)",
+                maxWidth: "42ch",
+                marginInline: "auto",
+              }}
+            >
+              Le Kundalini Yoga est pour moi un chemin de reconnexion et de
+              transformation intérieure. À travers le souffle, le mouvement et
+              la méditation, j’accompagne chacun à se déposer, retrouver son
+              énergie et avancer à son rythme.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="card text-center">
-                <div className="mb-4">
-                  <Pill type={f.pill} />
+            {COURS_DETAILS.map((c) => (
+              <div key={c.slug} className="card text-center flex flex-col">
+                <div
+                  className="flex items-center justify-center mb-3"
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    borderRadius: "9999px",
+                    background: c.bg,
+                    fontSize: "1.375rem",
+                    marginInline: "auto",
+                  }}
+                >
+                  {c.icon}
                 </div>
-                <h3 className="font-serif text-xl font-semibold mb-3">
-                  {f.title}
+                <h3 className="font-serif text-xl font-semibold mb-1">
+                  {c.name}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
+                  className="text-xs font-semibold uppercase tracking-widest mb-3"
+                  style={{ color: c.color }}
                 >
-                  {f.desc}
+                  {c.scheduleShort}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ Les cours ═════════════════════════════════════════ */}
-      <section style={{ background: "#F5F0E8", padding: "5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "var(--color-secondary)" }}
-            >
-              Les cours
-            </p>
-            <h2 className="font-serif font-light text-3xl md:text-4xl mb-3">
-              Trois cours pour trois besoins
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-            {COURS_BRIEF.map((c) => (
-              <div key={c.title} className="card text-center">
-                <h3 className="font-serif text-xl font-semibold mb-3">
-                  {c.title}
-                </h3>
                 <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
+                  className="text-sm leading-relaxed mb-5"
+                  style={{ color: "var(--color-secondary)", flex: 1 }}
                 >
-                  {c.desc}
+                  {c.tagline}
                 </p>
+                <Link
+                  to={`/cours#${c.slug}`}
+                  className="text-sm font-semibold"
+                  style={{ color: "var(--color-tertiary)" }}
+                >
+                  En savoir plus →
+                </Link>
               </div>
             ))}
           </div>
 
-          <div className="text-center">
-            <Link
-              to="/cours"
-              className="text-sm font-semibold"
-              style={{ color: "var(--color-primary)" }}
-            >
-              → Découvrir les cours en détail
+          <div className="text-center mt-10">
+            <Link to="/cours" className="btn btn-secondary">
+              Voir tous les cours en détail
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ══ Avis ══════════════════════════════════════════════ */}
-      <section style={{ background: "#2D1B4E", padding: "5rem 0" }}>
+      {/* ══ Vidéo — Découvrir le Kundalini Yoga ═══════════════ */}
+      <section style={{ background: "#F5F0E8", padding: "5rem 0 6rem" }}>
+        <div className="section-inner">
+          <div className="text-center mb-10">
+            <p
+              className="text-xs font-semibold uppercase tracking-widest mb-3"
+              style={{ color: "var(--color-secondary)" }}
+            >
+              Comprendre la pratique
+            </p>
+            <h2 className="font-serif font-light text-3xl md:text-4xl">
+              Qu’est-ce que le Kundalini Yoga ?
+            </h2>
+          </div>
+
+          <div
+            className="aspect-video"
+            style={{
+              maxWidth: "48rem",
+              marginInline: "auto",
+              borderRadius: "1.25rem",
+              overflow: "hidden",
+              boxShadow: "0 12px 40px rgba(44,44,44,.12)",
+            }}
+          >
+            <iframe
+              src="https://www.youtube.com/embed/2BVBQgZvkWM"
+              title="Qu’est-ce que le Yoga Kundalini ?"
+              style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══ Avis clients ══════════════════════════════════════ */}
+      <section style={{ background: "#2D1B4E", padding: "5.5rem 0" }}>
         <div className="section-inner text-center">
           <p
-            className="text-xs font-semibold uppercase tracking-widest mb-4"
+            className="text-xs font-semibold uppercase tracking-widest mb-3"
             style={{ color: "rgba(201,168,76,.7)" }}
           >
-            Avis client
+            Avis Google
           </p>
-          
+          <h2
+            className="font-serif font-light text-3xl md:text-4xl mb-10"
+            style={{ color: "#F0EAD6" }}
+          >
+            Ce qu’en disent mes élèves
+          </h2>
           <TestimonialsCarousel />
         </div>
       </section>

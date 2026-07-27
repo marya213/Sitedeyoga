@@ -93,7 +93,7 @@ const INFO_BLOCKS = [
       </svg>
     ),
     label: "Instagram",
-    lines: ["@Kundalini Yoga"],
+    lines: ["@emmanuelledruneau_kundalini"],
     href: "https://www.instagram.com/emmanuelledruneau_kundalini/",
   },
   {
@@ -118,12 +118,6 @@ const INFO_BLOCKS = [
     lines: ["Emmanuelle Druneau"],
     href: "https://www.facebook.com/profile.php?id=100008138531485",
   },
-];
-
-const HOURS = [
-  { days: "Lundi", hours: "09 h 30" },
-  { days: "Mardi", hours: "10 h 30" },
-  { days: "Mercredi", hours: "11 h 00" },
 ];
 
 const SUBJECTS = [
@@ -189,7 +183,9 @@ export default function Contact() {
               marginInline: "auto",
             }}
           >
-            Une question, une réservation ou envie d'en savoir plus&nbsp;?.
+            Une question sur les cours, une envie de commencer ou juste de la
+            curiosité&nbsp;? Écrivez-moi, je réponds personnellement à chaque
+            message.
           </p>
         </div>
       </section>
@@ -216,8 +212,9 @@ export default function Contact() {
               className="text-sm leading-relaxed mb-8"
               style={{ color: "rgba(240,234,214,.72)", maxWidth: "40ch" }}
             >
-              Notre équipe est disponible 7j/7 pour répondre à vos questions et
-              vous aider à trouver le cours qui vous correspond.
+              Je prends le temps de répondre à chaque message, pour vous
+              aider à trouver le cours le plus adapté à votre rythme et vos
+              besoins.
             </p>
 
             {/* Info blocks */}
@@ -321,8 +318,8 @@ export default function Contact() {
                   className="text-sm leading-relaxed mb-6"
                   style={{ color: "var(--color-secondary)", maxWidth: "28ch" }}
                 >
-                  Merci pour votre message. Notre équipe vous répondra dans les
-                  plus brefs délais, sous 24 heures maximum.
+                  Merci pour votre message. Je vous répondrai personnellement
+                  dans les plus brefs délais, sous 24 heures maximum.
                 </p>
                 <button
                   className="btn btn-primary"
@@ -355,7 +352,7 @@ export default function Contact() {
                   className="font-serif font-light text-xl"
                   style={{ color: "var(--color-ink)" }}
                 >
-                  Envoyez-nous un message
+                  Envoyez-moi un message
                 </h3>
 
                 {/* Nom + Email */}
