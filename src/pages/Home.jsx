@@ -1,5 +1,145 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { COURS_DETAILS, REVIEWS } from "../data/index";
+
+function TestimonialsCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % REVIEWS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goTo = (i) => setCurrent((i + REVIEWS.length) % REVIEWS.length);
+
+  return (
+    <div style={{ maxWidth: "42rem", marginInline: "auto" }}>
+      <div
+        style={{
+          position: "relative",
+          minHeight: "17rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => goTo(current - 1)}
+          aria-label="Avis précédent"
+          className="hidden sm:flex"
+          style={{
+            position: "absolute",
+            left: "-3rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "2.5rem",
+            height: "2.5rem",
+            borderRadius: "9999px",
+            border: "1px solid rgba(201,168,76,.4)",
+            background: "transparent",
+            color: "#C9A84C",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >
+          ←
+        </button>
+
+        {REVIEWS.map((r, i) => (
+          <div
+            key={r.name}
+            aria-hidden={i !== current}
+            className="text-center"
+            style={{
+              position: i === current ? "relative" : "absolute",
+              inset: 0,
+              opacity: i === current ? 1 : 0,
+              transition: "opacity 0.6s ease-in-out",
+              pointerEvents: i === current ? "auto" : "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: ".9rem",
+              padding: "0 1rem",
+            }}
+          >
+            <blockquote
+              className="font-serif italic font-light"
+              style={{
+                fontSize: "clamp(1.0625rem,2.2vw,1.25rem)",
+                color: "#F0EAD6",
+                lineHeight: 1.65,
+              }}
+            >
+              « {r.text} »
+            </blockquote>
+            <div>
+              <p className="text-sm font-medium" style={{ color: "rgba(240,234,214,.6)" }}>
+                — {r.name}
+              </p>
+              {r.meta && (
+                <p className="text-xs mt-0.5" style={{ color: "rgba(240,234,214,.4)" }}>
+                  {r.meta}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={() => goTo(current + 1)}
+          aria-label="Avis suivant"
+          className="hidden sm:flex"
+          style={{
+            position: "absolute",
+            right: "-3rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "2.5rem",
+            height: "2.5rem",
+            borderRadius: "9999px",
+            border: "1px solid rgba(201,168,76,.4)",
+            background: "transparent",
+            color: "#C9A84C",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+        >
+          →
+        </button>
+      </div>
+
+      {/* Indicateurs */}
+      <div style={{ display: "flex", justifyContent: "center", gap: ".4rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
+        {REVIEWS.map((r, i) => (
+          <button
+            key={r.name}
+            onClick={() => goTo(i)}
+            aria-label={`Avis de ${r.name}`}
+            aria-current={i === current}
+            style={{
+              width: i === current ? "1.5rem" : ".5rem",
+              height: ".5rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              background: i === current ? "#C9A84C" : "rgba(201,168,76,.3)",
+              transition: "all 0.3s ease",
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -194,67 +334,20 @@ export default function Home() {
 
       {/* ══ Avis clients ══════════════════════════════════════ */}
       <section style={{ background: "#2D1B4E", padding: "5.5rem 0" }}>
-        <div className="section-inner">
-          <div className="text-center mb-12">
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "rgba(201,168,76,.7)" }}
-            >
-              Avis Google
-            </p>
-            <h2
-              className="font-serif font-light text-3xl md:text-4xl"
-              style={{ color: "#F0EAD6" }}
-            >
-              Ce qu’en disent mes élèves
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {REVIEWS.map((r) => (
-              <div
-                key={r.name}
-                style={{
-                  background: "rgba(240,234,214,.06)",
-                  border: "1px solid rgba(201,168,76,.25)",
-                  borderRadius: "1.25rem",
-                  padding: "1.75rem",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <span
-                  className="font-serif select-none"
-                  style={{
-                    fontSize: "2.5rem",
-                    lineHeight: 1,
-                    color: "#C9A84C",
-                    opacity: 0.5,
-                    marginBottom: ".5rem",
-                  }}
-                >
-                  "
-                </span>
-                <p
-                  className="text-sm leading-relaxed mb-5"
-                  style={{ color: "rgba(240,234,214,.85)", flex: 1 }}
-                >
-                  {r.text}
-                </p>
-                <div>
-                  <p className="text-sm font-semibold" style={{ color: "#F0EAD6" }}>
-                    {r.name}
-                  </p>
-                  <p
-                    className="text-xs mt-0.5"
-                    style={{ color: "rgba(240,234,214,.5)" }}
-                  >
-                    {r.meta}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="section-inner text-center">
+          <p
+            className="text-xs font-semibold uppercase tracking-widest mb-3"
+            style={{ color: "rgba(201,168,76,.7)" }}
+          >
+            Avis Google
+          </p>
+          <h2
+            className="font-serif font-light text-3xl md:text-4xl mb-10"
+            style={{ color: "#F0EAD6" }}
+          >
+            Ce qu’en disent mes élèves
+          </h2>
+          <TestimonialsCarousel />
         </div>
       </section>
     </main>

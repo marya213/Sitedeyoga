@@ -26,7 +26,7 @@ function formatDateLabel(dateStr) {
 
 function EventCard({ event, isToday }) {
   const isPast = event.date < TODAY;
-  const hasCost = event.cout !== null && event.cout !== undefined && event.cout !== "";
+  const hasCost = typeof event.cout === "number" && event.cout > 0;
 
   return (
     <div
