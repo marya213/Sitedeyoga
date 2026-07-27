@@ -18,6 +18,12 @@ const SLOT_BORDER = {
   hybride: "#D97706",
 };
 
+const FORMULE_FILTERS = [
+  { key: "presentiel", label: "Présentiel" },
+  { key: "distanciel", label: "Distanciel" },
+  { key: "both", label: "Offre Combinée" },
+];
+
 // JS getDay() : 0=dim, 1=lun … → DAYS index
 const JS_TO_FR = [6, 0, 1, 2, 3, 4, 5];
 
@@ -156,9 +162,6 @@ function WeekSchedule() {
 }
 
 export default function Cours() {
-  const [coursFilter, setCoursFilter] = useState("presentiel");
-  const filteredCours = ALL_COURS.filter((c) => c.mode === coursFilter);
-
   const [formuleFilter, setFormuleFilter] = useState("presentiel");
   const filteredPricing = PRICING.filter((plan) => plan.mode === formuleFilter);
 
