@@ -89,9 +89,9 @@ function ImageCarousel() {
 
 const VALUES = [
   {
-    icon: "🌱",
-    color: "#3D8B74",
-    bg: "rgba(61,139,116,.13)",
+    icon: "🕊️",
+    color: "#8B4A6B",
+    bg: "rgba(139,74,107,.13)",
     title: "Présence",
     desc: "J'accueille chacun là où il en est, dans sa pratique comme dans sa vie, en créant un espace chaleureux, joyeux et bienveillant où chaque séance est une expérience unique.",
   },
@@ -103,11 +103,11 @@ const VALUES = [
     desc: "J'aime créer des espaces où les personnes peuvent se retrouver, échanger et tisser des liens sincères. Car le chemin est souvent plus riche lorsqu'il se vit en communauté.",
   },
   {
-    icon: "🧭",
-    color: "#C9A84C",
-    bg: "rgba(201,168,76,.15)",
+    icon: "🌱",
+    color: "#3D8B74",
+    bg: "rgba(61,139,116,.13)",
     title: "Parcours",
-    desc: "Trois années de formation à l'École du Tantra au Château Laroque proche de Bordeaux, ont nourri ma pratique et façonné ma manière d'enseigner. Aujourd'hui, je transmets le Kundalini Yoga avec un vrai espace de transformation, de présence et de cheminement intérieur.",
+    desc: "Trois années de formation à l'École du Tantra au Château Laroque, proche de Bordeaux, ont nourri ma pratique et façonné ma manière d'enseigner. Aujourd'hui, je transmets le Kundalini Yoga avec un vrai espace de transformation, de présence et de cheminement intérieur.",
   },
 ];
 
@@ -117,38 +117,12 @@ export default function APropos() {
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
         className="relative flex flex-col items-center justify-center text-center"
-        style={{
-          minHeight: "55vh",
-          padding: "6rem clamp(1.25rem,5vw,3rem) 4rem",
-        }}
+        style={{ background: "#2D1B4E", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
       >
-        {/* Image de fond */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/img/photo1.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 20%",
-            backgroundColor: "#2D1B4E",
-          }}
-        />
-        {/* Overlay dégradé */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(170deg, #2D1B4E80 0%, #2D1B4E55 50%, #2D1B4Eb0 100%)",
-          }}
-        />
-
-        <div className="relative z-10" style={{ maxWidth: "38rem" }}>
+        <div style={{ maxWidth: "38rem" }}>
           <h1
             className="font-serif font-light mb-4"
-            style={{
-              fontSize: "clamp(2rem,5vw,3rem)",
-              color: "#F0EAD6",
-              textShadow: "0 2px 20px rgba(0,0,0,.35)",
-            }}
+            style={{ fontSize: "clamp(2rem,5vw,3rem)", color: "#F0EAD6" }}
           >
             À propos
           </h1>
@@ -158,7 +132,6 @@ export default function APropos() {
               color: "rgba(240,234,214,.9)",
               maxWidth: "42ch",
               marginInline: "auto",
-              textShadow: "0 1px 12px rgba(0,0,0,.4)",
             }}
           >
             Le bien-être est accessible à tous lorsqu'il est enseigné avec
@@ -193,9 +166,9 @@ export default function APropos() {
             >
               <p>
                 Le Kundalini Yoga est pour moi un chemin de reconnexion et de
-                transformation intérieure. À travers le souffle, le mouvement et
-                la méditation, j’accompagne chacun à se déposer, retrouver son
-                énergie et avancer à son rythme.  
+                transformation intérieure. À travers le souffle, le mouvement
+                et la méditation, j’accompagne chacun à se déposer, retrouver
+                son énergie et avancer à son rythme.
               </p>
             </div>
 
@@ -227,12 +200,13 @@ export default function APropos() {
             }}
           >
             <img
-              src="/img/yoga.jpg"
-              alt="Emmanuelle en posture de méditation"
+              src="/img/emmanuelle-portrait.jpg"
+              alt="Portrait d'Emmanuelle"
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                objectPosition: "center 20%",
                 display: "block",
               }}
               onError={(e) => {
