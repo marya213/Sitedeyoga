@@ -11,7 +11,6 @@ import {
 import Pill from "../components/ui/Pill";
 import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
 
-
 const SLOT_BORDER = {
   studio: "#C9A84C",
   yoga: "#7E9B7A",
@@ -228,7 +227,7 @@ export default function Cours() {
                 className="btn btn-outlined"
                 style={{ padding: ".75rem 1.75rem" }}
               >
-                Nous contacter
+                Me contacter
               </Link>
             </div>
           </div>
@@ -249,7 +248,10 @@ export default function Cours() {
               </h2>
               <p
                 className="text-sm mt-3"
-                style={{ color: "rgba(240,234,214,.85)", textShadow: "0 1px 8px rgba(0,0,0,.35)" }}
+                style={{
+                  color: "rgba(240,234,214,.85)",
+                  textShadow: "0 1px 8px rgba(0,0,0,.35)",
+                }}
               >
                 Trois propositions, pour trois besoins différents — trouvez
                 celle qui vous correspond.
@@ -291,7 +293,11 @@ export default function Cours() {
                     </div>
                     <span
                       className="pill flex-shrink-0"
-                      style={{ background: c.bg, color: c.color, borderColor: c.bg }}
+                      style={{
+                        background: c.bg,
+                        color: c.color,
+                        borderColor: c.bg,
+                      }}
                     >
                       {c.creneaux}
                     </span>

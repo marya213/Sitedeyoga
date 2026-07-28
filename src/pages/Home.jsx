@@ -221,7 +221,7 @@ export default function Home() {
               className="btn btn-primary"
               style={{ padding: ".875rem 2rem" }}
             >
-              Découvrir les cours
+              Découvrir mes cours
             </Link>
             <Link
               to="/contact"
@@ -296,7 +296,7 @@ export default function Home() {
 
           <div className="text-center mt-10">
             <Link to="/cours" className="btn btn-secondary">
-              Voir tous les cours en détail
+              Voir tous mes cours en détail
             </Link>
           </div>
         </div>
