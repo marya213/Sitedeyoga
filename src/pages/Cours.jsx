@@ -201,7 +201,7 @@ export default function Cours() {
                 textShadow: "0 2px 20px rgba(0,0,0,.35)",
               }}
             >
-              Nos cours
+              Mes cours
             </h1>
             <p
               className="leading-relaxed mb-8"
@@ -221,7 +221,7 @@ export default function Cours() {
                 className="btn btn-primary"
                 style={{ padding: ".75rem 1.75rem" }}
               >
-                Voir les tarifs
+                Voir mes tarifs
               </a>
               <Link
                 to="/contact"
@@ -245,7 +245,7 @@ export default function Cours() {
                   textShadow: "0 1px 12px rgba(0,0,0,.4)",
                 }}
               >
-                Nos cours en détail
+                Mes cours en détail
               </h2>
               <p
                 className="text-sm mt-3"
