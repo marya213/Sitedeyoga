@@ -79,11 +79,17 @@ function TestimonialsCarousel() {
               « {r.text} »
             </blockquote>
             <div>
-              <p className="text-sm font-medium" style={{ color: "rgba(240,234,214,.6)" }}>
+              <p
+                className="text-sm font-medium"
+                style={{ color: "rgba(240,234,214,.6)" }}
+              >
                 — {r.name}
               </p>
               {r.meta && (
-                <p className="text-xs mt-0.5" style={{ color: "rgba(240,234,214,.4)" }}>
+                <p
+                  className="text-xs mt-0.5"
+                  style={{ color: "rgba(240,234,214,.4)" }}
+                >
                   {r.meta}
                 </p>
               )}
@@ -117,7 +123,15 @@ function TestimonialsCarousel() {
       </div>
 
       {/* Indicateurs */}
-      <div style={{ display: "flex", justifyContent: "center", gap: ".4rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: ".4rem",
+          marginTop: "1.5rem",
+          flexWrap: "wrap",
+        }}
+      >
         {REVIEWS.map((r, i) => (
           <button
             key={r.name}
@@ -142,6 +156,8 @@ function TestimonialsCarousel() {
 }
 
 export default function Home() {
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <main className="pt-16">
       {/* ══ Hero ══════════════════════════════════════════════ */}
@@ -160,13 +176,15 @@ export default function Home() {
             height: "100%",
             objectFit: "cover",
             backgroundColor: "#2D1B4E",
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity 0.6s ease-in-out",
           }}
           src="/video/martinique.mp4"
-          poster="/img/photo2.jpg"
           autoPlay
           loop
           muted
           playsInline
+          onPlaying={() => setVideoReady(true)}
         />
         {/* Overlay dégradé */}
         <div
@@ -180,7 +198,7 @@ export default function Home() {
         {/* Contenu */}
         <div className="relative z-10" style={{ maxWidth: "44rem" }}>
           <h1
-            className="font-serif font-light mb-6"
+            className="font-serif font-light mb-10"
             style={{
               fontSize: "clamp(2.5rem,6vw,4rem)",
               lineHeight: 1.1,
@@ -193,7 +211,7 @@ export default function Home() {
               className="not-italic font-semibold"
               style={{ color: "#C9A84C" }}
             >
-              Kundalini Yoga
+              le Kundalini Yoga
             </em>
           </h1>
 
@@ -210,7 +228,7 @@ export default function Home() {
               className="btn btn-outlined"
               style={{ padding: ".875rem 2rem" }}
             >
-              Nous contacter
+              Me contacter
             </Link>
           </div>
         </div>
@@ -226,24 +244,12 @@ export default function Home() {
               className="text-xs font-semibold uppercase tracking-widest mb-3"
               style={{ color: "var(--color-secondary)" }}
             >
-              Ce que nous proposons
+              Ce que je propose
             </p>
             <h2 className="font-serif font-light text-3xl md:text-4xl mb-5">
-              La pratique du Kundalini Yoga
+              Pour que chaque cours s'adapte à vous et votre besoin, j'ai crée 3
+              propositions de yoga. Découvrez-les ci-dessous.
             </h2>
-            <p
-              className="text-sm leading-relaxed"
-              style={{
-                color: "var(--color-secondary)",
-                maxWidth: "42ch",
-                marginInline: "auto",
-              }}
-            >
-              Le Kundalini Yoga est pour moi un chemin de reconnexion et de
-              transformation intérieure. À travers le souffle, le mouvement et
-              la méditation, j’accompagne chacun à se déposer, retrouver son
-              énergie et avancer à son rythme.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -324,7 +330,12 @@ export default function Home() {
             <iframe
               src="https://www.youtube.com/embed/2BVBQgZvkWM"
               title="Qu’est-ce que le Yoga Kundalini ?"
-              style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: 0,
+                display: "block",
+              }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
