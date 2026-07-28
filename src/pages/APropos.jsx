@@ -90,22 +90,22 @@ function ImageCarousel() {
 const VALUES = [
   {
     icon: "🕊️",
-    color: "#8B4A6B",
-    bg: "rgba(139,74,107,.13)",
+    color: "#512B3E",
+    bg: "rgba(139,74,107,.24)",
     title: "Présence",
     desc: "J'accueille chacun là où il en est, dans sa pratique comme dans sa vie, en créant un espace chaleureux, joyeux et bienveillant où chaque séance est une expérience unique.",
   },
   {
     icon: "🤝",
-    color: "#7B5EA7",
-    bg: "rgba(123,94,167,.13)",
+    color: "#483761",
+    bg: "rgba(123,94,167,.24)",
     title: "Communauté",
     desc: "J'aime créer des espaces où les personnes peuvent se retrouver, échanger et tisser des liens sincères. Car le chemin est souvent plus riche lorsqu'il se vit en communauté.",
   },
   {
     icon: "🌱",
-    color: "#3D8B74",
-    bg: "rgba(61,139,116,.13)",
+    color: "#245143",
+    bg: "rgba(61,139,116,.24)",
     title: "Parcours",
     desc: "Trois années de formation à l'École du Tantra au Château Laroque, proche de Bordeaux, ont nourri ma pratique et façonné ma manière d'enseigner. Aujourd'hui, je transmets le Kundalini Yoga avec un vrai espace de transformation, de présence et de cheminement intérieur.",
   },
@@ -117,7 +117,10 @@ export default function APropos() {
       {/* ══ Header ════════════════════════════════════════════ */}
       <section
         className="relative flex flex-col items-center justify-center text-center"
-        style={{ background: "#2D1B4E", padding: "6rem clamp(1.25rem,5vw,3rem) 4rem" }}
+        style={{
+          background: "#2D1B4E",
+          padding: "6rem clamp(1.25rem,5vw,3rem) 4rem",
+        }}
       >
         <div style={{ maxWidth: "38rem" }}>
           <h1
@@ -148,13 +151,7 @@ export default function APropos() {
         >
           {/* Texte */}
           <div>
-            <h2
-              className="font-serif font-light text-2xl md:text-4xl mb-6"
-              style={{ color: "#F0EAD6" }}
-            >
-              Comment je suis arrivée au Yoga?
-            </h2>
-            <div
+              <div
               className="text-sm leading-relaxed mb-8"
               style={{
                 color: "rgba(240,234,214,.82)",
@@ -165,10 +162,14 @@ export default function APropos() {
               }}
             >
               <p>
-                Le Kundalini Yoga est pour moi un chemin de reconnexion et de
-                transformation intérieure. À travers le souffle, le mouvement
-                et la méditation, j’accompagne chacun à se déposer, retrouver
-                son énergie et avancer à son rythme.
+                Le yoga est accessible à chacun, quel que soit son âge, son
+                expérience ou sa condition physique. Bien plus qu’une simple
+                pratique corporelle, il est un véritable chemin vers la
+                connaissance de soi. Il nous invite à faire la paix avec notre
+                corps, à apaiser notre esprit et à développer une présence plus
+                consciente à nous-mêmes. À travers cette pratique, chacun peut
+                retrouver un équilibre profond et avancer avec plus de sérénité
+                dans sa vie.
               </p>
             </div>
 
@@ -227,7 +228,14 @@ export default function APropos() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {VALUES.map((v) => (
-              <div key={v.title} className="card text-center">
+              <div
+                key={v.title}
+                className="card text-center"
+                style={{
+                  background: "#fff",
+                  border: `1.5px solid ${v.color}55`,
+                }}
+              >
                 <div
                   className="flex items-center justify-center"
                   style={{
@@ -250,7 +258,7 @@ export default function APropos() {
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "var(--color-secondary)" }}
+                  style={{ color: v.color }}
                 >
                   {v.desc}
                 </p>
