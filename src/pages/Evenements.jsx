@@ -6,7 +6,8 @@ import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // TODO(yoga): remplacer par le lien de paiement Stripe définitif
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REMPLACER_PAR_LE_LIEN_STRIPE";
+const STRIPE_PAYMENT_LINK =
+  "https://buy.stripe.com/REMPLACER_PAR_LE_LIEN_STRIPE";
 // TODO(yoga): remplacer par le lien Notion définitif
 const NOTION_INFO_LINK = "https://notion.so/REMPLACER_PAR_LE_LIEN_NOTION";
 
@@ -37,7 +38,9 @@ function EventCard({ event, isToday }) {
         overflow: "hidden",
       }}
     >
-      <div className={event.image ? "flex flex-col sm:flex-row" : "flex flex-col"}>
+      <div
+        className={event.image ? "flex flex-col sm:flex-row" : "flex flex-col"}
+      >
         {event.image && (
           <img
             src={event.image}
@@ -147,7 +150,14 @@ function EventCard({ event, isToday }) {
 
           {/* CTA */}
           {!isPast && (
-            <div style={{ marginTop: ".25rem", display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
+            <div
+              style={{
+                marginTop: ".25rem",
+                display: "flex",
+                gap: ".75rem",
+                flexWrap: "wrap",
+              }}
+            >
               <button
                 type="button"
                 onClick={() => downloadInscriptionPdf(event)}
@@ -273,7 +283,7 @@ export default function Evenements() {
       (err) => {
         setError(err.message);
         setLoading(false);
-      }
+      },
     );
     return unsubscribe;
   }, []);
@@ -292,12 +302,6 @@ export default function Evenements() {
       {/* Hero */}
       <section style={{ background: "#2D1B4E", padding: "4rem 0 3rem" }}>
         <div className="section-inner text-center">
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "rgba(201,168,76,.7)" }}
-          >
-            Rendez-vous ponctuels
-          </p>
           <h1
             className="font-serif font-light mb-4"
             style={{ fontSize: "clamp(2rem,5vw,3rem)", color: "#F0EAD6" }}
@@ -313,8 +317,9 @@ export default function Evenements() {
               lineHeight: 1.7,
             }}
           >
-            Ateliers, masterclass, concerts de sons et stages intensifs — des
-            moments exceptionnels pour approfondir votre pratique.
+            Matinées, Ateliers, Stages, Retraites, Voyages - Bien être, Yoga au
+            jardin et à la plage... des moments puissants pour apprendre, se
+            ressourcer et se reconnecter à soi.
           </p>
         </div>
       </section>
@@ -325,11 +330,23 @@ export default function Evenements() {
       >
         <div className="section-inner">
           {loading ? (
-            <div style={{ textAlign: "center", padding: "4rem 0", color: "var(--color-ink-faint)" }}>
+            <div
+              style={{
+                textAlign: "center",
+                padding: "4rem 0",
+                color: "var(--color-ink-faint)",
+              }}
+            >
               Chargement des événements…
             </div>
           ) : error ? (
-            <div style={{ textAlign: "center", padding: "4rem 0", color: "#c0392b" }}>
+            <div
+              style={{
+                textAlign: "center",
+                padding: "4rem 0",
+                color: "#c0392b",
+              }}
+            >
               Impossible de charger les événements pour le moment.
             </div>
           ) : sortedDates.length === 0 ? (
