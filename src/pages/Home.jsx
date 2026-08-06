@@ -159,12 +159,13 @@ export default function Home() {
   const [videoReady, setVideoReady] = useState(false);
 
   return (
-    <main className="pt-16">
+    <main>
       {/* ══ Hero ══════════════════════════════════════════════ */}
       <section
-        className="relative flex flex-col items-center justify-center text-center text-white mt-12 min-h-[calc(100vh-4rem-3rem)]"
+        className="relative flex flex-col items-center justify-center text-center text-white min-h-screen"
         style={{
           padding: "3rem clamp(1.25rem,5vw,3rem)",
+          paddingTop: "calc(4rem + 3rem)",
           backgroundColor: "#2D1B4E",
         }}
       >
