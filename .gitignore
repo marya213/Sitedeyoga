@@ -37,3 +37,6 @@ Thumbs.db
 # CLAUDE
 .claude/
 .CLAUDE.md
+
+# Other
+.Guide-Administration-Evenements.pdf
