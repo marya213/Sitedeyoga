@@ -220,7 +220,7 @@ export default function Cours() {
                 className="btn btn-primary"
                 style={{ padding: ".75rem 1.75rem" }}
               >
-                Voir mes tarifs
+                Voir les tarifs
               </a>
               <Link
                 to="/contact"
