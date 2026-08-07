@@ -329,7 +329,7 @@ export default function Home() {
             }}
           >
             <iframe
-              src="https://www.youtube.com/embed/2BVBQgZvkWM"
+              src="https://www.youtube.com/embed/b463tr6M9dI"
               title="Qu’est-ce que le Yoga Kundalini ?"
               style={{
                 width: "100%",
