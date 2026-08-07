@@ -110,7 +110,7 @@ function WeekSchedule() {
               >
                 <span
                   className="font-serif font-semibold"
-                  style={{ fontSize: "1.1rem", color: "var(--color-ink)" }}
+                  style={{ fontSize: "1.1rem", color: "var(--color-primary)" }}
                 >
                   {cls.time}
                 </span>
@@ -330,7 +330,7 @@ export default function Cours() {
                       padding: "1rem 1.25rem",
                     }}
                   >
-                    <strong>Pour qui : </strong>
+                    <strong style={{ color: "var(--color-primary)" }}>Pour qui : </strong>
                     {c.pourQui}
                   </p>
 

@@ -137,8 +137,8 @@ export default function APropos() {
               marginInline: "auto",
             }}
           >
-            Le bien-être est accessible à tous lorsqu'il est enseigné avec
-            rigueur et bienveillance.
+            S'ouvrir au potentiel du cœur et relâcher les peurs pour laisser
+            circuler l'énergie vitale.
           </p>
         </div>
       </section>
