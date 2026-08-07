@@ -17,6 +17,12 @@ const SLOT_BORDER = {
   hybride: "#D97706",
 };
 
+// Jaune fixe pour le bloc "Pour qui" et le badge horaires — uniforme sur
+// toutes les cartes, indépendamment de la couleur propre à chaque cours.
+const UNIFORM_YELLOW_BG = "rgba(201,168,76,.16)";
+const UNIFORM_YELLOW_BORDER = "rgba(201,168,76,.22)";
+const UNIFORM_YELLOW_TEXT = "#7a5520";
+
 const FORMULE_FILTERS = [
   { key: "presentiel", label: "Présentiel" },
   { key: "distanciel", label: "Distanciel" },
@@ -294,9 +300,9 @@ export default function Cours() {
                     <span
                       className="pill flex-shrink-0"
                       style={{
-                        background: c.bg,
-                        color: c.color,
-                        borderColor: c.bg,
+                        background: UNIFORM_YELLOW_BG,
+                        color: UNIFORM_YELLOW_TEXT,
+                        borderColor: UNIFORM_YELLOW_BORDER,
                       }}
                     >
                       {c.creneaux}
@@ -325,7 +331,7 @@ export default function Cours() {
                     className="text-sm leading-relaxed mb-5"
                     style={{
                       color: "var(--color-ink)",
-                      background: c.bg,
+                      background: UNIFORM_YELLOW_BG,
                       borderRadius: ".75rem",
                       padding: "1rem 1.25rem",
                     }}
