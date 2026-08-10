@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { subscribeToEvents } from "../services/eventsService";
 import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
+import useSEO from "../hooks/useSEO";
 
 const TODAY = new Date().toISOString().slice(0, 10);
 
@@ -273,6 +274,13 @@ export default function Evenements() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  useSEO({
+    title: "Événements & stages",
+    description:
+      "Stages, ateliers et événements ponctuels de yoga Kundalini organisés à Saint-Brieuc par Emmanuelle Druneau.",
+    path: "/evenements",
+  });
 
   useEffect(() => {
     const unsubscribe = subscribeToEvents(

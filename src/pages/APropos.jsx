@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { TEAM } from "../data/index";
+import useSEO from "../hooks/useSEO";
 
 const CAROUSEL_IMAGES = [
   { src: "/img/yoga.jpg", alt: "Cours de yoga" },
@@ -112,6 +113,13 @@ const VALUES = [
 ];
 
 export default function APropos() {
+  useSEO({
+    title: "À propos",
+    description:
+      "Emmanuelle Druneau, professeure de yoga Kundalini à Saint-Brieuc. Découvrez son parcours et sa philosophie d'enseignement.",
+    path: "/a-propos",
+  });
+
   return (
     <main className="pt-16">
       {/* ══ Header ════════════════════════════════════════════ */}

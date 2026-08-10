@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { COURS_DETAILS, REVIEWS } from "../data/index";
+import useSEO from "../hooks/useSEO";
 
 function TestimonialsCarousel() {
   const [current, setCurrent] = useState(0);
@@ -157,6 +158,13 @@ function TestimonialsCarousel() {
 
 export default function Home() {
   const [videoReady, setVideoReady] = useState(false);
+
+  useSEO({
+    title: "Yoga Kundalini à Saint-Brieuc",
+    description:
+      "Studio de yoga Kundalini à Saint-Brieuc avec Emmanuelle Druneau : cours en présentiel et en ligne pour retrouver énergie, équilibre et bien-être.",
+    path: "/",
+  });
 
   return (
     <main>

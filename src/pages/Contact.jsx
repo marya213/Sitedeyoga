@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NewsletterForm from "../components/NewsletterForm";
+import useSEO from "../hooks/useSEO";
 
 async function sendContactToFlodesk({ name, email, phone, subject, message }) {
   const apiKey = import.meta.env.VITE_FLODESK_API_KEY;
@@ -138,6 +139,13 @@ export default function Contact() {
   });
   const [status, setStatus] = useState("idle"); // idle | loading | error
   const [errorMsg, setErrorMsg] = useState("");
+
+  useSEO({
+    title: "Contact",
+    description:
+      "Contactez le Studio Kundalini à Saint-Brieuc pour toute question sur les cours de yoga, réservations ou tarifs.",
+    path: "/contact",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;

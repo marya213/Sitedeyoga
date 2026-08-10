@@ -10,6 +10,7 @@ import {
 } from "../data/index";
 import Pill from "../components/ui/Pill";
 import { downloadInscriptionPdf } from "../services/inscriptionPdfService";
+import useSEO from "../hooks/useSEO";
 
 const SLOT_BORDER = {
   studio: "#C9A84C",
@@ -169,6 +170,13 @@ function WeekSchedule() {
 export default function Cours() {
   const [formuleFilter, setFormuleFilter] = useState("presentiel");
   const filteredPricing = PRICING.filter((plan) => plan.mode === formuleFilter);
+
+  useSEO({
+    title: "Nos cours de yoga",
+    description:
+      "Énergie & Équilibre, Corps en Mouvement, Souffle & Sérénité : découvrez les cours de yoga Kundalini à Saint-Brieuc, en présentiel ou en ligne.",
+    path: "/cours",
+  });
 
   return (
     <main className="pt-16">
