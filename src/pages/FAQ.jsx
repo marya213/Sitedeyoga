@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import useSEO from '../hooks/useSEO'
 
 const FAQ_DATA = [
   {
@@ -166,6 +167,13 @@ function AccordionItem({ q, a, isOpen, onToggle }) {
 
 export default function FAQ() {
   const [openId, setOpenId] = useState(null)
+
+  useSEO({
+    title: 'Questions fréquentes',
+    description:
+      "Toutes les réponses à vos questions sur les cours de yoga Kundalini à Saint-Brieuc : débuter, tarifs, matériel, annulation.",
+    path: '/faq',
+  })
 
   const toggle = (id) => setOpenId(prev => prev === id ? null : id)
 

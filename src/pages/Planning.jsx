@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { DAYS, SCHEDULE, TYPE_STYLES, KUNDALINI_URL } from '../data/index'
 import { downloadInscriptionPdf } from '../services/inscriptionPdfService'
+import useSEO from '../hooks/useSEO'
 
 const JS_TO_FR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 const TODAY_FR = JS_TO_FR[new Date().getDay()]
@@ -101,6 +102,13 @@ export default function Planning() {
   const defaultDay = DAYS.includes(TODAY_FR) ? TODAY_FR : 'Lundi'
   const [activeDay, setActiveDay] = useState(defaultDay)
   const [filter, setFilter] = useState('tous')
+
+  useSEO({
+    title: 'Planning des cours',
+    description:
+      "Consultez le planning hebdomadaire des cours de yoga Kundalini à Saint-Brieuc, en présentiel et en ligne.",
+    path: '/planning',
+  })
 
   const dayCounts = DAYS.reduce((acc, day) => {
     acc[day] = SCHEDULE.filter(c => c.day === day && (filter === 'tous' || c.type === filter)).length
