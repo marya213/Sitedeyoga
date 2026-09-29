@@ -127,7 +127,6 @@ export const PRICING = [
       "34 cours sur l'année scolaire",
       "Adhésion à la fédération incluse",
       "Assurance incluse",
-      "+ 1 cours de Studio en ligne offert (lundi 7h)",
     ],
     cta: "S'abonner",
     highlighted: false,
@@ -143,7 +142,6 @@ export const PRICING = [
       "Valable pour 10 cours en présentiel",
       "Adhésion à la fédération incluse",
       "Assurance incluse",
-      "+ 1 cours de Studio en ligne offert (lundi 7h)",
     ],
     cta: "S'abonner",
     highlighted: false,
@@ -160,8 +158,10 @@ export const PRICING = [
   {
     name: "Studio de Yoga en Ligne",
     mode: "distanciel",
-    badge: "12 mois",
-    price: "250",
+    priceTiers: [
+      { label: "12 mois", price: "260", oldPrice: null },
+      { label: "Par mois", price: "25", oldPrice: null },
+    ],
     features: [
       "Accès illimité aux cours en ligne pendant 1 an",
       "Vidéothèque et cours en direct (lives)",
@@ -174,7 +174,7 @@ export const PRICING = [
     mode: "both",
     badge: "✨ La plus avantageuse",
     price: "430",
-    oldPrice: "665",
+    oldPrice: "565",
     priceNote: "Présentiel + Studio en ligne · 12 mois",
     features: [
       "1 cours en présentiel par semaine",
